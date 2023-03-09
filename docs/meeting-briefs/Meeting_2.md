@@ -46,7 +46,7 @@ Tech-Stack | • Discuss the tech-stack
 
 ### Mock-ups
 - We showed our mocks-ups for the smartwatch app to Hugo and Matilde;
-- We got positive feedback, some changes were requested: switch "Player" tags with "Team" tags, add set points, and update the icons so they are more intuitive.
+- We got positive feedback, some changes were requested: switch "Player" tags with "Team" tags, add set points, showcase statistics, and update the icons so they are more intuitive.
 
 
 ### Consumer Form
