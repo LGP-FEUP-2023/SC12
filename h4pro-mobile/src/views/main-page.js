@@ -1,6 +1,7 @@
 import styles from '../styles/main-page.style'
 import { IMAGES } from '../constants/images'
 import { MyStatusBar } from '../components/status-bar'
+import { MyScoreBoard } from '../components/scoreboard'
 import React, { Component } from 'react'
 import { View, Image } from 'react-native'
 
@@ -14,6 +15,7 @@ class MainPage extends Component {
                     source={IMAGES.logo}
                 />
             </View>
+            <MyScoreBoard/>
         </View>
       )
    }
