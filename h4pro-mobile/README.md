@@ -14,7 +14,7 @@ Recommended extensions for vscode (optional):
 
 - React Native Tools
 - React-Native Snippets
-- Prittier
+- Prettier
 
 ## Running the project
 
