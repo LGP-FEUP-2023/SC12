@@ -5,6 +5,6 @@ import { SafeAreaView, Text } from 'react-native'
 
 export const MyScoreBoard = () => (
     <SafeAreaView style={styles.scoreboard}>
-        <Text style={{color: 'white'}}>ScoreBoard sérgio</Text>
+        <Text style={{color: 'white'}}>ScoreBoard</Text>
     </SafeAreaView>
 );
