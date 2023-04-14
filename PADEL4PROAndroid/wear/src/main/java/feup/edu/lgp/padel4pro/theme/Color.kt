@@ -13,24 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
-}
+package feup.edu.lgp.padel4pro.theme
 
-// https://docs.gradle.org/7.4/userguide/declaring_dependencies.html#sec:type-safe-project-accessors
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+import androidx.compose.ui.graphics.Color
+import androidx.wear.compose.material.Colors
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+val Purple200 = Color(0xFFBB86FC)
+val Purple500 = Color(0xFF6200EE)
+val Purple700 = Color(0xFF3700B3)
+val Teal200 = Color(0xFF03DAC5)
+val Red400 = Color(0xFFCF6679)
+val Orange = Color(0xf2f2f2)
 
-rootProject.name = "PADEL4PROAndroid"
-include ":wear"
+internal val wearColorPalette: Colors = Colors(
+    primary = Purple200,
+    primaryVariant = Purple700,
+    secondary = Teal200,
+    secondaryVariant = Teal200,
+    error = Red400,
+    onPrimary = Color.Black,
+    onSecondary = Color.Black,
+    onError = Color.Black
+)
