@@ -5,6 +5,8 @@ import { MyScoreBoard } from '../components/scoreboard'
 import React, { Component } from 'react'
 import { View, Image } from 'react-native'
 import { CourtButton } from '../components/court-button'
+import { ConnectedSmartwatch } from '../components/connected-smartwatch'
+import { STRINGS } from '../constants/strings'
 
 class MainPage extends Component {
    render() {
@@ -14,9 +16,10 @@ class MainPage extends Component {
             <Image style={styles.logo}
                     source={IMAGES.logo}
             />
+            <ConnectedSmartwatch text={"John's Smartwatch"} icon={IMAGES.smartwatch}/>
             <MyScoreBoard/>
-            <CourtButton text={"join court"} icon={IMAGES.join}/>
-            <CourtButton text={"leave court"} icon={IMAGES.leave}/>
+            <CourtButton text={STRINGS.join} icon={IMAGES.join}/>
+            <CourtButton text={STRINGS.leave} icon={IMAGES.leave}/>
         </View>
       )
    }
