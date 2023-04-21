@@ -59,7 +59,7 @@ export default class SessionScanner extends Component {
                             onBarCodeRead={this._handleBarCodeRead}
                             style={{
                                 height: '100%',
-                                width: '1000%',
+                                width: '100%',
                             }}
                         />
                     </View>
