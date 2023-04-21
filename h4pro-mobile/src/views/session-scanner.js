@@ -59,12 +59,12 @@ const SessionScanner = ({ navigation }) => {
                     style={{
                         backgroundColor: 'black',
                         height: Dimensions.get('window').height,
-                        width: Dimensions.get('window').width,
+                        width: '150%',
                         alignItems: "center",
                         justifyContent: "center"
                     }}>
                     <BarCodeScanner
-                        style={StyleSheet.absoluteFillObject}
+                        style={[[StyleSheet.absoluteFillObject]]}
                         onBarCodeScanned={handleBarCodeScanned}
                     />
 
