@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import { BarCodeScanner } from 'expo-barcode-scanner';
 import { COLOR } from '../constants/colors'
 import {
     Alert,
@@ -10,129 +11,82 @@ import {
     StatusBar,
     StyleSheet,
     TouchableOpacity,
+    Button,
 } from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
-import { Camera } from "expo-camera";
 import BarcodeMask from 'react-native-barcode-mask';
 import { StackActions } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-export default class SessionScanner extends Component {
-    state = {
-        hasCameraPermission: null,
-        lastScannedUrl: null,
+const SessionScanner = ({ navigation }) => {
+    const [hasPermission, setHasPermission] = useState(null);
+    const [scanned, setScanned] = useState(false);
+    const [result, setResult] = useState('');
+
+    useEffect(() => {
+        (async () => {
+            const { status } = await BarCodeScanner.requestPermissionsAsync();
+            setHasPermission(status === 'granted');
+        })();
+    }, []);
+
+    const handleBarCodeScanned = ({ type, data }) => {
+        setScanned(true);
+        setResult(data);
     };
 
-    componentDidMount() {
-        this._requestCameraPermission();
+    const handleScanAgain = () => {
+        setScanned(false);
+        setResult('');
+    };
+
+    if (hasPermission === null) {
+        return <Text>Requesting camera permission</Text>;
     }
 
-    _requestCameraPermission = async () => {
-        const { status } = await Camera.requestCameraPermissionsAsync()
-        this.setState({
-            hasCameraPermission: status === 'granted',
-        });
-    };
+    if (hasPermission === false) {
+        return <Text>No access to camera</Text>;
+    }
 
-    _handleBarCodeRead = result => {
-        if (result.data !== this.state.lastScannedUrl) {
-            LayoutAnimation.spring();
-            this.setState({ lastScannedUrl: result.data });
-        }
-    };
+    return (
+        <View style={styles.container}>
+            {scanned ? (
+                <>
+                    <Text style={styles.resultText}>Result: {result}</Text>
+                    <Button title="Scan Again" onPress={handleScanAgain} />
+                </>
+            ) : (
+                <View
+                    style={{
+                        backgroundColor: 'black',
+                        height: Dimensions.get('window').height,
+                        width: Dimensions.get('window').width,
+                        alignItems: "center",
+                        justifyContent: "center"
+                    }}>
+                    <BarCodeScanner
+                        style={StyleSheet.absoluteFillObject}
+                        onBarCodeScanned={handleBarCodeScanned}
+                    />
 
-    render() {
-
-        const { navigation } = this.props;
-
-        return (
-            <View style={styles.container}>
-                {this.state.hasCameraPermission === null ? (
-                    <Text>Requesting for camera permission</Text>
-                ) : this.state.hasCameraPermission === false ? (
-                    <Text style={{ color: '#fff' }}>
-                        Camera permission is not granted
-                    </Text>
-                ) : (
-                    <View
-                        style={{
-                            backgroundColor: 'black',
-                            height: Dimensions.get('window').height,
-                            width: Dimensions.get('window').width,
-                            alignItems: "center",
-                            justifyContent: "center"
-                        }}>
-
-                        <BarCodeScanner
-                            onBarCodeRead={this._handleBarCodeRead}
-                            style={{
-                                height: '100%',
-                                width: '150%',
-                            }}
-                        />
-
-                        <View style={styles.overlayContainer}>
-                            <Text style={styles.overlayText}>Scan session QR code</Text>
-                        </View>
-
-
-
-                        <BarcodeMask edgeColor={'#FFFFFF'} showAnimatedLine={false} outerMaskOpacity={0.2} height={270} width={270} />
-
-
-                        <TouchableOpacity onPress={() => navigation.dispatch(StackActions.pop())} style={[styles.closeButton, { bottom: 25 }]}>
-                            <Icon name={'close'} color={COLOR.white} size={BUTTON_SIZE / 2} />
-                        </TouchableOpacity>
+                    <View style={styles.overlayContainer}>
+                        <Text style={styles.overlayText}>Scan session QR code</Text>
                     </View>
-                )}
 
-                {this._maybeRenderUrl()}
 
-                <StatusBar hidden />
-            </View>
-        );
-    }
 
-    _handlePressUrl = () => {
-        Alert.alert(
-            'Open this URL?',
-            this.state.lastScannedUrl,
-            [
-                {
-                    text: 'Yes',
-                    onPress: () => Linking.openURL(this.state.lastScannedUrl),
-                },
-                { text: 'No', onPress: () => { } },
-            ],
-            { cancellable: false }
-        );
-    };
+                    <BarcodeMask edgeColor={'#FFFFFF'} showAnimatedLine={false} outerMaskOpacity={0.2} height={270} width={270} />
 
-    _handlePressCancel = () => {
-        this.setState({ lastScannedUrl: null });
-    };
+                    <TouchableOpacity onPress={() => navigation.dispatch(StackActions.pop())} style={[styles.closeButton, { bottom: 25 }]}>
+                        <Icon name={'close'} color={COLOR.white} size={BUTTON_SIZE / 2} />
+                    </TouchableOpacity>
 
-    _maybeRenderUrl = () => {
-        if (!this.state.lastScannedUrl) {
-            return;
-        }
-
-        return (
-            <View style={styles.bottomBar}>
-                <TouchableOpacity style={styles.url} onPress={this._handlePressUrl}>
-                    <Text numberOfLines={1} style={styles.urlText}>
-                        {this.state.lastScannedUrl}
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.cancelButton}
-                    onPress={this._handlePressCancel}>
-                    <Text style={styles.cancelButtonText}>Cancel</Text>
-                </TouchableOpacity>
-            </View>
-        );
-    };
+                </ View>
+            )}
+        </View>
+    );
 }
+
+export default SessionScanner
 
 const BUTTON_SIZE = 50
 const BORDER_WIDTH = 1
@@ -140,25 +94,12 @@ const BORDER_WIDTH = 1
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#000',
+        alignItems: 'center',
     },
-    bottomBar: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        backgroundColor: 'rgba(0,0,0,0.5)',
-        padding: 15,
-        flexDirection: 'row',
-    },
-    url: {
-        flex: 1,
-    },
-    urlText: {
-        color: '#fff',
-        fontSize: 20,
+    resultText: {
+        fontSize: 18,
+        marginVertical: 10,
     },
     cancelButton: {
         marginLeft: 10,
