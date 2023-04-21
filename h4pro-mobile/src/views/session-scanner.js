@@ -49,7 +49,7 @@ export default class SessionScanner extends Component {
                 ) : (
                     <View
                         style={{
-                            backgroundColor: 'red',
+                            backgroundColor: 'black',
                             height: Dimensions.get('window').height,
                             width: Dimensions.get('window').width,
                             alignItems: "center",
@@ -58,8 +58,8 @@ export default class SessionScanner extends Component {
                         <BarCodeScanner
                             onBarCodeRead={this._handleBarCodeRead}
                             style={{
-                                height: '50%',
-                                width: '50%',
+                                height: '100%',
+                                width: '1000%',
                             }}
                         />
                     </View>
