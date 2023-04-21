@@ -10,6 +10,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
 
 @Composable
@@ -41,7 +42,7 @@ fun Scoreboard() {
                     textAlign = TextAlign.Right,
                     fontSize = 40.sp,
                     fontWeight = FontWeight.ExtraBold,
-                    color = Color.Blue,
+                    color = MaterialTheme.colors.primary,
                 )
                 Text(
                     text ="32",
@@ -49,14 +50,14 @@ fun Scoreboard() {
                     textAlign = TextAlign.Right,
                     fontSize = 25.sp,
                     fontWeight = FontWeight.ExtraBold,
-                    color = Color.Blue
+                    color = MaterialTheme.colors.primary
                 )
             }
             Divider(
                 modifier = Modifier
                     .width(3.dp)
                     .fillMaxHeight()
-                    .padding(0.dp, 10.dp, 0.dp,10.dp),
+                    .padding(0.dp, 10.dp, 0.dp, 10.dp),
                 color = Color.Gray
             )
             Column(
@@ -77,7 +78,7 @@ fun Scoreboard() {
                     textAlign = TextAlign.Left,
                     fontSize = 40.sp,
                     fontWeight = FontWeight.ExtraBold,
-                    color = Color.Yellow
+                    color = MaterialTheme.colors.primaryVariant,
                 )
                 Text(
                     text ="42",
@@ -85,7 +86,7 @@ fun Scoreboard() {
                     textAlign = TextAlign.Left,
                     fontSize = 25.sp,
                     fontWeight = FontWeight.ExtraBold,
-                    color = Color.Yellow
+                    color = MaterialTheme.colors.primaryVariant
                 )
             }
         }
