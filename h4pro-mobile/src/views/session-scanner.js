@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { COLOR } from '../constants/colors'
 import {
     Alert,
     Linking,
@@ -12,8 +13,9 @@ import {
 } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { Camera } from "expo-camera";
-import { Image } from 'react-native'
 import BarcodeMask from 'react-native-barcode-mask';
+import { StackActions } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 export default class SessionScanner extends Component {
     state = {
@@ -40,6 +42,9 @@ export default class SessionScanner extends Component {
     };
 
     render() {
+
+        const { navigation } = this.props;
+
         return (
             <View style={styles.container}>
                 {this.state.hasCameraPermission === null ? (
@@ -70,8 +75,14 @@ export default class SessionScanner extends Component {
                             <Text style={styles.overlayText}>Scan session QR code</Text>
                         </View>
 
+
+
                         <BarcodeMask edgeColor={'#FFFFFF'} showAnimatedLine={false} outerMaskOpacity={0.2} height={270} width={270} />
 
+
+                        <TouchableOpacity onPress={() => navigation.dispatch(StackActions.pop())} style={[styles.closeButton, { bottom: 25 }]}>
+                            <Icon name={'close'} color={COLOR.white} size={BUTTON_SIZE / 2} />
+                        </TouchableOpacity>
                     </View>
                 )}
 
@@ -123,6 +134,9 @@ export default class SessionScanner extends Component {
     };
 }
 
+const BUTTON_SIZE = 50
+const BORDER_WIDTH = 1
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -157,7 +171,7 @@ const styles = StyleSheet.create({
     },
     overlayContainer: {
         top: 100,
-        backgroundColor: '#262626',
+        backgroundColor: COLOR.gray,
         borderRadius: 20,
         paddingHorizontal: 25,
         paddingVertical: 20,
@@ -168,5 +182,15 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
     },
-
+    closeButton: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: BUTTON_SIZE + BORDER_WIDTH,
+        height: BUTTON_SIZE + BORDER_WIDTH,
+        borderWidth: BORDER_WIDTH,
+        borderRadius: BUTTON_SIZE / 2,
+        backgroundColor: COLOR.gray,
+        borderColor: COLOR.gray,
+        position: 'absolute',
+    }
 });
