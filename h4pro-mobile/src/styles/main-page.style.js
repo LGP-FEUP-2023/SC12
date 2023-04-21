@@ -7,7 +7,7 @@ export default StyleSheet.create({
         backgroundColor: COLOR.background
     },
     logo: {
-        width: 140,
+        width: 150,
         height: 30,
         marginTop: 50,
         marginLeft: 20
