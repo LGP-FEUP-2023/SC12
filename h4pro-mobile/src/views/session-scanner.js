@@ -12,6 +12,8 @@ import {
 } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { Camera } from "expo-camera";
+import { Image } from 'react-native'
+import BarcodeMask from 'react-native-barcode-mask';
 
 export default class SessionScanner extends Component {
     state = {
@@ -55,13 +57,21 @@ export default class SessionScanner extends Component {
                             alignItems: "center",
                             justifyContent: "center"
                         }}>
+
                         <BarCodeScanner
                             onBarCodeRead={this._handleBarCodeRead}
                             style={{
                                 height: '100%',
-                                width: '100%',
+                                width: '150%',
                             }}
                         />
+
+                        <View style={styles.overlayContainer}>
+                            <Text style={styles.overlayText}>Scan session QR code</Text>
+                        </View>
+
+                        <BarcodeMask edgeColor={'#FFFFFF'} showAnimatedLine={false} outerMaskOpacity={0.2} height={270} width={270} />
+
                     </View>
                 )}
 
@@ -145,4 +155,18 @@ const styles = StyleSheet.create({
         color: 'rgba(255,255,255,0.8)',
         fontSize: 18,
     },
+    overlayContainer: {
+        top: 100,
+        backgroundColor: '#262626',
+        borderRadius: 20,
+        paddingHorizontal: 25,
+        paddingVertical: 20,
+        position: 'absolute',
+    },
+    overlayText: {
+        color: '#fff',
+        fontSize: 20,
+        textAlign: 'center',
+    },
+
 });
