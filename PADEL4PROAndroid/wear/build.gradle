@@ -56,6 +56,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    namespace 'feup.edu.lgp.padel4pro'
 }
 
 dependencies {
@@ -66,6 +67,7 @@ dependencies {
     implementation composeBom
     implementation libs.androidx.activity.compose
     implementation libs.compose.ui.tooling.preview
+
     //implementation "androidx.wear.tiles:tiles:1.2.0-alpha03"
 
     // Use to utilize components and layouts with Material Design in your tiles
