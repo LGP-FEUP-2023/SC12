@@ -28,7 +28,7 @@ val H4PROBlue = Color(0xFF3696FF)
 
 internal val wearColorPalette: Colors = Colors(
     primary = H4PROBlue,
-    primaryVariant = Teal200,
+    primaryVariant = Color.Gray,
     secondary = H4PROOrange,
     secondaryVariant = Teal200,
     error = Red400,

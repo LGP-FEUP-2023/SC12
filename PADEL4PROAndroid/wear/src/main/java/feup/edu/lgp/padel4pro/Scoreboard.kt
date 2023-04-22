@@ -1,8 +1,9 @@
 package feup.edu.lgp.padel4pro
 
-import android.gesture.Gesture
 import androidx.compose.foundation.gestures.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -15,6 +16,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.wear.compose.material.Button
+import androidx.wear.compose.material.ButtonColors
+import androidx.wear.compose.material.ButtonDefaults
+import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.swipeable
@@ -60,19 +65,19 @@ fun Scoreboard() {
                             var threshold = 75
 
                             detectVerticalDragGestures(
-                                onDragStart = {  },
+                                onDragStart = { },
                                 onDragEnd = {
-                                    if (distance < - threshold) {
+                                    if (distance < -threshold) {
                                         // handle swipe up action
 
                                         score1.value += 1
-                                        if(score1.value == 5) {
+                                        if (score1.value == 5) {
                                             score1.value = 0
                                         }
-                                    } else if (distance > threshold){
+                                    } else if (distance > threshold) {
                                         // handle swipe down action
                                         score1.value -= 1
-                                        if(score1.value < 0) {
+                                        if (score1.value < 0) {
                                             score1.value = 4
                                         }
                                     }
@@ -96,18 +101,18 @@ fun Scoreboard() {
                             var threshold = 75
 
                             detectVerticalDragGestures(
-                                onDragStart = {  },
+                                onDragStart = { },
                                 onDragEnd = {
-                                    if (distance < - threshold) {
+                                    if (distance < -threshold) {
                                         // handle swipe up action
                                         games1.value += 1
-                                        if(games1.value == 8) {
+                                        if (games1.value == 8) {
                                             games1.value = 0
                                         }
-                                    } else if (distance > threshold){
+                                    } else if (distance > threshold) {
                                         // handle swipe down action
                                         games1.value -= 1
-                                        if(games1.value < 0) {
+                                        if (games1.value < 0) {
                                             games1.value = 7
                                         }
                                     }
@@ -126,6 +131,7 @@ fun Scoreboard() {
                     color = wearColorPalette.primary
                 )
             }
+
             Column(
                 modifier = Modifier.weight(1f),
                 horizontalAlignment = Alignment.Start
@@ -147,19 +153,19 @@ fun Scoreboard() {
                             var threshold = 75
 
                             detectVerticalDragGestures(
-                                onDragStart = {  },
+                                onDragStart = { },
                                 onDragEnd = {
-                                    if (distance < - threshold) {
+                                    if (distance < -threshold) {
                                         // handle swipe up action
 
                                         score2.value += 1
-                                        if(score2.value == 5) {
+                                        if (score2.value == 5) {
                                             score2.value = 0
                                         }
-                                    } else if (distance > threshold){
+                                    } else if (distance > threshold) {
                                         // handle swipe down action
                                         score2.value -= 1
-                                        if(score2.value < 0) {
+                                        if (score2.value < 0) {
                                             score2.value = 4
                                         }
                                     }
@@ -183,18 +189,18 @@ fun Scoreboard() {
                             var threshold = 75
 
                             detectVerticalDragGestures(
-                                onDragStart = {  },
+                                onDragStart = { },
                                 onDragEnd = {
-                                    if (distance < - threshold) {
+                                    if (distance < -threshold) {
                                         // handle swipe up action
                                         games2.value += 1
-                                        if(games2.value == 8) {
+                                        if (games2.value == 8) {
                                             games2.value = 0
                                         }
-                                    } else if (distance > threshold){
+                                    } else if (distance > threshold) {
                                         // handle swipe down action
                                         games2.value -= 1
-                                        if(games2.value < 0) {
+                                        if (games2.value < 0) {
                                             games2.value = 7
                                         }
                                     }
@@ -213,6 +219,25 @@ fun Scoreboard() {
                     color = wearColorPalette.secondary
                 )
             }
+        }
+        Box(
+            modifier = Modifier.fillMaxSize().padding(20.dp),
+            contentAlignment = Alignment.BottomCenter
+        ) {
+                Button(
+                    onClick = {
+                        score1.value = 0
+                        score2.value = 0
+                        games1.value = 0
+                        games2.value = 0
+                              },
+                    modifier = Modifier
+                        .height(20.dp)
+                        .width(20.dp),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = wearColorPalette.primaryVariant)
+                ) {
+                    Icon(imageVector = Icons.Filled.Refresh, contentDescription = "reset scores")
+                }
         }
     }
 
