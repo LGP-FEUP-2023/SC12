@@ -24,6 +24,9 @@ import feup.edu.lgp.padel4pro.theme.wearColorPalette
 fun Scoreboard() {
     var score1 = remember { mutableStateOf(0) }
     var score2 = remember { mutableStateOf(0) }
+    var scores = remember {
+        arrayOf("0", "15", "30", "40", "AD")
+    }
     var games1 = remember { mutableStateOf(0) }
     var games2 = remember { mutableStateOf(0) }
 
@@ -49,7 +52,7 @@ fun Scoreboard() {
                     color = Color.White
                 )
                 Text(
-                    text = score1.value.toString(),
+                    text = scores[score1.value],
                     modifier = Modifier
                         .padding(16.dp, 0.dp)
                         .pointerInput(Unit) {
@@ -61,17 +64,21 @@ fun Scoreboard() {
                                 onDragEnd = {
                                     if (distance < - threshold) {
                                         // handle swipe up action
+
                                         score1.value += 1
-                                    } else if (distance > threshold && score1.value > 0){
+                                        if(score1.value == 5) {
+                                            score1.value = 0
+                                        }
+                                    } else if (distance > threshold){
                                         // handle swipe down action
                                         score1.value -= 1
+                                        if(score1.value < 0) {
+                                            score1.value = 4
+                                        }
                                     }
                                 }
                             ) { change, dragAmount ->
                                 distance = change.position.y
-
-
-
                                 change.consume()
                             }
                         },
@@ -94,9 +101,15 @@ fun Scoreboard() {
                                     if (distance < - threshold) {
                                         // handle swipe up action
                                         games1.value += 1
-                                    } else if (distance > threshold && games1.value > 0){
+                                        if(games1.value == 8) {
+                                            games1.value = 0
+                                        }
+                                    } else if (distance > threshold){
                                         // handle swipe down action
                                         games1.value -= 1
+                                        if(games1.value < 0) {
+                                            games1.value = 7
+                                        }
                                     }
                                 }
                             ) { change, dragAmount ->
@@ -108,7 +121,7 @@ fun Scoreboard() {
                             }
                         },
                     textAlign = TextAlign.Right,
-                    fontSize = 25.sp,
+                    fontSize = 30.sp,
                     fontWeight = FontWeight.ExtraBold,
                     color = wearColorPalette.primary
                 )
@@ -126,7 +139,7 @@ fun Scoreboard() {
                     color = Color.White
                 )
                 Text(
-                    text = score2.value.toString(),
+                    text = scores[score2.value],
                     modifier = Modifier
                         .padding(14.dp, 0.dp)
                         .pointerInput(Unit) {
@@ -138,17 +151,21 @@ fun Scoreboard() {
                                 onDragEnd = {
                                     if (distance < - threshold) {
                                         // handle swipe up action
+
                                         score2.value += 1
-                                    } else if (distance > threshold && score2.value > 0){
+                                        if(score2.value == 5) {
+                                            score2.value = 0
+                                        }
+                                    } else if (distance > threshold){
                                         // handle swipe down action
                                         score2.value -= 1
+                                        if(score2.value < 0) {
+                                            score2.value = 4
+                                        }
                                     }
                                 }
                             ) { change, dragAmount ->
                                 distance = change.position.y
-
-
-
                                 change.consume()
                             }
                         },
@@ -171,9 +188,15 @@ fun Scoreboard() {
                                     if (distance < - threshold) {
                                         // handle swipe up action
                                         games2.value += 1
-                                    } else if (distance > threshold && games2.value > 0){
+                                        if(games2.value == 8) {
+                                            games2.value = 0
+                                        }
+                                    } else if (distance > threshold){
                                         // handle swipe down action
                                         games2.value -= 1
+                                        if(games2.value < 0) {
+                                            games2.value = 7
+                                        }
                                     }
                                 }
                             ) { change, dragAmount ->
@@ -185,7 +208,7 @@ fun Scoreboard() {
                             }
                         },
                     textAlign = TextAlign.Left,
-                    fontSize = 25.sp,
+                    fontSize = 30.sp,
                     fontWeight = FontWeight.ExtraBold,
                     color = wearColorPalette.secondary
                 )
