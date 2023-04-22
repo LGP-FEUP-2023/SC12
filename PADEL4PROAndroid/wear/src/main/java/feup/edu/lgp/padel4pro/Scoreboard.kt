@@ -15,8 +15,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.swipeable
+import feup.edu.lgp.padel4pro.theme.wearColorPalette
 
 @Composable
 fun Scoreboard() {
@@ -76,7 +78,7 @@ fun Scoreboard() {
                     textAlign = TextAlign.Right,
                     fontSize = 40.sp,
                     fontWeight = FontWeight.ExtraBold,
-                    color = Color.Blue,
+                    color = wearColorPalette.primary,
                 )
                 Text(
                     text = games1.value.toString(),
@@ -108,7 +110,7 @@ fun Scoreboard() {
                     textAlign = TextAlign.Right,
                     fontSize = 25.sp,
                     fontWeight = FontWeight.ExtraBold,
-                    color = Color.Blue
+                    color = wearColorPalette.primary
                 )
             }
             Column(
@@ -153,7 +155,7 @@ fun Scoreboard() {
                     textAlign = TextAlign.Left,
                     fontSize = 40.sp,
                     fontWeight = FontWeight.ExtraBold,
-                    color = Color.Yellow
+                    color = wearColorPalette.secondary,
                 )
                 Text(
                     text = games2.value.toString(),
@@ -185,7 +187,7 @@ fun Scoreboard() {
                     textAlign = TextAlign.Left,
                     fontSize = 25.sp,
                     fontWeight = FontWeight.ExtraBold,
-                    color = Color.Yellow
+                    color = wearColorPalette.secondary
                 )
             }
         }
