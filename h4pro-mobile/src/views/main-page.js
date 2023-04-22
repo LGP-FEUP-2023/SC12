@@ -9,6 +9,20 @@ import { ConnectedSmartwatch } from '../components/connected-smartwatch'
 import { STRINGS } from '../constants/strings'
 
 class MainPage extends Component {
+   state = {
+      isConnected: false,
+      watchName: STRINGS.noWatch
+   };
+
+   checkSmartwatch() {
+
+   }
+
+   constructor(props) {
+      super(props);
+      this.checkSmartwatch();
+   }
+
    render() {
       return (
         <View style={styles.container}>
@@ -16,7 +30,8 @@ class MainPage extends Component {
             <Image style={styles.logo}
                     source={IMAGES.logo}
             />
-            <ConnectedSmartwatch text={"John's Smartwatch"} icon={IMAGES.smartwatch}/>
+            <ConnectedSmartwatch text={this.state.watchName}
+               icon={this.state.isConnected ? IMAGES.smartwatch : IMAGES.noWatch}/>
             <MyScoreBoard/>
             <CourtButton text={STRINGS.join} icon={IMAGES.join}/>
             <CourtButton text={STRINGS.leave} icon={IMAGES.leave}/>
