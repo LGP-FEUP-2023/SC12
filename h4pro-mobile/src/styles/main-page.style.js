@@ -60,12 +60,12 @@ export default StyleSheet.create({
         color: COLOR.white,
         fontSize: 60,
         textTransform: 'uppercase',
-        fontWeight: '600',
+        fontWeight: '800',
     },
     scoreboardSetScore:{
         color: COLOR.white,
         fontSize: 35,
         textTransform: 'uppercase',
-        fontWeight: '600',
+        fontWeight: '800',
     }
 });
