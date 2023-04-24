@@ -47,9 +47,9 @@ export const MyScoreBoard = () => {
                 <Text style={[styles.scoreboardScores]}> - </Text>
                 <Text style={[styles.scoreboardScores, { color: COLOR.orange}]}>{team2Score.pad(2)}</Text>
             </SafeAreaView>
-            <SafeAreaView style={{ flexDirection: 'row'}}>
-                <Text style={[styles.scoreboardSetScore, { color: COLOR.blue}]}>{team1SetPoints.pad(2)}     </Text>
-                <Text style={[styles.scoreboardSetScore, { color: COLOR.orange}]}>{team2SetPoints.pad(2)}</Text>
+            <SafeAreaView style={{flexDirection: 'row', width: '52%', left: '11%'}}>
+                <Text style={[styles.scoreboardSetScore, { color: COLOR.blue, flex: 1}]}>{team1SetPoints.pad(2)}</Text>
+                <Text style={[styles.scoreboardSetScore, { color: COLOR.orange, flex: 1}]}>{team2SetPoints.pad(2)}</Text>
             </SafeAreaView>
         </SafeAreaView>
     );
