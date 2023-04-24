@@ -44,5 +44,28 @@ export default StyleSheet.create({
     buttonIcon: {
         width: 60,
         height: 65
+    },
+
+    scoreboardText:{
+        color: COLOR.white,
+        fontSize: 18,
+        top: '-5%',
+        textTransform: 'uppercase',
+        fontWeight: '600',
+        textAlign: 'left',
+        alignItems: 'flex-start'
+    
+    },
+    scoreboardScores:{
+        color: COLOR.white,
+        fontSize: 60,
+        textTransform: 'uppercase',
+        fontWeight: '600',
+    },
+    scoreboardSetScore:{
+        color: COLOR.white,
+        fontSize: 35,
+        textTransform: 'uppercase',
+        fontWeight: '600',
     }
 });
