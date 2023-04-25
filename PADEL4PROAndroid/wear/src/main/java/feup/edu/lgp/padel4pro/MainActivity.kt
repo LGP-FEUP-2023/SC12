@@ -71,7 +71,7 @@ fun WearApp(greetingName: String) {
          * see d.android.com/wear/compose.
          */
 
-        Scoreboard()
+        Menu()
     }
 }
 

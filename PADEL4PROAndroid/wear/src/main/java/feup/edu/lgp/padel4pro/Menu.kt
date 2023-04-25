@@ -1,5 +1,6 @@
 package feup.edu.lgp.padel4pro
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,9 +14,13 @@ import androidx.compose.material.icons.filled.Phone
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.Icon
+import androidx.wear.compose.material.contentColorFor
+import feup.edu.lgp.padel4pro.theme.wearColorPalette
 
 @Composable
 fun Menu() {
@@ -31,9 +36,10 @@ fun Menu() {
             Button(
                 onClick = { /* Do something */ },
                 modifier = Modifier.padding(5.dp)
-
             ) {
-                Icon(imageVector = Icons.Filled.Favorite, contentDescription = "save highlight")
+                // contentColorFor(backgroundColor = wearColorPalette.secondary)
+                Icon(painter = painterResource(id = R.drawable.outline_videocam_24), contentDescription = "highlights")
+                Icon(painter = painterResource(id = R.drawable.baseline_thumb_up_off_alt_24), contentDescription = "highlights")
             }
             Row(
                 verticalAlignment = Alignment.Top
@@ -42,13 +48,14 @@ fun Menu() {
                     onClick = { /* Do something */ },
                     modifier = Modifier.padding(5.dp)
                 ) {
-                    Icon(imageVector = Icons.Filled.List, contentDescription = "save highlight")
+                    Icon(painter = painterResource(id = R.drawable.baseline_ondemand_video_24), contentDescription = "videocam")
                 }
                 Button(
                     onClick = { /* Do something */ },
                     modifier = Modifier.padding(5.dp)
                 ) {
-                    Icon(imageVector = Icons.Filled.Phone, contentDescription = "save highlight")
+                    Icon(painter = painterResource(id = R.drawable.baseline_personal_video_24), contentDescription = "see highlight")
+                    Icon(painter = painterResource(id = R.drawable.baseline_sports_24), contentDescription = "see highlight")
                 }
 
 
