@@ -39,7 +39,7 @@ export const MyScoreBoard = () => {
     return (
         <SafeAreaView style={[styles.scoreboard, styles.basicButton]}>
             <SafeAreaView style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
-                <Text style={styles.scoreboardText}>TEXT_EN.PLAYING_AT</Text>                
+                <Text style={styles.scoreboardText}>{TEXT_EN.PLAYING_AT}</Text>                
 
                 <Text style={[styles.scoreboardText, { color: COLOR.blue}]}>{courtName}</Text>
             </SafeAreaView>
