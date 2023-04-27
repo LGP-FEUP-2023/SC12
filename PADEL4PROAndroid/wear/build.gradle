@@ -1,3 +1,18 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
@@ -7,38 +22,98 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.padel4pro_android"
-        minSdk 30
+        applicationId "feup.edu.lgp.padel4pro"
+        minSdk 26
         targetSdk 30
         versionCode 1
         versionName "1.0"
-
     }
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
-    buildFeatures {
-        viewBinding true
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion libs.versions.compose.compiler.get()
+    }
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+    namespace 'feup.edu.lgp.padel4pro'
 }
 
 dependencies {
-    implementation("androidx.wear:wear:1.2.0")
 
-    // Add support for wearable specific inputs
-    implementation("androidx.wear:wear-input:1.1.0")
-    implementation("androidx.wear:wear-input-testing:1.1.0")
+    def composeBom = platform(libs.androidx.compose.bom)
 
-    // Use to implement wear ongoing activities
-    implementation("androidx.wear:wear-ongoing:1.0.0")
+    // General compose dependencies
+    implementation composeBom
+    implementation libs.androidx.activity.compose
+    implementation libs.compose.ui.tooling.preview
 
-    // Use to implement support for interactions from the Wearables to Phones
-    implementation("androidx.wear:wear-phone-interactions:1.0.1")
-    // Use to implement support for interactions between the Wearables and Phones
-    implementation("androidx.wear:wear-remote-interactions:1.0.0")
-    wearApp project(":wear")
+    //implementation "androidx.wear.tiles:tiles:1.2.0-alpha03"
+
+    // Use to utilize components and layouts with Material Design in your tiles
+
+    //implementation "androidx.wear.tiles:tiles-material:1.2.0-alpha03"
+
+
+    // Compose for Wear OS Dependencies
+    // NOTE: DO NOT INCLUDE a dependency on androidx.compose.material:material.
+    // androidx.wear.compose:compose-material is designed as a replacement not an addition to
+    // androidx.compose.material:material. If there are features from that you feel are missing from
+    // androidx.wear.compose:compose-material please raise a bug to let us know:
+    // https://issuetracker.google.com/issues/new?component=1077552&template=1598429&pli=1
+    implementation libs.wear.compose.material
+    implementation "androidx.compose.material:material:1.4.1"
+    implementation libs.wear.compose.foundation
+
+    // If you are using Compose Navigation, use the Wear OS version (NOT the
+    // androidx.navigation:navigation-compose version), that is, uncomment the line below.
+    // implementation libs.wear.compose.navigation
+
+    // Use to preview wear tiles in your own app
+    //debugImplementation "androidx.wear.tiles:tiles-renderer:1.2.0-alpha03"
+
+    // Use to fetch tiles from a tile provider in your tests
+    //testImplementation "androidx.wear.tiles:tiles-testing:1.2.0-alpha03"
+    implementation "androidx.wear.tiles:tiles:1.2.0-alpha03"
+
+    // Use to utilize components and layouts with Material Design in your tiles
+    implementation "androidx.wear.tiles:tiles-material:1.2.0-alpha03"
+
+    // Use to preview wear tiles in your own app
+    debugImplementation "androidx.wear.tiles:tiles-renderer:1.2.0-alpha03"
+
+    // Use to fetch tiles from a tile provider in your tests
+    testImplementation "androidx.wear.tiles:tiles-testing:1.2.0-alpha03"
+
+
+    // Testing
+    testImplementation libs.junit
+
+    androidTestImplementation libs.test.ext.junit
+    androidTestImplementation libs.test.espresso.core
+    androidTestImplementation libs.compose.ui.test.junit4
+    androidTestImplementation composeBom
+
+    debugImplementation libs.compose.ui.tooling
+    debugImplementation composeBom
 }
