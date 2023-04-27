@@ -65,6 +65,9 @@ fun WearApp(greetingName: String) {
         },
         Screen("WaitScreen") {
             WaitScreen()
+        },
+        Screen("SyncScreen") {
+            SyncScreen()
         }
     )
     val screenIndex = remember { mutableStateOf(screens[0]) }
@@ -74,7 +77,7 @@ fun WearApp(greetingName: String) {
          * see d.android.com/wear/compose.
          */
 
-        WaitScreen()
+        SyncScreen()
     }
 }
 
