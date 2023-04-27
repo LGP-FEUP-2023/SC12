@@ -1,4 +1,5 @@
 import { COLOR } from '../constants/colors'
+import { TEXT_EN } from '../constants/text';
 import React, { useState } from 'react';
 import styles from '../styles/main-page.style'
 import { SafeAreaView, Text } from 'react-native'
@@ -38,7 +39,7 @@ export const MyScoreBoard = () => {
     return (
         <SafeAreaView style={[styles.scoreboard, styles.basicButton]}>
             <SafeAreaView style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
-                <Text style={styles.scoreboardText}>Playing at </Text>                
+                <Text style={styles.scoreboardText}>TEXT_EN.PLAYING_AT</Text>                
 
                 <Text style={[styles.scoreboardText, { color: COLOR.blue}]}>{courtName}</Text>
             </SafeAreaView>
