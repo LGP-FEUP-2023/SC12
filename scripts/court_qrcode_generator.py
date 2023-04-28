@@ -8,26 +8,16 @@ def generate_qrcode(args: str):
     qr = qrcode.QRCode(version=1, box_size=10, border=5, error_correction=qrcode.constants.ERROR_CORRECT_H)
     qr.add_data(join_court_request)
     qr.make(fit=True)
-    img = qr.make_image(fill_color="black", back_color="white")
 
-    #open the image in black and white
-    #invert the colors of the image
 
     icon = Image.open("icon_m.png").convert('RGB')
-    # Create the QR code image
     img = qr.make_image(fill_color="black", back_color="white").convert('RGB')
 
-    # Resize the icon to fit the center of the QR code
     icon_size = min(img.size) // 4
     icon_resized = icon.resize((icon_size, icon_size), Image.Resampling.LANCZOS)
-
-    # Calculate the position to place the icon in the center of the QR code
     icon_pos = ((img.size[0] - icon_size) // 2, (img.size[1] - icon_size) // 2)
-
-    # Add the icon to the center of the QR code
     img.paste(icon_resized, icon_pos)
 
-    # Save the QR code as an image file
     img.save(f"qr_codes/{args.padel_company_id}-{args.padel_court_id}.png")
 
 
