@@ -13,14 +13,17 @@ export default StyleSheet.create({
         marginLeft: 25
     },
     logoBig: {
-      width: 270,
-      height: 60,
+        width: 270,
+        height: 60,
     },
     scoreboard: {
         height: '30%',
         marginTop: '20%'
     },
-
+    formTextInput: {
+        backgroundColor: COLOR.gray,
+        color: COLOR.lightGray,
+    },
     basicButton: {
         flex: 0,
         backgroundColor: COLOR.gray,
