@@ -1,5 +1,6 @@
 import styles from '../styles/main-page.style'
 import { IMAGES } from '../constants/images'
+import { MyStatusBar } from '../components/status-bar'
 import React, { Component } from 'react'
 import { View, Image } from 'react-native'
 import { Text } from 'react-native'
@@ -9,6 +10,7 @@ class LoginPage extends Component {
     return (
 
       <View style={styles.container}>
+        <MyStatusBar />
         <View
           style={[
             styles.container,
