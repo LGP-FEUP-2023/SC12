@@ -1,4 +1,4 @@
-import styles from '../styles/main-page.style'
+import styles from '../styles/login-page.style'
 import { COLOR } from '../constants/colors';
 
 import React from 'react';

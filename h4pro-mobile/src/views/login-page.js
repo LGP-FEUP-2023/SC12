@@ -1,4 +1,4 @@
-import styles from '../styles/main-page.style'
+import styles from '../styles/login-page.style'
 import { IMAGES } from '../constants/images'
 import { MyStatusBar } from '../components/status-bar'
 import FormTextInput from '../components/form-text-input';
