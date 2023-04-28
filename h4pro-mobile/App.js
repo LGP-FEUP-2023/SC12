@@ -1,9 +1,9 @@
 import React from 'react'
-import MainPage from './src/views/main-page.js'
+import LoginPage from './src/views/login-page.js'
 
 const App = () => {
   return (
-    <MainPage />
+    <LoginPage />
   )
 }
 

@@ -12,7 +12,10 @@ export default StyleSheet.create({
         marginTop: 55,
         marginLeft: 25
     },
-    
+    logoBig: {
+      width: 270,
+      height: 60,
+    },
     scoreboard: {
         height: '30%',
         marginTop: '20%'
