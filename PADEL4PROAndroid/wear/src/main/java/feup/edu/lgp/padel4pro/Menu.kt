@@ -21,9 +21,14 @@ import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.contentColorFor
 import feup.edu.lgp.padel4pro.theme.wearColorPalette
+import android.widget.Toast
+import androidx.compose.ui.platform.LocalContext
+
+
 
 @Composable
 fun Menu() {
+    val ctx = LocalContext.current
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -34,7 +39,9 @@ fun Menu() {
             verticalArrangement = Arrangement.Center
         ) {
             Button(
-                onClick = { /* Do something */ },
+                onClick = {
+                    Toast.makeText(ctx, "Request Highlight", Toast.LENGTH_SHORT).show()
+                },
                 modifier = Modifier.padding(5.dp)
             ) {
                 // contentColorFor(backgroundColor = wearColorPalette.secondary)
@@ -45,13 +52,17 @@ fun Menu() {
                 verticalAlignment = Alignment.Top
             ) {
                 Button(
-                    onClick = { /* Do something */ },
+                    onClick = {
+                        Toast.makeText(ctx, "Play Highlight", Toast.LENGTH_SHORT).show()
+                    },
                     modifier = Modifier.padding(5.dp)
                 ) {
                     Icon(painter = painterResource(id = R.drawable.baseline_ondemand_video_24), contentDescription = "videocam")
                 }
                 Button(
-                    onClick = { /* Do something */ },
+                    onClick = {
+                        Toast.makeText(ctx, "Video Referee", Toast.LENGTH_SHORT).show()
+                    },
                     modifier = Modifier.padding(5.dp)
                 ) {
                     Icon(painter = painterResource(id = R.drawable.baseline_personal_video_24), contentDescription = "see highlight")
