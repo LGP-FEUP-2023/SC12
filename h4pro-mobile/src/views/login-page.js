@@ -30,7 +30,7 @@ class LoginPage extends Component {
             </View>
             <View style={styles.formTextContainer}>
               <Image source={IMAGES.password} />
-              <FormTextInput placeholder="PASSWORD" />
+              <FormTextInput placeholder="PASSWORD" hide={true} />
             </View>
             <Text style={styles.linkBlue}>FORGOT YOUR PASSWORD?</Text>
           </View>

@@ -4,7 +4,7 @@ import { COLOR } from '../constants/colors';
 import React from 'react';
 import { SafeAreaView, TextInput } from 'react-native'
 
-const FormTextInput = ({ placeholder }) => {
+const FormTextInput = ({ placeholder, hide=false }) => {
   const [text, onChangeText] = React.useState('');
 
   return (
@@ -15,6 +15,7 @@ const FormTextInput = ({ placeholder }) => {
         value={text}
         placeholder={placeholder}
         placeholderTextColor={COLOR.lightGray}
+        secureTextEntry = {hide}
       />
     </SafeAreaView>
   );

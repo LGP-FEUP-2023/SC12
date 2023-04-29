@@ -23,6 +23,9 @@ export default StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
+  formTextInput: {
+    color: COLOR.white
+  },
   linkBlue: {
     color: COLOR.blue,
     textDecorationLine: 'underline',
