@@ -9,7 +9,6 @@ import { Text } from 'react-native'
 class LoginPage extends Component {
   render() {
     return (
-
       <View style={styles.container}>
         <MyStatusBar />
         <View
@@ -24,8 +23,13 @@ class LoginPage extends Component {
               source={IMAGES.logo}
             />
           </View>
-          <View style={{ flex: 1 }}>
-            <FormTextInput />
+          <View style={{ flex: 1, alignItems: 'center' }}>
+            <View style={{ flex: 1 }}>
+              <FormTextInput placeholder="USERNAME OR EMAIL" />
+            </View>
+            <View style={{ flex: 1 }}>
+              <FormTextInput placeholder="PASSWORD" />
+            </View>
           </View>
           <View style={{ flex: 1, backgroundColor: 'green' }}>
             <Text>

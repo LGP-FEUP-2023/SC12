@@ -4,7 +4,7 @@ import { COLOR } from '../constants/colors';
 import React from 'react';
 import { SafeAreaView, TextInput } from 'react-native'
 
-const FormTextInput = () => {
+const FormTextInput = ({ placeholder }) => {
   const [text, onChangeText] = React.useState('');
 
   return (
@@ -13,12 +13,12 @@ const FormTextInput = () => {
         style={styles.formTextInput}
         onChangeText={onChangeText}
         value={text}
-        placeholder="Email or username"
+        placeholder={placeholder}
         placeholderTextColor={COLOR.lightGray}
       />
     </SafeAreaView>
   );
 };
 
-
 export default FormTextInput;
+
