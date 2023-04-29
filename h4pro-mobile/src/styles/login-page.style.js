@@ -23,8 +23,25 @@ export default StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
-  link: {
+  linkBlue: {
     color: COLOR.blue,
     textDecorationLine: 'underline',
+  },
+  linkWhite: {
+    color: COLOR.white,
+    textDecorationLine: 'underline',
+  },
+  button: {
+    backgroundColor: COLOR.gray,
+    width: 163,
+    height: 47,
+    borderRadius: 14,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: COLOR.white,
+    fontSize: 18,
+    fontWeight: '600'
   }
 });

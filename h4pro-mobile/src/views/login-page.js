@@ -32,12 +32,13 @@ class LoginPage extends Component {
               <Image source={IMAGES.password} />
               <FormTextInput placeholder="PASSWORD" />
             </View>
-            <Text style={styles.link}>FORGOT YOUR PASSWORD?</Text>
+            <Text style={styles.linkBlue}>FORGOT YOUR PASSWORD?</Text>
           </View>
-          <View style={{ flex: 1 }}>
-            <Text>
-              {"Button goes here"}
-            </Text>
+          <View style={{ flex: 1, alignItems: 'center', gap: 17 }}>
+            <View style={styles.button}>
+              <Text style={styles.buttonText}>SIGN IN</Text>
+            </View>
+            <Text style={styles.linkWhite}>OR SIGN UP INSTEAD</Text>
           </View>
         </View>
       </View>
