@@ -10,7 +10,10 @@ export default StyleSheet.create({
     width: 270,
     height: 60,
   },
-  formTextInput: {
+  formTextContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
     backgroundColor: COLOR.gray,
     color: COLOR.lightGray,
     padding: 10,
@@ -20,4 +23,8 @@ export default StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
+  link: {
+    color: COLOR.blue,
+    textDecorationLine: 'underline',
+  }
 });

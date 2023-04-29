@@ -23,15 +23,18 @@ class LoginPage extends Component {
               source={IMAGES.logo}
             />
           </View>
-          <View style={{ flex: 1, alignItems: 'center' }}>
-            <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, alignItems: 'center', gap: 22 }}>
+            <View style={styles.formTextContainer}>
+              <Image source={IMAGES.user} />
               <FormTextInput placeholder="USERNAME OR EMAIL" />
             </View>
-            <View style={{ flex: 1 }}>
+            <View style={styles.formTextContainer}>
+              <Image source={IMAGES.password} />
               <FormTextInput placeholder="PASSWORD" />
             </View>
+            <Text style={styles.link}>FORGOT YOUR PASSWORD?</Text>
           </View>
-          <View style={{ flex: 1, backgroundColor: 'green' }}>
+          <View style={{ flex: 1 }}>
             <Text>
               {"Button goes here"}
             </Text>
