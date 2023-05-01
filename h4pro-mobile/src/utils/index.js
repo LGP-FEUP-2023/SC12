@@ -20,6 +20,7 @@ const handleDeepLink = ({event}) => {
     })
     .catch(error => {
       console.log(error)
+      return -1;
     });
   };
 

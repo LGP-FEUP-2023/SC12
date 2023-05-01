@@ -30,6 +30,8 @@ const App = () => {
         if (scanned_token) {
           setToken(scanned_token);
         }
+
+        console.log("url", url);
       }
     };
 
