@@ -8,9 +8,6 @@ import { useTranslation } from 'react-i18next';
 const CourtButton = props => {
 
     const { t } = useTranslation();
-    console.log(t(props.text));
-    console.log(i18n.t(props.text))
-    console.log(i18n);
     return (
         <SafeAreaView style={[styles.courtButton, styles.basicButton]}>
             <Image style={styles.buttonIcon}

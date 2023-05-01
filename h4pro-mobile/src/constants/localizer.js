@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getLocales } from 'expo-localization';
 
 import en from './translations/en/en.json';
 import pt from './translations/pt/pt.json';
@@ -38,10 +39,16 @@ import pt from './translations/pt/pt.json';
 // };
 
 
+function getSysLanguage() {
+    const locales = getLocales()[0];
+    console.log(locales['languageCode']);
+    return locales['languageCode'];
+}
+
 i18n
     .use(initReactI18next).init({
         compatibilityJSON: 'v3',
-        lng: 'pt',
+        lng: getSysLanguage(),
         fallbackLng: 'pt',
         resources: {
             en: en,
