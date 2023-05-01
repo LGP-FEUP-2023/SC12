@@ -1,6 +1,7 @@
 {
     "translation": {
-        "Join Court" : "Join Court",
-        "Leave Court" : "Leave Court"
+        "join court" : "Join Court",
+        "leave court" : "Leave Court",
+        "Playing at" : "Playing at"
     }
 }
