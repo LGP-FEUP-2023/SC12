@@ -19,7 +19,6 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 const SessionScanner = ({ navigation }) => {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
-    //const [result, setResult] = useState('');
     const { token, setToken } = useContext(AuthContext);
 
 
@@ -33,10 +32,11 @@ const SessionScanner = ({ navigation }) => {
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
         console.log(data)
-        let scanned_token = handleDeepLink({ data });
-        if (scanned_token) {
-            setToken(scanned_token);
-        }
+        // let scanned_token = handleDeepLink({ data });
+        // if (scanned_token) {
+        //     setToken(scanned_token);
+        // }
+        setToken(data);
     };
 
     const handleScanAgain = () => {
@@ -55,7 +55,7 @@ const SessionScanner = ({ navigation }) => {
         <View style={styles.container_scanner}>
             {scanned ? (
                 <>
-                    <Text style={styles.resultText_scanner}>Result_scanner: {result}</Text>
+                    <Text style={styles.resultText_scanner}>Result_scanner: {token}</Text>
                     <Button title="Scan Again" onPress={handleScanAgain} />
                 </>
             ) : (
