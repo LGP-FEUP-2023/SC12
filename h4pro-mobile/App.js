@@ -4,6 +4,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SessionScanner from './src/views/session-scanner.js';
 import { Linking } from 'react-native';
+import { handleDeepLink } from './src/utils/index.js';
+import AuthContext from './AuthContext';
+
 
 const Stack = createNativeStackNavigator();
 Stack.Navigator.defaultProps = {
@@ -18,37 +21,15 @@ const App = () => {
 
 
 
-  const handleDeepLink = ({event}) => {
-    if (event === undefined) return;
-    const url = event.url;
-    const { path, queryParams } = Linking.parse(url);
-  
-    const { padel_company_id, padel_court_id } = queryParams;
-  
-    const joinCourtUrl = `https://MEM4PRO/ID_PLACEHOLDER/join_court/${padel_company_id}/${padel_court_id}`;
-  
-    fetch(joinCourtUrl, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data)
-      setToken(data.token);
-    })
-    .catch(error => {
-      console.log(error)
-    });
-  };
-
-
   // Set up the deep linking listener
   useEffect(() => {
     const handleInitialUrl = async (url) => {
       if (url) {
-        handleDeepLink({ url }); // Pass token as a parameter
+        let scanned_token = handleDeepLink({ url }); // Pass token as a parameter
+
+        if (scanned_token) {
+          setToken(scanned_token);
+        }
       }
     };
 
@@ -63,12 +44,14 @@ const App = () => {
   }, []);
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="MainPage" component={MainPage} />
-        <Stack.Screen name="SessionScanner" component={SessionScanner} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <AuthContext.Provider value={{ token, setToken }}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="MainPage" component={MainPage} />
+          <Stack.Screen name="SessionScanner" component={SessionScanner} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </AuthContext.Provider>
   )
 }
 

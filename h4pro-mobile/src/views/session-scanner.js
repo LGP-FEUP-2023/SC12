@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import AuthContext from '../../AuthContext';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { COLOR } from '../constants/colors'
 import styles from '../styles/main-page.style'
@@ -14,10 +15,13 @@ import BarcodeMask from 'react-native-barcode-mask';
 import { StackActions } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
+
 const SessionScanner = ({ navigation }) => {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
-    const [result, setResult] = useState('');
+    //const [result, setResult] = useState('');
+    const { token, setToken } = useContext(AuthContext);
+
 
     useEffect(() => {
         (async () => {
@@ -28,12 +32,15 @@ const SessionScanner = ({ navigation }) => {
 
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
-        setResult(data);
+        console.log(data)
+        let scanned_token = handleDeepLink({ data });
+        if (scanned_token) {
+            setToken(scanned_token);
+        }
     };
 
     const handleScanAgain = () => {
         setScanned(false);
-        setResult('');
     };
 
     if (hasPermission === null) {
