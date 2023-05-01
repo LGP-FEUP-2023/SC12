@@ -28,7 +28,7 @@ export default StyleSheet.create({
     },
 
     courtButton: {
-        height: '16%',
+        height: '14%',
         marginTop: '6%',
         flexDirection: 'row',
         alignItems: 'stretch'
@@ -36,7 +36,7 @@ export default StyleSheet.create({
     buttonText: {
         color: COLOR.white,
         width: '70%',
-        fontSize: 28,
+        fontSize: 26,
         textTransform: 'uppercase',
         fontWeight: '600',
         textAlign: 'right'
