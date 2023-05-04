@@ -1,7 +1,10 @@
 package feup.edu.lgp.padel4pro
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
@@ -34,9 +37,135 @@ fun Scoreboard() {
     }
     var games1 = remember { mutableStateOf(0) }
     var games2 = remember { mutableStateOf(0) }
+    var textColors1 = remember { mutableStateOf(Color.Black) }
+    var textColors2 = remember { mutableStateOf(Color.Black) }
+    var textColorg1 = remember { mutableStateOf(Color.Black) }
+    var textColorg2 = remember { mutableStateOf(Color.Black) }
+    var selected = remember { mutableStateOf(-1) }
+
+    when(selected.value) {
+        -1 -> {
+            textColors1.value = wearColorPalette.primary
+            textColorg1.value = wearColorPalette.primary
+            textColors2.value = wearColorPalette.secondary
+            textColorg2.value = wearColorPalette.secondary
+        }
+        0 -> textColors1.value = Color.White
+        1 -> textColorg1.value = Color.White
+        2 -> textColors2.value = Color.White
+        3 -> textColorg2.value = Color.White
+
+    }
+            /*
+        .pointerInput(Unit) {
+            var distance = 0f
+            var threshold = 75
+
+            detectVerticalDragGestures(
+                onDragStart = { },
+                onDragEnd = {
+                    if (distance < -threshold) {
+                        // handle swipe up action
+
+                        score1.value += 1
+                        if (score1.value == 5) {
+                            score1.value = 0
+                        }
+                    } else if (distance > threshold) {
+                        // handle swipe down action
+                        score1.value -= 1
+                        if (score1.value < 0) {
+                            score1.value = 4
+                        }
+                    }
+                }
+            ) { change, dragAmount ->
+                distance = change.position.y
+                change.consume()
+            }
+        }*/
 
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().pointerInput(Unit) {
+            var distance = mutableStateOf(0f)
+            var threshold = 1
+
+            detectVerticalDragGestures(
+                onDragStart = { },
+                onDragEnd = {
+                    when(selected.value) {
+                        0 -> {
+                            if (distance.value < -threshold) {
+                                // handle swipe up action
+
+                                score1.value += 1
+                                if (score1.value == 5) {
+                                    score1.value = 0
+                                }
+                            } else if (distance.value > threshold) {
+                                // handle swipe down action
+                                score1.value -= 1
+                                if (score1.value < 0) {
+                                    score1.value = 4
+                                }
+                            }
+                        }
+                        1 -> {
+                            if (distance.value < -threshold) {
+                                // handle swipe up action
+
+                                games1.value += 1
+                                if (games1.value == 8) {
+                                    games1.value = 0
+                                }
+                            } else if (distance.value > threshold) {
+                                // handle swipe down action
+                                games1.value -= 1
+                                if (games1.value < 0) {
+                                    games1.value = 7
+                                }
+                            }
+                        }
+                        2 -> {
+                            if (distance.value < -threshold) {
+                                // handle swipe up action
+
+                                score2.value += 1
+                                if (score2.value == 8) {
+                                    score2.value = 0
+                                }
+                            } else if (distance.value > threshold) {
+                                // handle swipe down action
+                                score2.value -= 1
+                                if (score2.value < 0) {
+                                    score2.value = 7
+                                }
+                            }
+                        }
+                        3 -> {
+                            if (distance.value < -threshold) {
+                                // handle swipe up action
+
+                                games2.value += 1
+                                if (games2.value == 5) {
+                                    games2.value = 0
+                                }
+                            } else if (distance.value > threshold) {
+                                // handle swipe down action
+                                games2.value -= 1
+                                if (games2.value < 0) {
+                                    games2.value = 4
+                                }
+                            }
+                        }
+                    }
+
+                }
+            ) { change, dragAmount ->
+                distance.value = dragAmount
+                change.consume()
+            }
+        },
         contentAlignment = Alignment.Center
     ) {
         Row(
@@ -45,7 +174,7 @@ fun Scoreboard() {
         ) {
             //Greeting(greetingName = greetingName)
             Column(
-                modifier = Modifier.weight(1f),
+                modifier = Modifier.weight(1f).padding(5.dp),
                 horizontalAlignment = Alignment.End
             ) {
                 // First column content
@@ -56,79 +185,41 @@ fun Scoreboard() {
                     fontSize = 10.sp,
                     color = Color.White
                 )
-                Text(
-                    text = scores[score1.value],
-                    modifier = Modifier
-                        .padding(16.dp, 0.dp)
-                        .pointerInput(Unit) {
-                            var distance = 0f
-                            var threshold = 75
 
-                            detectVerticalDragGestures(
-                                onDragStart = { },
-                                onDragEnd = {
-                                    if (distance < -threshold) {
-                                        // handle swipe up action
+    Text(
+        text = scores[score1.value],
+        color = textColors1.value,
+        modifier = Modifier
+            .padding(16.dp, 0.dp)
+            .clickable {
+                if (selected.value == -1) {
+                    selected.value = 0
+                } else {
+                    selected.value = -1
+                }
+            },
+        textAlign = TextAlign.Right,
+        fontSize = 40.sp,
+        fontWeight = FontWeight.ExtraBold
+    )
 
-                                        score1.value += 1
-                                        if (score1.value == 5) {
-                                            score1.value = 0
-                                        }
-                                    } else if (distance > threshold) {
-                                        // handle swipe down action
-                                        score1.value -= 1
-                                        if (score1.value < 0) {
-                                            score1.value = 4
-                                        }
-                                    }
-                                }
-                            ) { change, dragAmount ->
-                                distance = change.position.y
-                                change.consume()
-                            }
-                        },
-                    textAlign = TextAlign.Right,
-                    fontSize = 40.sp,
-                    fontWeight = FontWeight.ExtraBold,
-                    color = wearColorPalette.primary,
-                )
+
+
                 Text(
                     text = games1.value.toString(),
                     modifier = Modifier
                         .padding(16.dp, 0.dp)
-                        .pointerInput(Unit) {
-                            var distance = 0f
-                            var threshold = 75
-
-                            detectVerticalDragGestures(
-                                onDragStart = { },
-                                onDragEnd = {
-                                    if (distance < -threshold) {
-                                        // handle swipe up action
-                                        games1.value += 1
-                                        if (games1.value == 8) {
-                                            games1.value = 0
-                                        }
-                                    } else if (distance > threshold) {
-                                        // handle swipe down action
-                                        games1.value -= 1
-                                        if (games1.value < 0) {
-                                            games1.value = 7
-                                        }
-                                    }
-                                }
-                            ) { change, dragAmount ->
-                                distance = change.position.y
-
-
-
-                                change.consume()
+                        .clickable {
+                            if (selected.value == -1) {
+                                selected.value = 1
+                            } else {
+                                selected.value = -1
                             }
                         },
                     textAlign = TextAlign.Right,
                     fontSize = 30.sp,
                     fontWeight = FontWeight.ExtraBold,
-                    color = wearColorPalette.primary
+                    color = textColorg1.value
                 )
             }
 
@@ -148,75 +239,33 @@ fun Scoreboard() {
                     text = scores[score2.value],
                     modifier = Modifier
                         .padding(14.dp, 0.dp)
-                        .pointerInput(Unit) {
-                            var distance = 0f
-                            var threshold = 75
-
-                            detectVerticalDragGestures(
-                                onDragStart = { },
-                                onDragEnd = {
-                                    if (distance < -threshold) {
-                                        // handle swipe up action
-
-                                        score2.value += 1
-                                        if (score2.value == 5) {
-                                            score2.value = 0
-                                        }
-                                    } else if (distance > threshold) {
-                                        // handle swipe down action
-                                        score2.value -= 1
-                                        if (score2.value < 0) {
-                                            score2.value = 4
-                                        }
-                                    }
-                                }
-                            ) { change, dragAmount ->
-                                distance = change.position.y
-                                change.consume()
+                        .clickable {
+                            if (selected.value == -1) {
+                                selected.value = 2
+                            } else {
+                                selected.value = -1
                             }
                         },
                     textAlign = TextAlign.Left,
                     fontSize = 40.sp,
                     fontWeight = FontWeight.ExtraBold,
-                    color = wearColorPalette.secondary,
+                    color = textColors2.value,
                 )
                 Text(
                     text = games2.value.toString(),
                     modifier = Modifier
                         .padding(16.dp, 0.dp)
-                        .pointerInput(Unit) {
-                            var distance = 0f
-                            var threshold = 75
-
-                            detectVerticalDragGestures(
-                                onDragStart = { },
-                                onDragEnd = {
-                                    if (distance < -threshold) {
-                                        // handle swipe up action
-                                        games2.value += 1
-                                        if (games2.value == 8) {
-                                            games2.value = 0
-                                        }
-                                    } else if (distance > threshold) {
-                                        // handle swipe down action
-                                        games2.value -= 1
-                                        if (games2.value < 0) {
-                                            games2.value = 7
-                                        }
-                                    }
-                                }
-                            ) { change, dragAmount ->
-                                distance = change.position.y
-
-
-
-                                change.consume()
+                        .clickable {
+                            if (selected.value == -1) {
+                                selected.value = 3
+                            } else {
+                                selected.value = -1
                             }
                         },
                     textAlign = TextAlign.Left,
                     fontSize = 30.sp,
                     fontWeight = FontWeight.ExtraBold,
-                    color = wearColorPalette.secondary
+                    color = textColorg2.value
                 )
             }
         }

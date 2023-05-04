@@ -29,7 +29,7 @@ fun Menu() {
             verticalArrangement = Arrangement.Center
         ) {
             Button(
-                onClick = { /* Do something */ },
+                onClick = { /* Do something */},
                 modifier = Modifier.padding(5.dp)
 
             ) {

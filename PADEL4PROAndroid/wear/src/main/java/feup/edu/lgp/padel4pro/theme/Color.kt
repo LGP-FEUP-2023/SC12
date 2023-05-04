@@ -25,6 +25,7 @@ val Teal200 = Color(0xFF03DAC5)
 val Red400 = Color(0xFFCF6679)
 val H4PROOrange = Color(0xFFFF9F36)
 val H4PROBlue = Color(0xFF3696FF)
+var selected = Color.LightGray
 
 internal val wearColorPalette: Colors = Colors(
     primary = H4PROBlue,
@@ -34,5 +35,5 @@ internal val wearColorPalette: Colors = Colors(
     error = Red400,
     onPrimary = Color.Black,
     onSecondary = Color.Black,
-    onError = Color.Black,
+    onError = Color.Black
 )
