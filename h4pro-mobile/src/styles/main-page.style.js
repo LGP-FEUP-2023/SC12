@@ -28,7 +28,7 @@ export default StyleSheet.create({
     },
 
     courtButton: {
-        height: '16%',
+        height: '14%',
         marginTop: '6%',
         flexDirection: 'row',
         alignItems: 'stretch'
@@ -36,7 +36,7 @@ export default StyleSheet.create({
     buttonText: {
         color: COLOR.white,
         width: '70%',
-        fontSize: 28,
+        fontSize: 26,
         textTransform: 'uppercase',
         fontWeight: '600',
         textAlign: 'right'
@@ -44,5 +44,28 @@ export default StyleSheet.create({
     buttonIcon: {
         width: 60,
         height: 65
+    },
+
+    scoreboardText:{
+        color: COLOR.white,
+        fontSize: 18,
+        top: '-5%',
+        textTransform: 'uppercase',
+        fontWeight: '600',
+        textAlign: 'left',
+        alignItems: 'flex-start'
+    
+    },
+    scoreboardScores:{
+        color: COLOR.white,
+        fontSize: 60,
+        textTransform: 'uppercase',
+        fontWeight: '800',
+    },
+    scoreboardSetScore:{
+        color: COLOR.white,
+        fontSize: 35,
+        textTransform: 'uppercase',
+        fontWeight: '800',
     }
 });
