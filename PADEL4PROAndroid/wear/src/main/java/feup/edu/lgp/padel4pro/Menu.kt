@@ -14,7 +14,35 @@ import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.Icon
 import android.widget.Toast
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.lightColors
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.wear.compose.material.ButtonColors
+import androidx.wear.compose.material.MaterialTheme
+import androidx.wear.compose.material.contentColorFor
+import feup.edu.lgp.padel4pro.theme.wearColorPalette
+
+@Composable
+fun buttonColors(
+    backgroundColor: Color = wearColorPalette.secondary,
+    contentColor: Color = contentColorFor(backgroundColor)
+): ButtonColors {
+    return androidx.wear.compose.material.ButtonDefaults.buttonColors(
+        backgroundColor = backgroundColor,
+        contentColor = contentColor
+    )
+}
 
 @Composable
 fun Menu() {
@@ -32,7 +60,10 @@ fun Menu() {
                 onClick = {
                     Toast.makeText(ctx, "Request Highlight", Toast.LENGTH_SHORT).show()
                 },
-                modifier = Modifier.padding(5.dp)
+                modifier = Modifier
+                    .padding(5.dp)
+                    .height(70.dp).width(70.dp),
+                colors = buttonColors(),
             ) {
                 Icon(painter = painterResource(id = R.drawable.group_3), contentDescription = "highlights")
             }

@@ -125,6 +125,9 @@ dependencies {
     // Compose for Wear OS Dependencies
     implementation("androidx.wear.compose:compose-material:1.1.2")
 
+    // materials for compose
+    // implementation "androidx.compose.foundation:foundation-layout:1.1.0"
+
     // Foundation is additive, so you can use the mobile version in your Wear OS app.
     implementation("androidx.wear.compose:compose-foundation:1.1.2")
 
