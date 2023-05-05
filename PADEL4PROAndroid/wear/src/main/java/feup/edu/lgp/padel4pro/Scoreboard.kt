@@ -1,20 +1,23 @@
 package feup.edu.lgp.padel4pro
 
-import androidx.compose.foundation.Indication
-import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.*
+import androidx.compose.foundation.gestures.detectVerticalDragGestures
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.Chip
-import androidx.compose.material.ChipDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Done
-import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -22,21 +25,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.consumePositionChange
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material.Button
-import androidx.wear.compose.material.ButtonColors
 import androidx.wear.compose.material.ButtonDefaults
 import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
-import androidx.wear.compose.material.dialog.*
-import androidx.wear.compose.material.swipeable
+import androidx.wear.compose.material.dialog.Alert
+import androidx.wear.compose.material.dialog.Dialog
 import feup.edu.lgp.padel4pro.theme.wearColorPalette
 
 @Composable
@@ -346,7 +346,7 @@ fun Scoreboard() {
             contentPadding =
             PaddingValues(start = 10.dp, end = 10.dp, top = 24.dp, bottom = 52.dp),
             icon = {
-                   Icon(imageVector = Icons.Filled.Refresh, contentDescription = "reset score" )
+                Icon(imageVector = Icons.Filled.Refresh, contentDescription = "reset score")
             },
             title = { Text(text = "Reset Scores", textAlign = TextAlign.Center) },
             message = {
@@ -364,11 +364,11 @@ fun Scoreboard() {
                 ) {
                     Button(
                         onClick = {
-                                    score1.value = 0
-                                    score2.value = 0
-                                    games1.value = 0
-                                    games2.value = 0
-                                    showDialog.value = false
+                            score1.value = 0
+                            score2.value = 0
+                            games1.value = 0
+                            games2.value = 0
+                            showDialog.value = false
                         },
                         modifier = Modifier
                             .padding(5.dp),
@@ -379,25 +379,24 @@ fun Scoreboard() {
                         Icon(imageVector = Icons.Filled.Done, contentDescription = "confirm")
                     }
                     Button(
-                            onClick = {
-                                      showDialog.value = false
-                            },
-                            modifier = Modifier
-                                .padding(5.dp),
+                        onClick = {
+                            showDialog.value = false
+                        },
+                        modifier = Modifier
+                            .padding(5.dp),
 
                         colors = ButtonDefaults.buttonColors(
                             backgroundColor = Color.LightGray
                         )
                     ) {
-                    Icon(imageVector = Icons.Filled.Close, contentDescription = "cancel")
-                }
+                        Icon(imageVector = Icons.Filled.Close, contentDescription = "cancel")
+                    }
 
                 }
 
             }
         }
     }
-
 
 
 }

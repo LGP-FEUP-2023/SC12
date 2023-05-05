@@ -62,6 +62,12 @@ fun WearApp(greetingName: String) {
         },
         Screen("ScoreBoard") {
             Scoreboard()
+        },
+        Screen("WaitScreen") {
+            WaitScreen()
+        },
+        Screen("SyncScreen") {
+            SyncScreen()
         }
     )
     val screenIndex = remember { mutableStateOf(screens[0]) }
@@ -71,7 +77,8 @@ fun WearApp(greetingName: String) {
          * see d.android.com/wear/compose.
          */
 
-        Scoreboard()
+        Menu()
+        // SyncScreen()
     }
 }
 
@@ -84,7 +91,6 @@ fun Greeting(greetingName: String) {
         text = stringResource(R.string.hello_world, greetingName)
     )
 }
-
 
 
 @Preview(device = Devices.WEAR_OS_SMALL_ROUND, showSystemUi = true)
