@@ -68,6 +68,12 @@ fun WearApp(greetingName: String) {
         },
         Screen("ScoreBoard") {
             Scoreboard()
+        },
+        Screen("WaitScreen") {
+            WaitScreen()
+        },
+        Screen("SyncScreen") {
+            SyncScreen()
         }
     )
     val screenIndex = remember { mutableStateOf(screens[0]) }
@@ -78,6 +84,7 @@ fun WearApp(greetingName: String) {
          */
 
         Menu()
+        // SyncScreen()
     }
 }
 

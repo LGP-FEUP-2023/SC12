@@ -7,6 +7,14 @@ import { View, Image } from 'react-native'
 import { CourtButton } from '../components/court-button'
 
 class MainPage extends Component {
+   joinPressed() {
+      console.log("join pressed")
+   }
+
+   leavePressed() {
+      console.log("leave pressed")
+   }
+
    render() {
       return (
         <View style={styles.container}>
@@ -15,8 +23,8 @@ class MainPage extends Component {
                     source={IMAGES.logo}
             />
             <MyScoreBoard/>
-            <CourtButton text={"join court"} icon={IMAGES.join}/>
-            <CourtButton text={"leave court"} icon={IMAGES.leave}/>
+            <CourtButton text={"join court"} icon={IMAGES.join} press={this.joinPressed}/>
+            <CourtButton text={"leave court"} icon={IMAGES.leave} press={this.leavePressed}/>
         </View>
       )
    }
