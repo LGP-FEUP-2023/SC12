@@ -3,10 +3,23 @@ import { IMAGES } from '../constants/images'
 import { MyStatusBar } from '../components/status-bar'
 import FormTextInput from '../components/form-text-input';
 import React, { Component } from 'react'
-import { View, Image } from 'react-native'
+import { View, Image, Pressable } from 'react-native'
 import { Text } from 'react-native'
 
 class LoginPage extends Component {
+
+  handleSubmit() {
+    console.log("Submitting form")
+  }
+
+  redirectSignUp() {
+    console.log("Signup")
+  }
+
+  redirectForgotPassword() {
+    console.log("Forgot")
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -32,13 +45,17 @@ class LoginPage extends Component {
               <Image source={IMAGES.password} />
               <FormTextInput placeholder="PASSWORD" hide={true} />
             </View>
-            <Text style={styles.linkBlue}>FORGOT YOUR PASSWORD?</Text>
+            <Pressable onPress={this.redirectForgotPassword}>
+              <Text style={styles.linkBlue}>FORGOT YOUR PASSWORD?</Text>
+            </Pressable>
           </View>
           <View style={{ flex: 1, alignItems: 'center', gap: 17 }}>
-            <View style={styles.button}>
+            <Pressable style={styles.button} onPress={this.handleSubmit} >
               <Text style={styles.buttonText}>SIGN IN</Text>
-            </View>
-            <Text style={styles.linkWhite}>OR SIGN UP INSTEAD</Text>
+            </Pressable>
+            <Pressable onPress={this.redirectSignUp}>
+              <Text style={styles.linkWhite}>OR SIGN UP INSTEAD</Text>
+            </Pressable>
           </View>
         </View>
       </View>
