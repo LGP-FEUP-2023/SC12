@@ -2,32 +2,54 @@ import styles from '../styles/main-page.style'
 import { IMAGES } from '../constants/images'
 import { MyStatusBar } from '../components/status-bar'
 import { MyScoreBoard } from '../components/scoreboard'
-import React, { Component } from 'react'
-import { View, Image } from 'react-native'
+import React, { useState } from 'react'
+import { View, Image, TouchableOpacity, Text } from 'react-native'
 import { CourtButton } from '../components/court-button'
+import ble from '../services/ble'
 
-class MainPage extends Component {
-   joinPressed() {
+const MainPage = () => {
+   const {
+      requestPermissions,
+      scanForPeripherals,
+      allDevices,
+   } = ble();
+   const [isModalVisible, setIsModalVisible] = useState(false);
+
+   const scanForDevices = async () => {
+      const isPermissionsEnabled = await requestPermissions();
+      if (isPermissionsEnabled) {
+         scanForPeripherals();
+      }
+   };
+
+   const openModal = async () => {
+      scanForDevices();
+      setIsModalVisible(true);
+   };
+
+   const joinPressed = () => {
       console.log("join pressed")
    }
 
-   leavePressed() {
+   const leavePressed = () => {
       console.log("leave pressed")
    }
 
-   render() {
-      return (
-        <View style={styles.container}>
-            <MyStatusBar/>
-            <Image style={styles.logo}
-                    source={IMAGES.logo}
-            />
-            <MyScoreBoard/>
-            <CourtButton text={"join court"} icon={IMAGES.join} press={this.joinPressed}/>
-            <CourtButton text={"leave court"} icon={IMAGES.leave} press={this.leavePressed}/>
-        </View>
-      )
-   }
-}
+   return (
+      <View style={styles.container}>
+         <MyStatusBar/>
+         <Image style={styles.logo}
+               source={IMAGES.logo}
+         />
+         <MyScoreBoard/>
+         <CourtButton text={"join court"} icon={IMAGES.join} press={joinPressed}/>
+         <CourtButton text={"leave court"} icon={IMAGES.leave} press={leavePressed}/>
+         <TouchableOpacity onPress={openModal}>
+            <Text>{"Connect"}</Text>
+         </TouchableOpacity>
+         <Text>{allDevices[0]}</Text>
+      </View>
+   )
+};
 
 export default MainPage
