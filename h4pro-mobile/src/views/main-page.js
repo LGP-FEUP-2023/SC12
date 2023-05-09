@@ -45,9 +45,8 @@ const MainPage = () => {
          <CourtButton text={"join court"} icon={IMAGES.join} press={joinPressed}/>
          <CourtButton text={"leave court"} icon={IMAGES.leave} press={leavePressed}/>
          <TouchableOpacity onPress={openModal}>
-            <Text>{"Connect"}</Text>
+            <Text style={{color: 'white'}}>{"Connect"}</Text>
          </TouchableOpacity>
-         <Text>{allDevices[0]}</Text>
       </View>
    )
 };
