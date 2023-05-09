@@ -10,29 +10,44 @@ import { STRINGS } from '../constants/strings'
 import ble from '../services/ble'
 
 const MainPage = () => {
+   // bluetooth stuff
    const {
       requestPermissions,
       scanForPeripherals,
+      connectToDevice,
       allDevices,
+      connectedDevice,
+      disconnectFromDevice
    } = ble();
    const [isModalVisible, setIsModalVisible] = useState(false);
-
    const scanForDevices = async () => {
       const isPermissionsEnabled = await requestPermissions();
       if (isPermissionsEnabled) {
          scanForPeripherals();
       }
    };
-
    const openModal = async () => {
       scanForDevices();
       setIsModalVisible(true);
+      checkSmartwatch();
    };
 
+   // connected smartwatch
+   state = {
+      isConnected: false,
+      watchName: STRINGS.noWatch
+   };
+   const checkSmartwatch = () => {
+      if(connectedDevice) {
+         state = true
+         state.watchName = connectedDevice.name
+      }
+   }
+
+   // court buttons
    const joinPressed = () => {
       console.log("join pressed")
    }
-
    const leavePressed = () => {
       console.log("leave pressed")
    }
@@ -43,11 +58,13 @@ const MainPage = () => {
          <Image style={styles.logo}
                source={IMAGES.logo}
          />
+         <ConnectedSmartwatch text={state.watchName}
+               icon={state.isConnected ? IMAGES.smartwatch : IMAGES.noWatch}/>
          <MyScoreBoard/>
-         <CourtButton text={"join court"} icon={IMAGES.join} press={joinPressed}/>
-         <CourtButton text={"leave court"} icon={IMAGES.leave} press={leavePressed}/>
+         <CourtButton text={STRINGS.join} icon={IMAGES.join} press={joinPressed}/>
+         <CourtButton text={STRINGS.leave} icon={IMAGES.leave} press={leavePressed}/>
          <TouchableOpacity onPress={openModal}>
-            <Text style={{color: 'white'}}>{"Connect"}</Text>
+            <Text style={{color: 'white'}}>{"Ask permission"}</Text>
          </TouchableOpacity>
       </View>
    )
