@@ -27,6 +27,10 @@ To run the code on a virtual Android device:
 1. Run the Virtual Device
 1. With the project already starte and the Expo GUI running follow the instructions on the terminal for running in an android application
 
+## Running the project with bluetooth library
+
+To run this project you cannot use Expo Go app. To run the project you have to have Virtual Device installed (but then you can't test bluetooth connectivity), or connect your physical Android device. Run `npx expo run:android` in terminal.
+
 ## Useful resources
 
 [Video](https://youtu.be/0-S5a0eXPoc) of a intro course to React-native including running, debugging and coding
