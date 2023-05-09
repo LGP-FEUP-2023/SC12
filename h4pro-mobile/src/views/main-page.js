@@ -5,6 +5,8 @@ import { MyScoreBoard } from '../components/scoreboard'
 import React, { useState } from 'react'
 import { View, Image, TouchableOpacity, Text } from 'react-native'
 import { CourtButton } from '../components/court-button'
+import { ConnectedSmartwatch } from '../components/connected-smartwatch'
+import { STRINGS } from '../constants/strings'
 import ble from '../services/ble'
 
 const MainPage = () => {

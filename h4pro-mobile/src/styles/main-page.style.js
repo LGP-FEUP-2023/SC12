@@ -7,15 +7,31 @@ export default StyleSheet.create({
         backgroundColor: COLOR.background
     },
     logo: {
-        width: 140,
+        width: 150,
         height: 30,
-        marginTop: 55,
-        marginLeft: 25
+        marginTop: 50,
+        marginLeft: 20
+    },
+
+    connected: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginLeft: 20,
+        marginTop: 14
+    },
+    swIcon: {
+        width: 17,
+        height: 28,
+        marginRight: 8
+    },
+    swText: {
+        color: COLOR.white,
+        fontSize: 14
     },
     
     scoreboard: {
         height: '30%',
-        marginTop: '20%'
+        marginTop: '12%'
     },
 
     basicButton: {
