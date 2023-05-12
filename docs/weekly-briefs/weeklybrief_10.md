@@ -1,4 +1,4 @@
-# Weekly Brief #9 (1/5-7/5)
+# Weekly Brief #10 (1/5-7/5)
 -----------
 
 ## Current Status
