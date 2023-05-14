@@ -42,5 +42,55 @@ export default StyleSheet.create({
   buttonIcon: {
     width: 60,
     height: 65
+  },
+  basicButton: {
+    flex: 0,
+    backgroundColor: COLOR.gray,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    marginHorizontal: 20
+  },
+
+  courtButton: {
+    height: '14%',
+    marginTop: '6%',
+    flexDirection: 'row',
+    alignItems: 'stretch'
+  },
+  buttonText: {
+    color: COLOR.white,
+    width: '70%',
+    fontSize: 26,
+    textTransform: 'uppercase',
+    fontWeight: '600',
+    textAlign: 'right'
+  },
+  buttonIcon: {
+    width: 60,
+    height: 65
+  },
+
+  scoreboardText: {
+    color: COLOR.white,
+    fontSize: 18,
+    top: '-5%',
+    textTransform: 'uppercase',
+    fontWeight: '600',
+    textAlign: 'left',
+    alignItems: 'flex-start'
+
+  },
+  scoreboardScores: {
+    color: COLOR.white,
+    fontSize: 60,
+    textTransform: 'uppercase',
+    fontWeight: '800',
+  },
+  scoreboardSetScore: {
+    color: COLOR.white,
+    fontSize: 35,
+    textTransform: 'uppercase',
+    fontWeight: '800',
   }
 });

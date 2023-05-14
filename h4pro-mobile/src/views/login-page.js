@@ -7,11 +7,12 @@ import { MyStatusBar } from '../components/status-bar';
 import styles from '../styles/login-page.style';
 
 import { COLOR } from '../constants/colors';
-export default function LoginPage() {
+export default function LoginPage({navigation}) {
   const { control, formState: { errors }, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
     console.log('Submitting form', data);
+    navigation.navigate('Dashboard')
   };
 
   const redirectSignUp = () => {
