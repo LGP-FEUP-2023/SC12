@@ -1,7 +1,6 @@
 
 import React from 'react';
-import { View, Image, TextInput, Pressable } from 'react-native';
-import { Text } from 'react-native';
+import { View, Image, TextInput, Pressable, Text, Alert } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { IMAGES } from '../constants/images';
 import { MyStatusBar } from '../components/status-bar';
@@ -9,18 +8,18 @@ import styles from '../styles/login-page.style';
 
 import { COLOR } from '../constants/colors';
 export default function LoginPage() {
-  const { control, formState: { errors }, register, handleSubmit, getValues } = useForm();
+  const { control, formState: { errors }, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
     console.log('Submitting form', data);
   };
 
   const redirectSignUp = () => {
-    console.log('Signup');
+    Alert.alert("TODO", "Redirect to MOG's sign up page");
   };
 
   const redirectForgotPassword = () => {
-    console.log('Forgot');
+    Alert.alert("TODO", "Redirect to MOG's forgot password page")
   };
 
   return (
@@ -44,6 +43,7 @@ export default function LoginPage() {
                   value={value}
                   placeholder="EMAIL"
                   placeholderTextColor={COLOR.lightGray}
+                  autoCapitalize='none'
                 />
               )}
               name="email"
