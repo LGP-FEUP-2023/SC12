@@ -49,7 +49,7 @@ export default function LoginPage() {
               name="email"
               defaultValue=""
             />
-            {errors.email && <Text>This field is required.</Text>}
+            {errors.email && <Text style={{ color: COLOR.orange }} >This field is required.</Text>}
           </View>
           <View style={styles.formTextContainer}>
             <Image source={IMAGES.password} />
@@ -70,7 +70,7 @@ export default function LoginPage() {
               name="password"
               defaultValue=""
             />
-            {errors.password && <Text>This field is required.</Text>}
+            {errors.password && <Text style={{ color: COLOR.orange }}>This field is required.</Text>}
           </View>
           <Pressable onPress={redirectForgotPassword}>
             <Text style={styles.linkBlue}>FORGOT YOUR PASSWORD?</Text>
