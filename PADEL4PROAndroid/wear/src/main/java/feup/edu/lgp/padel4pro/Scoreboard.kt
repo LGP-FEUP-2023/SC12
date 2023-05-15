@@ -1,5 +1,6 @@
 package feup.edu.lgp.padel4pro
 
+import android.text.format.DateFormat
 import androidx.compose.foundation.gestures.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -22,8 +23,11 @@ import androidx.wear.compose.material.ButtonDefaults
 import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
+import androidx.wear.compose.material.TimeText
+import androidx.wear.compose.material.TimeTextDefaults
 import androidx.wear.compose.material.swipeable
 import feup.edu.lgp.padel4pro.theme.wearColorPalette
+import java.util.Locale
 
 @Composable
 fun Scoreboard() {
@@ -39,6 +43,11 @@ fun Scoreboard() {
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
+        TimeText(
+            timeSource = TimeTextDefaults.timeSource(
+                DateFormat.getBestDateTimePattern(Locale.getDefault(), "hh:mm")
+            )
+        )
         Row(
             modifier = Modifier.fillMaxSize(),
             verticalAlignment = Alignment.CenterVertically

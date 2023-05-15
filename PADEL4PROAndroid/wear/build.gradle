@@ -134,4 +134,5 @@ dependencies {
     // If you are using Compose Navigation, use the Wear OS version (NOT THE MOBILE VERSION).
     // Uncomment the line below and update the version number.
     // implementation("androidx.wear.compose:compose-navigation:1.1.2")
+    implementation "androidx.wear.compose:compose-navigation:1.0.0-alpha09"
 }
