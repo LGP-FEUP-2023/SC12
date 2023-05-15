@@ -13,6 +13,13 @@ export default StyleSheet.create({
         marginLeft: 25
     },
     
+    help: {
+        width: 30,
+        height: 30,
+        marginTop: 55,
+        marginLeft: 25
+    },
+    
     scoreboard: {
         height: '30%',
         marginTop: '20%'
