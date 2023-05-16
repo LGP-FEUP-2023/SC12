@@ -1,8 +1,10 @@
 import { COLOR } from '../constants/colors'
 import { TEXT_EN } from '../constants/text';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from '../styles/main-page.style'
-import { SafeAreaView, Text } from 'react-native'
+import { SafeAreaView, Text, Image } from 'react-native'
+import { IMAGES } from '../constants/images'
+import AuthContext from '../../AuthContext';
 
 export const MyScoreBoard = () => {
     const [courtName, setCourtName] = useState('Norte Padel - 01');
@@ -10,6 +12,7 @@ export const MyScoreBoard = () => {
     const [team2Score, setTeam2Score] = useState(21);
     const [team1SetPoints, setTeam1SetPoints] = useState(2);
     const [team2SetPoints, setTeam2SetPoints] = useState(0);
+    const { token, setToken } = useContext(AuthContext);
 
     const updateScore = (team, points) => {
         if (team === 1){
@@ -38,20 +41,27 @@ export const MyScoreBoard = () => {
 
     return (
         <SafeAreaView style={[styles.scoreboard, styles.basicButton]}>
-            <SafeAreaView style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
-                <Text style={styles.scoreboardText}>{TEXT_EN.PLAYING_AT}</Text>                
+            {token !== "" ? (
+                <>
+                <SafeAreaView style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
+                    <Text style={styles.scoreboardText}>{TEXT_EN.PLAYING_AT}</Text>                
 
-                <Text style={[styles.scoreboardText, { color: COLOR.blue}]}>{courtName}</Text>
-            </SafeAreaView>
-            <SafeAreaView style={{ flexDirection: 'row'}}>
-                <Text style={[styles.scoreboardScores, { color: COLOR.blue}]}>{team1Score.pad(2)}</Text>
-                <Text style={[styles.scoreboardScores]}> - </Text>
-                <Text style={[styles.scoreboardScores, { color: COLOR.orange}]}>{team2Score.pad(2)}</Text>
-            </SafeAreaView>
-            <SafeAreaView style={{flexDirection: 'row', width: '52%', left: '11%'}}>
-                <Text style={[styles.scoreboardSetScore, { color: COLOR.blue, flex: 1}]}>{team1SetPoints.pad(2)}</Text>
-                <Text style={[styles.scoreboardSetScore, { color: COLOR.orange, flex: 1}]}>{team2SetPoints.pad(2)}</Text>
-            </SafeAreaView>
+                    <Text style={[styles.scoreboardText, { color: COLOR.blue}]}>{token}</Text>
+                </SafeAreaView>
+                <SafeAreaView style={{ flexDirection: 'row'}}>
+                    <Text style={[styles.scoreboardScores, { color: COLOR.blue}]}>{team1Score.pad(2)}</Text>
+                    <Text style={[styles.scoreboardScores]}> - </Text>
+                    <Text style={[styles.scoreboardScores, { color: COLOR.orange}]}>{team2Score.pad(2)}</Text>
+                </SafeAreaView>
+                <SafeAreaView style={{flexDirection: 'row', width: '52%', left: '11%'}}>
+                    <Text style={[styles.scoreboardSetScore, { color: COLOR.blue, flex: 1}]}>{team1SetPoints.pad(2)}</Text>
+                    <Text style={[styles.scoreboardSetScore, { color: COLOR.orange, flex: 1}]}>{team2SetPoints.pad(2)}</Text>
+                </SafeAreaView>
+                </>
+            ) : (
+                <Image style={styles.buttonIcon} source={IMAGES.no_court}/>
+            )}
+            
         </SafeAreaView>
     );
 };
