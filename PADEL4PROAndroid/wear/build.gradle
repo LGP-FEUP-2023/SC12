@@ -105,7 +105,6 @@ dependencies {
     // Use to fetch tiles from a tile provider in your tests
     testImplementation 'androidx.wear.tiles:tiles-testing:1.2.0-alpha04'
 
-
     // Testing
     testImplementation libs.junit
 
@@ -119,7 +118,7 @@ dependencies {
 
     // General compose dependencies
     implementation("androidx.activity:activity-compose:1.7.1")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.4.2")
+    implementation('androidx.compose.ui:ui-tooling-preview:1.4.3')
     // Other compose dependencies
 
     // Compose for Wear OS Dependencies

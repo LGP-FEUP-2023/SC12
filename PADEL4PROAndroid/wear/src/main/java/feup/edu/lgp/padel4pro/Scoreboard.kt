@@ -1,5 +1,6 @@
 package feup.edu.lgp.padel4pro
 
+import android.content.res.Resources.Theme
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
@@ -38,6 +39,7 @@ import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.dialog.Alert
 import androidx.wear.compose.material.dialog.Dialog
 import feup.edu.lgp.padel4pro.theme.wearColorPalette
+
 
 @Composable
 fun Scoreboard() {
@@ -94,309 +96,318 @@ fun Scoreboard() {
 
     }
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .pointerInput(Unit) {
-                var distance = mutableStateOf(0f)
-                var threshold = 1
-
-                detectVerticalDragGestures(
-                    onDragStart = { },
-                    onDragEnd = {
-                        when (selected.value) {
-                            0 -> {
-                                if (distance.value < -threshold) {
-                                    // handle swipe up action
-
-                                    score1.value += 1
-                                    if (score1.value == 5) {
-                                        score1.value = 0
-                                    }
-                                } else if (distance.value > threshold) {
-                                    // handle swipe down action
-                                    score1.value -= 1
-                                    if (score1.value < 0) {
-                                        score1.value = 4
-                                    }
-                                }
-                            }
-
-                            1 -> {
-                                if (distance.value < -threshold) {
-                                    // handle swipe up action
-
-                                    games1.value += 1
-                                    if (games1.value == 8) {
-                                        games1.value = 0
-                                    }
-                                } else if (distance.value > threshold) {
-                                    // handle swipe down action
-                                    games1.value -= 1
-                                    if (games1.value < 0) {
-                                        games1.value = 7
-                                    }
-                                }
-                            }
-
-                            2 -> {
-                                if (distance.value < -threshold) {
-                                    // handle swipe up action
-
-                                    score2.value += 1
-                                    if (score2.value == 8) {
-                                        score2.value = 0
-                                    }
-                                } else if (distance.value > threshold) {
-                                    // handle swipe down action
-                                    score2.value -= 1
-                                    if (score2.value < 0) {
-                                        score2.value = 7
-                                    }
-                                }
-                            }
-
-                            3 -> {
-                                if (distance.value < -threshold) {
-                                    // handle swipe up action
-
-                                    games2.value += 1
-                                    if (games2.value == 8) {
-                                        games2.value = 0
-                                    }
-                                } else if (distance.value > threshold) {
-                                    // handle swipe down action
-                                    games2.value -= 1
-                                    if (games2.value < 0) {
-                                        games2.value = 7
-                                    }
-                                }
-                            }
-                        }
-
-                    }
-                ) { change, dragAmount ->
-                    distance.value = dragAmount
-                    change.consume()
-                }
-            },
-        contentAlignment = Alignment.Center
-    ) {
-        Row(
-            modifier = Modifier.fillMaxSize(),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            //Greeting(greetingName = greetingName)
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(5.dp),
-                horizontalAlignment = Alignment.End
-            ) {
-                // First column content
-                Text(
-                    text = "TEAM 1",
-                    modifier = Modifier.padding(15.dp, 7.dp),
-                    textAlign = TextAlign.Right,
-                    fontSize = 10.sp,
-                    color = Color.White
-                )
-                Box(
-                    contentAlignment = Alignment.Center,
-                    modifier = Modifier
-                        .size(65.dp)
-                        .background(textbgs1.value, shape = CircleShape)
-                        .clickable(
-                            interactionSource = remember { MutableInteractionSource() },
-                            indication = null
-                        ) {
-                            if (selected.value == -1) {
-                                selected.value = 0
-                            } else {
-                                selected.value = -1
-                            }
-                        }
-                ) {
-                    Text(
-                        text = scores[score1.value],
-                        color = textColors1.value,
-                        textAlign = TextAlign.Right,
-                        fontSize = 40.sp,
-                        fontWeight = FontWeight.ExtraBold
-                    )
-                }
-
-
-                Box(
-                    contentAlignment = Alignment.Center,
-                    modifier = Modifier
-                        .size(35.dp)
-                        .background(textbgg1.value, shape = CircleShape)
-                        .clickable(
-                            interactionSource = remember { MutableInteractionSource() },
-                            indication = null
-                        ) {
-                            if (selected.value == -1) {
-                                selected.value = 1
-                            } else {
-                                selected.value = -1
-                            }
-                        }
-                ) {
-                    Text(
-                        text = games1.value.toString(),
-                        textAlign = TextAlign.Right,
-                        fontSize = 25.sp,
-                        fontWeight = FontWeight.ExtraBold,
-                        color = textColorg1.value
-                    )
-                }
-            }
-
-            Column(
-                modifier = Modifier.weight(1f),
-                horizontalAlignment = Alignment.Start
-            ) {
-                // Second column content
-                Text(
-                    text = "TEAM 2",
-                    modifier = Modifier.padding(15.dp, 7.dp),
-                    textAlign = TextAlign.Left,
-                    fontSize = 10.sp,
-                    color = Color.White
-                )
-                Box(
-                    contentAlignment = Alignment.Center,
-                    modifier = Modifier
-                        .size(65.dp)
-                        .background(textbgs2.value, shape = CircleShape)
-                        .clickable(
-                            interactionSource = remember { MutableInteractionSource() },
-                            indication = null
-                        ) {
-                            if (selected.value == -1) {
-                                selected.value = 2
-                            } else {
-                                selected.value = -1
-                            }
-                        }
-                ) {
-                    Text(
-                        text = scores[score2.value],
-                        textAlign = TextAlign.Left,
-                        fontSize = 40.sp,
-                        fontWeight = FontWeight.ExtraBold,
-                        color = textColors2.value,
-                    )
-                }
-                Box(
-                    contentAlignment = Alignment.Center,
-                    modifier = Modifier
-                        .size(35.dp)
-                        .background(textbgg2.value, shape = CircleShape)
-                        .clickable(
-                            interactionSource = remember { MutableInteractionSource() },
-                            indication = null
-                        ) {
-                            if (selected.value == -1) {
-                                selected.value = 3
-                            } else {
-                                selected.value = -1
-                            }
-                        }
-                ) {
-                    Text(
-                        text = games2.value.toString(),
-                        textAlign = TextAlign.Left,
-                        fontSize = 25.sp,
-                        fontWeight = FontWeight.ExtraBold,
-                        color = textColorg2.value
-                    )
-                }
-            }
-        }
+    MaterialTheme(){
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(10.dp),
-            contentAlignment = Alignment.BottomCenter
-        ) {
-            Button(
-                onClick = {
-                    showDialog.value = true
+                .pointerInput(Unit) {
+                    var distance = mutableStateOf(0f)
+                    var threshold = 1
 
-                    selected.value = -1
+                    detectVerticalDragGestures(
+                        onDragStart = { },
+                        onDragEnd = {
+                            when (selected.value) {
+                                0 -> {
+                                    if (distance.value < -threshold) {
+                                        // handle swipe up action
+
+                                        score1.value += 1
+                                        if (score1.value == 5) {
+                                            games1.value += 1
+                                            if (games1.value == 8) {
+                                                games1.value = 0
+                                            }
+                                            score1.value = 0
+                                        }
+                                    } else if (distance.value > threshold) {
+                                        // handle swipe down action
+                                        score1.value -= 1
+                                        if (score1.value < 0) {
+                                            score1.value = 4
+                                        }
+                                    }
+                                }
+
+                                1 -> {
+                                    if (distance.value < -threshold) {
+                                        // handle swipe up action
+
+                                        games1.value += 1
+                                        if (games1.value == 8) {
+                                            games1.value = 0
+                                        }
+                                    } else if (distance.value > threshold) {
+                                        // handle swipe down action
+                                        games1.value -= 1
+                                        if (games1.value < 0) {
+                                            games1.value = 7
+                                        }
+                                    }
+                                }
+
+                                2 -> {
+                                    if (distance.value < -threshold) {
+                                        // handle swipe up action
+
+                                        score2.value += 1
+                                        if (score2.value == 5) {
+                                            games2.value += 1
+                                            if (games2.value == 8) {
+                                                games2.value = 0
+                                            }
+                                            score2.value = 0
+                                        }
+                                    } else if (distance.value > threshold) {
+                                        // handle swipe down action
+                                        score2.value -= 1
+                                        if (score2.value < 0) {
+                                            score2.value = 7
+                                        }
+                                    }
+                                }
+
+                                3 -> {
+                                    if (distance.value < -threshold) {
+                                        // handle swipe up action
+
+                                        games2.value += 1
+                                        if (games2.value == 8) {
+                                            games2.value = 0
+                                        }
+                                    } else if (distance.value > threshold) {
+                                        // handle swipe down action
+                                        games2.value -= 1
+                                        if (games2.value < 0) {
+                                            games2.value = 7
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                    ) { change, dragAmount ->
+                        distance.value = dragAmount
+                        change.consume()
+                    }
                 },
-                modifier = Modifier
-                    .height(20.dp)
-                    .width(20.dp),
-                colors = ButtonDefaults.buttonColors(backgroundColor = wearColorPalette.primaryVariant)
+            contentAlignment = Alignment.Center
+        ) {
+            Row(
+                modifier = Modifier.fillMaxSize(),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(imageVector = Icons.Filled.Refresh, contentDescription = "reset scores")
+                //Greeting(greetingName = greetingName)
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(5.dp),
+                    horizontalAlignment = Alignment.End
+                ) {
+                    // First column content
+                    Text(
+                        text = "TEAM 1",
+                        modifier = Modifier.padding(15.dp, 7.dp),
+                        textAlign = TextAlign.Right,
+                        fontSize = 10.sp,
+                        color = Color.White
+                    )
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .size(65.dp)
+                            .background(textbgs1.value, shape = CircleShape)
+                            .clickable(
+                                interactionSource = remember { MutableInteractionSource() },
+                                indication = null
+                            ) {
+                                if (selected.value == -1) {
+                                    selected.value = 0
+                                } else {
+                                    selected.value = -1
+                                }
+                            }
+                    ) {
+                        Text(
+                            text = scores[score1.value],
+                            color = textColors1.value,
+                            textAlign = TextAlign.Right,
+                            fontSize = 40.sp,
+                            fontWeight = FontWeight.ExtraBold
+                        )
+                    }
+
+
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .size(35.dp)
+                            .background(textbgg1.value, shape = CircleShape)
+                            .clickable(
+                                interactionSource = remember { MutableInteractionSource() },
+                                indication = null
+                            ) {
+                                if (selected.value == -1) {
+                                    selected.value = 1
+                                } else {
+                                    selected.value = -1
+                                }
+                            }
+                    ) {
+                        Text(
+                            text = games1.value.toString(),
+                            textAlign = TextAlign.Right,
+                            fontSize = 25.sp,
+                            fontWeight = FontWeight.ExtraBold,
+                            color = textColorg1.value
+                        )
+                    }
+                }
+
+                Column(
+                    modifier = Modifier.weight(1f),
+                    horizontalAlignment = Alignment.Start
+                ) {
+                    // Second column content
+                    Text(
+                        text = "TEAM 2",
+                        modifier = Modifier.padding(15.dp, 7.dp),
+                        textAlign = TextAlign.Left,
+                        fontSize = 10.sp,
+                        color = Color.White
+                    )
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .size(65.dp)
+                            .background(textbgs2.value, shape = CircleShape)
+                            .clickable(
+                                interactionSource = remember { MutableInteractionSource() },
+                                indication = null
+                            ) {
+                                if (selected.value == -1) {
+                                    selected.value = 2
+                                } else {
+                                    selected.value = -1
+                                }
+                            }
+                    ) {
+                        Text(
+                            text = scores[score2.value],
+                            textAlign = TextAlign.Left,
+                            fontSize = 40.sp,
+                            fontWeight = FontWeight.ExtraBold,
+                            color = textColors2.value,
+                        )
+                    }
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .size(35.dp)
+                            .background(textbgg2.value, shape = CircleShape)
+                            .clickable(
+                                interactionSource = remember { MutableInteractionSource() },
+                                indication = null
+                            ) {
+                                if (selected.value == -1) {
+                                    selected.value = 3
+                                } else {
+                                    selected.value = -1
+                                }
+                            }
+                    ) {
+                        Text(
+                            text = games2.value.toString(),
+                            textAlign = TextAlign.Left,
+                            fontSize = 25.sp,
+                            fontWeight = FontWeight.ExtraBold,
+                            color = textColorg2.value
+                        )
+                    }
+                }
+            }
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(10.dp),
+                contentAlignment = Alignment.BottomCenter
+            ) {
+                Button(
+                    onClick = {
+                        showDialog.value = true
+
+                        selected.value = -1
+                    },
+                    modifier = Modifier
+                        .height(20.dp)
+                        .width(20.dp),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = wearColorPalette.primaryVariant)
+                ) {
+                    Icon(imageVector = Icons.Filled.Refresh, contentDescription = "reset scores")
+                }
             }
         }
-    }
 
-    Dialog(
-        showDialog = showDialog.value,
-        onDismissRequest = { showDialog.value = false }
-    ) {
-        Alert(
-            verticalArrangement = Arrangement.spacedBy(4.dp, Alignment.Top),
-            contentPadding =
-            PaddingValues(start = 10.dp, end = 10.dp, top = 24.dp, bottom = 52.dp),
-            icon = {
-                Icon(imageVector = Icons.Filled.Refresh, contentDescription = "reset score")
-            },
-            title = { Text(text = "Reset Scores", textAlign = TextAlign.Center) },
-            message = {
-                Text(
-                    text = "Are you sure?",
-                    textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.body2
-                )
-            },
+        Dialog(
+            showDialog = showDialog.value,
+            onDismissRequest = { showDialog.value = false }
         ) {
-            item {
-                Row(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Button(
-                        onClick = {
-                            score1.value = 0
-                            score2.value = 0
-                            games1.value = 0
-                            games2.value = 0
-                            showDialog.value = false
-                        },
-                        modifier = Modifier
-                            .padding(5.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            backgroundColor = Color.Green
-                        )
+            Alert(
+                verticalArrangement = Arrangement.spacedBy(4.dp, Alignment.Top),
+                contentPadding =
+                PaddingValues(start = 10.dp, end = 10.dp, top = 24.dp, bottom = 52.dp),
+                icon = {
+                    Icon(imageVector = Icons.Filled.Refresh, contentDescription = "reset score")
+                },
+                title = { Text(text = "Reset Scores", textAlign = TextAlign.Center) },
+                message = {
+                    Text(
+                        text = "Are you sure?",
+                        textAlign = TextAlign.Center,
+                        style = MaterialTheme.typography.body2
+                    )
+                },
+            ) {
+                item {
+                    Row(
+                        modifier = Modifier.fillMaxSize(),
+                        horizontalArrangement = Arrangement.Center
                     ) {
-                        Icon(imageVector = Icons.Filled.Done, contentDescription = "confirm")
-                    }
-                    Button(
-                        onClick = {
-                            showDialog.value = false
-                        },
-                        modifier = Modifier
-                            .padding(5.dp),
+                        Button(
+                            onClick = {
+                                score1.value = 0
+                                score2.value = 0
+                                games1.value = 0
+                                games2.value = 0
+                                showDialog.value = false
+                            },
+                            modifier = Modifier
+                                .padding(5.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                backgroundColor = feup.edu.lgp.padel4pro.theme.success
+                            )
+                        ) {
+                            Icon(imageVector = Icons.Filled.Done, contentDescription = "confirm")
+                        }
+                        Button(
+                            onClick = {
+                                showDialog.value = false
+                            },
+                            modifier = Modifier
+                                .padding(5.dp),
 
-                        colors = ButtonDefaults.buttonColors(
-                            backgroundColor = Color.LightGray
-                        )
-                    ) {
-                        Icon(imageVector = Icons.Filled.Close, contentDescription = "cancel")
+                            colors = ButtonDefaults.buttonColors(
+                                backgroundColor = feup.edu.lgp.padel4pro.theme.grey
+                            )
+                        ) {
+                            Icon(imageVector = Icons.Filled.Close, contentDescription = "cancel")
+                        }
+
                     }
 
                 }
-
             }
         }
     }
-
 
 }

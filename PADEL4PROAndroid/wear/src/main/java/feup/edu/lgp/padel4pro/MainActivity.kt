@@ -57,18 +57,18 @@ data class Screen(val title: String, val content: @Composable () -> Unit)
 @Composable
 fun WearApp(greetingName: String) {
     val screens = listOf(
-        Screen("Menu") {
-            Menu()
-        },
+//        Screen("Menu") {
+//            Menu()
+//        },
         Screen("ScoreBoard") {
             Scoreboard()
         },
-        Screen("WaitScreen") {
-            WaitScreen()
-        },
-        Screen("SyncScreen") {
-            SyncScreen()
-        }
+//        Screen("WaitScreen") {
+//            WaitScreen()
+//        },
+//        Screen("SyncScreen") {
+//            SyncScreen()
+//        }
     )
     val screenIndex = remember { mutableStateOf(screens[0]) }
     WearAppTheme {
@@ -77,7 +77,7 @@ fun WearApp(greetingName: String) {
          * see d.android.com/wear/compose.
          */
 
-        Menu()
+        Scoreboard()
         // SyncScreen()
     }
 }
