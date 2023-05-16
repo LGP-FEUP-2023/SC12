@@ -17,7 +17,7 @@ const MainPage = ({ navigation }) => {
          />
          <MyScoreBoard />
          <CourtButton text={"join court"} icon={IMAGES.join} onPress={() => navigation.navigate('SessionScanner')} />
-         <CourtButton text={"leave court"} icon={IMAGES.leave} onPress={() => setToken("teste")}/>
+         <CourtButton text={"leave court"} icon={IMAGES.leave} onPress={() => setToken("")}/>
       </View>
    )
 }
