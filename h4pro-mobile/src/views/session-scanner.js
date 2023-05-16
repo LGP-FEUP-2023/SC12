@@ -43,6 +43,15 @@ const SessionScanner = ({ navigation }) => {
         setScanned(false);
     };
 
+    const handleMockBadScan = () => {
+        navigation.navigate('MainPage', { snackbar: true, snackmode: 1 })
+    };
+
+    const handleMockGoodScan = () => {
+        navigation.navigate('MainPage', { snackbar: true, snackmode: 0 })
+    };
+
+
     if (hasPermission === null) {
         return <Text>Requesting camera permission</Text>;
     }
@@ -57,6 +66,8 @@ const SessionScanner = ({ navigation }) => {
                 <>
                     <Text style={styles.resultText_scanner}>Result_scanner: {token}</Text>
                     <Button title="Scan Again" onPress={handleScanAgain} />
+                    <Button title="Mock Bad Scan" onPress={handleMockBadScan} />
+                    <Button title="Mock Good Scan" onPress={handleMockGoodScan} />
                 </>
             ) : (
                 <View
@@ -80,7 +91,7 @@ const SessionScanner = ({ navigation }) => {
 
                     <BarcodeMask edgeColor={'#FFFFFF'} showAnimatedLine={false} outerMaskOpacity={0.2} height={270} width={270} />
 
-                    <TouchableOpacity onPress={() => navigation.dispatch(StackActions.pop())} style={[styles.closeButton_scanner, { bottom: 25 }]}>
+                    <TouchableOpacity onPress={() => navigation.navigate('MainPage')} style={[styles.closeButton_scanner, { bottom: 25 }]}>
                         <Icon name={'close'} color={COLOR.white} size={25} />
                     </TouchableOpacity>
 
