@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native';
 import { COLOR } from '../constants/colors'
 
-const BUTTON_SIZE = 50
+export const BUTTON_SIZE = 50
+export const ICON_SIZE = 40
 const BORDER_WIDTH = 1
 
 export default StyleSheet.create({
@@ -26,6 +27,17 @@ export default StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
     marginHorizontal: 20
+  },
+
+  snackbar: {
+      flex: 1,
+      flexDirection: 'row',
+      alignItems: 'center'
+  },
+
+  snackbartext: {
+      color: COLOR.white,
+      padding: 10
   },
 
   courtButton: {
@@ -74,73 +86,72 @@ export default StyleSheet.create({
     height: 65
   },
 
-    scoreboardText:{
-        color: COLOR.white,
-        fontSize: 18,
-        top: '-5%',
-        textTransform: 'uppercase',
-        fontWeight: '600',
-        textAlign: 'center',
-        alignItems: 'flex-start',
-        paddingHorizontal: '5%'
-    
-    },
-    scoreboardScores:{
-        color: COLOR.white,
-        fontSize: 60,
-        textTransform: 'uppercase',
-        fontWeight: '800',
-    },
-    scoreboardSetScore:{
-        color: COLOR.white,
-        fontSize: 35,
-        textTransform: 'uppercase',
-        fontWeight: '800',
-    },
-    
+  scoreboardText: {
+      color: COLOR.white,
+      fontSize: 18,
+      top: '-5%',
+      textTransform: 'uppercase',
+      fontWeight: '600',
+      textAlign: 'center',
+      alignItems: 'flex-start',
+      paddingHorizontal: '5%'
+  },
+  scoreboardScores: {
+      color: COLOR.white,
+      fontSize: 60,
+      textTransform: 'uppercase',
+      fontWeight: '800',
+  },
+  scoreboardSetScore: {
+      color: COLOR.white,
+      fontSize: 35,
+      textTransform: 'uppercase',
+      fontWeight: '800',
+  },
 
-    // SessionScanner
-    container_scanner: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    resultText_scanner: {
-        fontSize: 18,
-        marginVertical: 10,
-    },
-    cancelButton_scanner: {
-        marginLeft: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    cancelButtonText_scanner: {
-        color: 'rgba(255,255,255,0.8)',
-        fontSize: 18,
-    },
-    overlayContainer_scanner: {
-        top: 100,
-        backgroundColor: COLOR.gray,
-        borderRadius: 20,
-        paddingHorizontal: 25,
-        paddingVertical: 20,
-        position: 'absolute',
-    },
-    overlayText_scanner: {
-        color: '#fff',
-        fontSize: 20,
-        textAlign: 'center',
-    },
-    closeButton_scanner: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: BUTTON_SIZE + BORDER_WIDTH,
-        height: BUTTON_SIZE + BORDER_WIDTH,
-        borderWidth: BORDER_WIDTH,
-        borderRadius: BUTTON_SIZE / 2,
-        backgroundColor: COLOR.gray,
-        borderColor: COLOR.gray,
-        position: 'absolute',
-    }
+
+  // SessionScanner
+  container_scanner: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+  },
+  resultText_scanner: {
+      fontSize: 18,
+      marginVertical: 10,
+  },
+  cancelButton_scanner: {
+      marginLeft: 10,
+      alignItems: 'center',
+      justifyContent: 'center',
+  },
+  cancelButtonText_scanner: {
+      color: 'rgba(255,255,255,0.8)',
+      fontSize: 18,
+  },
+  overlayContainer_scanner: {
+      top: 100,
+      backgroundColor: COLOR.gray,
+      borderRadius: 20,
+      paddingHorizontal: 25,
+      paddingVertical: 20,
+      position: 'absolute',
+  },
+  overlayText_scanner: {
+      color: '#fff',
+      fontSize: 20,
+      textAlign: 'center',
+  },
+  closeButton_scanner: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: BUTTON_SIZE + BORDER_WIDTH,
+      height: BUTTON_SIZE + BORDER_WIDTH,
+      borderWidth: BORDER_WIDTH,
+      borderRadius: BUTTON_SIZE / 2,
+      backgroundColor: COLOR.gray,
+      borderColor: COLOR.gray,
+      position: 'absolute',
+  }
 });
 
