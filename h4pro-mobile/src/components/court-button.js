@@ -5,11 +5,12 @@ import i18n from '../constants/localizer'
 import { useTranslation } from 'react-i18next';
 
 
-const CourtButton = props => {
+export const CourtButton = props => {
 
     const { t } = useTranslation();
 
     return (
+
         <TouchableOpacity style={[styles.courtButton, styles.basicButton]}
             onPress={props.press}>
             <Image style={styles.buttonIcon} source={props.icon} />
@@ -18,6 +19,4 @@ const CourtButton = props => {
 
     );
 };
-
-export default CourtButton;
 
