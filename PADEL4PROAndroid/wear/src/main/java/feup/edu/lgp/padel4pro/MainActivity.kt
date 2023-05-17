@@ -18,7 +18,13 @@ package feup.edu.lgp.padel4pro
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -62,6 +68,12 @@ fun WearApp(greetingName: String) {
         },
         Screen("ScoreBoard") {
             Scoreboard()
+        },
+        Screen("WaitScreen") {
+            WaitScreen()
+        },
+        Screen("SyncScreen") {
+            SyncScreen()
         }
     )
     val screenIndex = remember { mutableStateOf(screens[0]) }
@@ -71,7 +83,8 @@ fun WearApp(greetingName: String) {
          * see d.android.com/wear/compose.
          */
 
-        Scoreboard()
+        Menu()
+        // SyncScreen()
     }
 }
 

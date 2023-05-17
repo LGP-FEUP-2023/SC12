@@ -68,9 +68,9 @@ export default StyleSheet.create({
         top: '-5%',
         textTransform: 'uppercase',
         fontWeight: '600',
-        textAlign: 'left',
-        alignItems: 'flex-start'
-
+        textAlign: 'center',
+        alignItems: 'flex-start',
+        paddingHorizontal: '5%'
     },
     scoreboardScores: {
         color: COLOR.white,
