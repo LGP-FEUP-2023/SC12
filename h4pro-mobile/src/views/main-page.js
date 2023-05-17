@@ -2,15 +2,17 @@ import styles from '../styles/main-page.style'
 import { IMAGES } from '../constants/images'
 import { MyStatusBar } from '../components/status-bar'
 import { MyScoreBoard } from '../components/scoreboard'
-import React, { useState, useEffect } from 'react'
+import React, { Component, useContext, useState, useEffect } from 'react'
 import { View, Image, Text } from 'react-native'
 import { CourtButton } from '../components/court-button'
 import { Snackbar } from 'react-native-paper'
+import AuthContext from '../../AuthContext';
 
 const MainPage = ({ route, navigation }) => {
 
    const [snackbarVisible, setSnackbarVisible] = useState(false);
    const [snackMode, setSnackMode] = useState(0);
+   const { token, setToken } = useContext(AuthContext);
 
    useEffect(() => {
       const { snackbar, snackmode } = route.params ?? {};
@@ -32,7 +34,7 @@ const MainPage = ({ route, navigation }) => {
          />
          <MyScoreBoard />
          <CourtButton text={"join court"} icon={IMAGES.join} onPress={() => navigation.navigate('SessionScanner')} />
-         <CourtButton text={"leave court"} icon={IMAGES.leave} />
+         <CourtButton text={"leave court"} icon={IMAGES.leave} onPress={() => setToken("")} />
 
          <Snackbar
             visible={snackbarVisible}
@@ -51,8 +53,7 @@ const MainPage = ({ route, navigation }) => {
                snackMode == 0 ? 'Successfully joined court!' : 'Failed to join court.'
             }</Text>
          </Snackbar>
-
-      </View >
+      </View>
    )
 }
 
