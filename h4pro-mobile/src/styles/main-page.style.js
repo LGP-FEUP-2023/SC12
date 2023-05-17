@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
 import { COLOR } from '../constants/colors'
 
+const BUTTON_SIZE = 50
+const BORDER_WIDTH = 1
+
 export default StyleSheet.create({
     container: {
         flex: 1,
@@ -52,8 +55,9 @@ export default StyleSheet.create({
         top: '-5%',
         textTransform: 'uppercase',
         fontWeight: '600',
-        textAlign: 'left',
-        alignItems: 'flex-start'
+        textAlign: 'center',
+        alignItems: 'flex-start',
+        paddingHorizontal: '5%'
     
     },
     scoreboardScores:{
@@ -67,5 +71,51 @@ export default StyleSheet.create({
         fontSize: 35,
         textTransform: 'uppercase',
         fontWeight: '800',
+    },
+    
+
+    // SessionScanner
+    container_scanner: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    resultText_scanner: {
+        fontSize: 18,
+        marginVertical: 10,
+    },
+    cancelButton_scanner: {
+        marginLeft: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    cancelButtonText_scanner: {
+        color: 'rgba(255,255,255,0.8)',
+        fontSize: 18,
+    },
+    overlayContainer_scanner: {
+        top: 100,
+        backgroundColor: COLOR.gray,
+        borderRadius: 20,
+        paddingHorizontal: 25,
+        paddingVertical: 20,
+        position: 'absolute',
+    },
+    overlayText_scanner: {
+        color: '#fff',
+        fontSize: 20,
+        textAlign: 'center',
+    },
+    closeButton_scanner: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: BUTTON_SIZE + BORDER_WIDTH,
+        height: BUTTON_SIZE + BORDER_WIDTH,
+        borderWidth: BORDER_WIDTH,
+        borderRadius: BUTTON_SIZE / 2,
+        backgroundColor: COLOR.gray,
+        borderColor: COLOR.gray,
+        position: 'absolute',
     }
 });
+
