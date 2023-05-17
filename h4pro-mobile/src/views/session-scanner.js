@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import AuthContext from '../../AuthContext';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { COLOR } from '../constants/colors'
-import styles from '../styles/main-page.style'
+import styles, { BUTTON_SIZE } from '../styles/main-page.style'
 import {
     Dimensions,
     Text,
@@ -34,8 +34,14 @@ const SessionScanner = ({ navigation }) => {
         // if (scanned_token) {
         //     setToken(scanned_token);
         // }
-        setToken(data);
-        navigation.navigate('MainPage')
+
+        // check if the scanned data is a valid token
+        if (data.startsWith('h4pro')) {
+            setToken(data);
+            navigation.navigate('MainPage', { snackbar: true, snackmode: 0 })
+        } else {
+            navigation.navigate('MainPage', { snackbar: true, snackmode: 1 })
+        }
     };
 
 
@@ -71,14 +77,14 @@ const SessionScanner = ({ navigation }) => {
 
                 <BarcodeMask edgeColor={'#FFFFFF'} showAnimatedLine={false} outerMaskOpacity={0.2} height={270} width={270} />
 
-                <TouchableOpacity onPress={() => navigation.dispatch(StackActions.pop())} style={[styles.closeButton_scanner, { bottom: 25 }]}>
+                <TouchableOpacity onPress={() => navigation.dispatch(StackActions.pop())} style={[styles.closeButton_scanner, { bottom: BUTTON_SIZE / 2 }]}>
                     <Icon name={'close'} color={COLOR.white} size={25} />
                 </TouchableOpacity>
 
             </ View>
 
         </View>
-    );
+    )
 }
 
 export default SessionScanner
