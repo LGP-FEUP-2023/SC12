@@ -12,7 +12,7 @@ export default function LoginPage({navigation}) {
 
   const onSubmit = (data) => {
     console.log('Submitting form', data);
-    navigation.navigate('Dashboard')
+    navigation.navigate('MainPage')
   };
 
   const redirectSignUp = () => {
