@@ -1,4 +1,4 @@
-import styles from '../styles/main-page.style'
+import styles, { ICON_SIZE } from '../styles/main-page.style'
 import { IMAGES } from '../constants/images'
 import { MyStatusBar } from '../components/status-bar'
 import { MyScoreBoard } from '../components/scoreboard'
@@ -53,14 +53,14 @@ const MainPage = ({ route, navigation }) => {
             <View style={styles.snackbar}>
                {snackMode == 0 ? (
                   <>
-                     <Icon name={'check-circle-outline'} color={COLOR.blue} size={40} />
+                     <Icon name={'check-circle-outline'} color={COLOR.blue} size={ICON_SIZE} />
                      <Text style={styles.snackbartext}>
                         Successfully <Text style={{ color: COLOR.blue }}>joined</Text> court.
                      </Text>
                   </>
                ) : (
                   <>
-                     <Icon name={'close-circle-outline'} color={COLOR.red} size={40} />
+                     <Icon name={'close-circle-outline'} color={COLOR.red} size={ICON_SIZE} />
                      <Text style={styles.snackbartext}>
                         <Text style={{ color: COLOR.red }}>Failed</Text> to join court.
                      </Text>

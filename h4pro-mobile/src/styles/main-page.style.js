@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native';
 import { COLOR } from '../constants/colors'
 
-const BUTTON_SIZE = 50
+export const BUTTON_SIZE = 50
+export const ICON_SIZE = 40
 const BORDER_WIDTH = 1
 
 export default StyleSheet.create({
