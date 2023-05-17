@@ -5,6 +5,7 @@ import { getLocales } from 'expo-localization';
 
 import en from './translations/en/en.json';
 import pt from './translations/pt/pt.json';
+import hr from './translations/hr/hr.json'
 
 // const LANGUAGES = {
 //     en,
@@ -53,6 +54,7 @@ i18n
         resources: {
             en: en,
             pt: pt,
+            hr: hr,
         },
         interpolation: {
             escapeValue: false // react already safes from xss
