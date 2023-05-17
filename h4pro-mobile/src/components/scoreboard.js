@@ -43,10 +43,15 @@ export const MyScoreBoard = () => {
         <SafeAreaView style={[styles.scoreboard, styles.basicButton]}>
             {token !== "" ? (
                 <>
-                <SafeAreaView style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
-                    <Text style={styles.scoreboardText}>{TEXT_EN.PLAYING_AT}</Text>                
+                <SafeAreaView style={{ flexDirection: 'row', alignItems: 'flex-start'}}>
+                    <Text style={styles.scoreboardText}>
+                        {TEXT_EN.PLAYING_AT}
+                        <Text style={[styles.scoreboardText, { color: COLOR.blue}]}>
+                        {token}
+                        </Text>
+                    </Text>                
 
-                    <Text style={[styles.scoreboardText, { color: COLOR.blue}]}>{token}</Text>
+                    {/* <Text style={[styles.scoreboardText, { color: COLOR.blue}]}>{token}</Text> */}
                 </SafeAreaView>
                 <SafeAreaView style={{ flexDirection: 'row'}}>
                     <Text style={[styles.scoreboardScores, { color: COLOR.blue}]}>{team1Score.pad(2)}</Text>
@@ -59,7 +64,7 @@ export const MyScoreBoard = () => {
                 </SafeAreaView>
                 </>
             ) : (
-                <Image style={styles.buttonIcon} source={IMAGES.no_court}/>
+                <Image style={{width: 120, height: 130}} source={IMAGES.no_court}/>
             )}
             
         </SafeAreaView>
