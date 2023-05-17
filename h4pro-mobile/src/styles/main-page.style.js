@@ -9,13 +9,25 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: COLOR.background
     },
+
+    snackbar: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+
+    snackbartext: {
+        color: COLOR.white,
+        padding: 10
+    },
+
     logo: {
         width: 140,
         height: 30,
         marginTop: 55,
         marginLeft: 25
     },
-    
+
     scoreboard: {
         height: '30%',
         marginTop: '20%'
@@ -35,7 +47,7 @@ export default StyleSheet.create({
         marginTop: '6%',
         flexDirection: 'row',
         alignItems: 'stretch'
-    },  
+    },
     buttonText: {
         color: COLOR.white,
         width: '70%',
@@ -49,7 +61,7 @@ export default StyleSheet.create({
         height: 65
     },
 
-    scoreboardText:{
+    scoreboardText: {
         color: COLOR.white,
         fontSize: 18,
         top: '-5%',
@@ -57,21 +69,21 @@ export default StyleSheet.create({
         fontWeight: '600',
         textAlign: 'left',
         alignItems: 'flex-start'
-    
+
     },
-    scoreboardScores:{
+    scoreboardScores: {
         color: COLOR.white,
         fontSize: 60,
         textTransform: 'uppercase',
         fontWeight: '800',
     },
-    scoreboardSetScore:{
+    scoreboardSetScore: {
         color: COLOR.white,
         fontSize: 35,
         textTransform: 'uppercase',
         fontWeight: '800',
     },
-    
+
 
     // SessionScanner
     container_scanner: {

@@ -7,6 +7,8 @@ import { View, Image, Text } from 'react-native'
 import { CourtButton } from '../components/court-button'
 import { Snackbar } from 'react-native-paper'
 import AuthContext from '../../AuthContext';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { COLOR } from '../constants/colors'
 
 const MainPage = ({ route, navigation }) => {
 
@@ -45,15 +47,29 @@ const MainPage = ({ route, navigation }) => {
                textColor: 'white',
                onPress: dismissSnackbar,
             }}
-            style={
-               { backgroundColor: snackMode == 1 ? 'red' : 'green' }
-            }
+
+
          >
-            <Text style={{ color: 'white' }}>{
-               snackMode == 0 ? 'Successfully joined court!' : 'Failed to join court.'
-            }</Text>
-         </Snackbar>
-      </View>
+            <View style={styles.snackbar}>
+               {snackMode == 0 ? (
+                  <>
+                     <Icon name={'check-circle-outline'} color={COLOR.blue} size={40} />
+                     <Text style={styles.snackbartext}>
+                        Successfully <Text style={{ color: COLOR.blue }}>joined</Text> court.
+                     </Text>
+                  </>
+               ) : (
+                  <>
+                     <Icon name={'close-circle-outline'} color={COLOR.red} size={40} />
+                     <Text style={styles.snackbartext}>
+                        <Text style={{ color: COLOR.red }}>Failed</Text> to join court.
+                     </Text>
+                  </>
+               )}
+            </View>
+
+         </Snackbar >
+      </View >
    )
 }
 
