@@ -26,6 +26,7 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -69,11 +70,11 @@ fun WearApp(greetingName: String) {
          * version of LazyColumn for wear devices with some added features. For more information,
          * see d.android.com/wear/compose.
          */
-        val lazyListState: LazyListState = rememberLazyListState()
+        val lazyListState: ScalingLazyListState = rememberScalingLazyListState()
 
-        LazyRow(
+        ScalingLazyColumn(
             modifier = Modifier.fillMaxSize(),
-            horizontalArrangement = Arrangement.spacedBy(6.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
             state = lazyListState,
         ) {
             item {
