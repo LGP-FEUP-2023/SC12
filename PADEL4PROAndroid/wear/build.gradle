@@ -82,7 +82,7 @@ dependencies {
     // androidx.wear.compose:compose-material please raise a bug to let us know:
     // https://issuetracker.google.com/issues/new?component=1077552&template=1598429&pli=1
     implementation libs.wear.compose.material
-    implementation "androidx.compose.material:material:1.4.1"
+    implementation 'androidx.compose.material:material:1.4.3'
     implementation libs.wear.compose.foundation
 
     // If you are using Compose Navigation, use the Wear OS version (NOT the
@@ -94,17 +94,16 @@ dependencies {
 
     // Use to fetch tiles from a tile provider in your tests
     //testImplementation "androidx.wear.tiles:tiles-testing:1.2.0-alpha03"
-    implementation "androidx.wear.tiles:tiles:1.2.0-alpha03"
+    implementation 'androidx.wear.tiles:tiles:1.2.0-alpha04'
 
     // Use to utilize components and layouts with Material Design in your tiles
-    implementation "androidx.wear.tiles:tiles-material:1.2.0-alpha03"
+    implementation 'androidx.wear.tiles:tiles-material:1.2.0-alpha04'
 
     // Use to preview wear tiles in your own app
-    debugImplementation "androidx.wear.tiles:tiles-renderer:1.2.0-alpha03"
+    debugImplementation 'androidx.wear.tiles:tiles-renderer:1.2.0-alpha04'
 
     // Use to fetch tiles from a tile provider in your tests
-    testImplementation "androidx.wear.tiles:tiles-testing:1.2.0-alpha03"
-
+    testImplementation 'androidx.wear.tiles:tiles-testing:1.2.0-alpha04'
 
     // Testing
     testImplementation libs.junit
@@ -119,7 +118,7 @@ dependencies {
 
     // General compose dependencies
     implementation("androidx.activity:activity-compose:1.7.1")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.4.2")
+    implementation('androidx.compose.ui:ui-tooling-preview:1.4.3')
     // Other compose dependencies
 
     // Compose for Wear OS Dependencies

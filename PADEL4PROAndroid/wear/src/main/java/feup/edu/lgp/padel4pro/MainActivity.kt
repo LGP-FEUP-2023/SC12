@@ -18,13 +18,7 @@ package feup.edu.lgp.padel4pro
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -63,18 +57,18 @@ data class Screen(val title: String, val content: @Composable () -> Unit)
 @Composable
 fun WearApp(greetingName: String) {
     val screens = listOf(
-        Screen("Menu") {
-            Menu()
-        },
+//        Screen("Menu") {
+//            Menu()
+//        },
         Screen("ScoreBoard") {
             Scoreboard()
         },
-        Screen("WaitScreen") {
-            WaitScreen()
-        },
-        Screen("SyncScreen") {
-            SyncScreen()
-        }
+//        Screen("WaitScreen") {
+//            WaitScreen()
+//        },
+//        Screen("SyncScreen") {
+//            SyncScreen()
+//        }
     )
     val screenIndex = remember { mutableStateOf(screens[0]) }
     WearAppTheme {
@@ -83,7 +77,7 @@ fun WearApp(greetingName: String) {
          * see d.android.com/wear/compose.
          */
 
-        Menu()
+        Scoreboard()
         // SyncScreen()
     }
 }
@@ -97,7 +91,6 @@ fun Greeting(greetingName: String) {
         text = stringResource(R.string.hello_world, greetingName)
     )
 }
-
 
 
 @Preview(device = Devices.WEAR_OS_SMALL_ROUND, showSystemUi = true)
