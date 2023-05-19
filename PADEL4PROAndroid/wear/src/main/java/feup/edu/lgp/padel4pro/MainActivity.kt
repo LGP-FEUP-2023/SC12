@@ -65,6 +65,13 @@ data class Screen(val title: String, val content: @Composable () -> Unit)
 
 @Composable
 fun WearApp(greetingName: String) {
+    val screens = listOf(
+       Screen("Menu") {
+            Menu()
+        },
+        Screen("ScoreBoard") {
+            Scoreboard()
+        });
     WearAppTheme {
         /* If you have enough items in your list, use [ScalingLazyColumn] which is an optimized
          * version of LazyColumn for wear devices with some added features. For more information,
