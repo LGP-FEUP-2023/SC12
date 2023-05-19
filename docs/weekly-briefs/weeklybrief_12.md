@@ -2,17 +2,26 @@
 -----------
 
 ## Current Status
-- 
+- We finished sprint 3, which added:
+    - Smartwatch: tiling and score UI/UX upgrades
+    - Phones: snackbars for the QR code reading, scoreboard when no court is loaded, leave & join court logic.
+- We receive the smartwatch from the client, however, no progress was made regarding the tests of the smartwatch app on the device due to the hardware limitations of the device, which came with a different
+operating system than the one we were expecting.
+- The communication smartwatch-phone was still a challenge to implement, further investigation on the topic will continue to be made;
+- We continued sprint 4, the final one, which includes the features to finish the MVP;
+- We interviewed potential users of the app in a padel court, to gather feedback and footage for the presentation;
+- We finished the media kit and did progress on the presentation script.
 
 ## Plans for Coming Weeks
-- Finish sprint 3 issues;
-- Have a meeting with the team to review sprint 3 and plan sprint 4;
-- Have Hugo send us a WearOS smartwatch for testing;
-- Write the script for the presentation;
-- Do interviews with potential users of the application in a padel court;
+- Finish sprint #4
+- Finish testing the smartwatch application on a physical device;
+- Finish the presentation script;
+- Start the presentation slides;
+- Start the poster;
+- Finish the testing and github action setup for both the smartwatch and phone applications;
+- Finish the project.
 
 
 ## Potential Risks
-- Difficulties advancing with sprint 4 issues, due to the cumulative work from other courses;
-- Delays and spillovers from sprint 3, due to the off week;
-- Problems with the filming of the interviews, since we won't have professional equipment.
+- Due to the hardware limitations of the smartwatch, we might not be able to test the smartwatch app on a physical device;
+- Due to the amount of work we have, either from the project or from other courses, the project might take longer than expected to finish.
