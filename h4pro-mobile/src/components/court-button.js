@@ -12,7 +12,7 @@ export const CourtButton = props => {
     return (
 
         <TouchableOpacity style={[styles.courtButton, styles.basicButton]}
-            onPress={props.press}>
+            onPress={props.onPress}>
             <Image style={styles.buttonIcon} source={props.icon} />
             <Text style={styles.buttonText}>{t(props.text)}</Text>
         </TouchableOpacity>
