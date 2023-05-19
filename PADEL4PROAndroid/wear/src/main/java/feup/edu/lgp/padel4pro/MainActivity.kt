@@ -25,6 +25,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -72,6 +73,14 @@ fun WearApp(greetingName: String) {
         Screen("ScoreBoard") {
             Scoreboard()
         });
+//        Screen("WaitScreen") {
+//            WaitScreen()
+//        },
+//        Screen("SyncScreen") {
+//            SyncScreen()
+//        }
+  
+    val screenIndex = remember { mutableStateOf(screens[0]) }
     WearAppTheme {
         /* If you have enough items in your list, use [ScalingLazyColumn] which is an optimized
          * version of LazyColumn for wear devices with some added features. For more information,
@@ -131,7 +140,6 @@ fun handlingSwipe() {
     }
 }
 */
-
 
 @Preview(device = Devices.WEAR_OS_SMALL_ROUND, showSystemUi = true)
 @Composable
