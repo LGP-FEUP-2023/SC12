@@ -15,6 +15,12 @@
  */
 package feup.edu.lgp.padel4pro
 
+import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -51,9 +57,45 @@ import feup.edu.lgp.padel4pro.theme.WearAppTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val filter = IntentFilter()
+        filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED)
+        filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED)
+        registerReceiver(bluetoothReceiver, filter)
+
+        bluetoothSetup()
 
         setContent {
             WearApp("Android")
+        }
+    }
+}
+
+fun bluetoothSetup(){
+    val bluetoothAdapter = BluetoothAdapter.getAdapter()
+    if (bluetoothAdapter == null || !bluetoothAdapter.isEnabled) {
+        val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+        startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
+    }
+    val pairedDevices: Set<BluetoothDevice>? = bluetoothAdapter?.bondedDevices
+
+    if (pairedDevices != null) {
+        for (device: BluetoothDevice in pairedDevices) {
+                val isConnected = device.bondState == BluetoothDevice.BOND_BONDED
+                // Check if the device is currently connected
+                // isConnected will be true if the device is connected
+        }
+    }
+
+    val bluetoothReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            when (intent.action) {
+                BluetoothDevice.ACTION_ACL_CONNECTED -> {
+                    // Smartwatch is connected
+                }
+                BluetoothDevice.ACTION_ACL_DISCONNECTED -> {
+                    // Smartwatch is disconnected
+                }
+            }
         }
     }
 }
