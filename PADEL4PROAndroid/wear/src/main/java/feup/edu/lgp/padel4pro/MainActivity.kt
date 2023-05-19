@@ -16,6 +16,7 @@
 package feup.edu.lgp.padel4pro
 
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -29,6 +30,8 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
+import com.google.android.gms.wearable.DataClient
+import com.google.android.gms.wearable.Wearable
 import feup.edu.lgp.padel4pro.theme.WearAppTheme
 
 /**
@@ -43,11 +46,12 @@ import feup.edu.lgp.padel4pro.theme.WearAppTheme
  * https://developer.android.com/reference/kotlin/androidx/wear/compose/navigation/package-summary
  */
 class MainActivity : ComponentActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContent {
-            WearApp("Android")
+            WearApp()
         }
     }
 }
@@ -55,7 +59,7 @@ class MainActivity : ComponentActivity() {
 data class Screen(val title: String, val content: @Composable () -> Unit)
 
 @Composable
-fun WearApp(greetingName: String) {
+fun WearApp() {
     val screens = listOf(
 //        Screen("Menu") {
 //            Menu()
@@ -96,5 +100,5 @@ fun Greeting(greetingName: String) {
 @Preview(device = Devices.WEAR_OS_SMALL_ROUND, showSystemUi = true)
 @Composable
 fun DefaultPreview() {
-    WearApp("Preview Android")
+    WearApp()
 }

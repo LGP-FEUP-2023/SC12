@@ -38,6 +38,8 @@ import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.dialog.Alert
 import androidx.wear.compose.material.dialog.Dialog
+import com.google.android.gms.wearable.DataClient
+import com.google.android.gms.wearable.Wearable
 import feup.edu.lgp.padel4pro.theme.wearColorPalette
 
 
@@ -207,7 +209,7 @@ fun Scoreboard() {
                     // First column content
                     Text(
                         text = "TEAM 1",
-                        modifier = Modifier.padding(15.dp, 7.dp),
+                        modifier = Modifier.padding(0.dp, 0.dp, 10.dp, 5.dp),
                         textAlign = TextAlign.Right,
                         fontSize = 10.sp,
                         color = Color.White
@@ -241,6 +243,7 @@ fun Scoreboard() {
                     Box(
                         contentAlignment = Alignment.Center,
                         modifier = Modifier
+                            .padding(0.dp, 0.dp, 6.dp, 0.dp)
                             .size(35.dp)
                             .background(textbgg1.value, shape = CircleShape)
                             .clickable(
@@ -271,7 +274,7 @@ fun Scoreboard() {
                     // Second column content
                     Text(
                         text = "TEAM 2",
-                        modifier = Modifier.padding(15.dp, 7.dp),
+                        modifier = Modifier.padding(10.dp, 0.dp, 0.dp, 5.dp),
                         textAlign = TextAlign.Left,
                         fontSize = 10.sp,
                         color = Color.White
@@ -303,6 +306,7 @@ fun Scoreboard() {
                     Box(
                         contentAlignment = Alignment.Center,
                         modifier = Modifier
+                            .padding(6.dp, 0.dp, 0.dp, 0.dp)
                             .size(35.dp)
                             .background(textbgg2.value, shape = CircleShape)
                             .clickable(
