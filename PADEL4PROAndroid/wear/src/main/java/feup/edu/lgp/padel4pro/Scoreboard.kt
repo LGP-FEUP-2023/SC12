@@ -1,5 +1,8 @@
 package feup.edu.lgp.padel4pro
 
+import android.text.format.DateFormat
+import androidx.compose.foundation.gestures.*
+import androidx.compose.foundation.layout.*
 import android.content.res.Resources.Theme
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -36,11 +39,15 @@ import androidx.wear.compose.material.ButtonDefaults
 import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
+import androidx.wear.compose.material.TimeText
+import androidx.wear.compose.material.TimeTextDefaults
+import androidx.wear.compose.material.swipeable
 import androidx.wear.compose.material.dialog.Alert
 import androidx.wear.compose.material.dialog.Dialog
 import com.google.android.gms.wearable.DataClient
 import com.google.android.gms.wearable.Wearable
 import feup.edu.lgp.padel4pro.theme.wearColorPalette
+import java.util.Locale
 
 
 @Composable
