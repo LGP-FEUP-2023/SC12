@@ -47,7 +47,7 @@ export const MyScoreBoard = () => {
                 <>
                     <SafeAreaView style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
                         <Text style={styles.scoreboardText}>
-                            {t("Playing at")}
+                            {t("Playing at") + " "}
                             <Text style={[styles.scoreboardText, { color: COLOR.blue }]}>
                                 {token}
                             </Text>
