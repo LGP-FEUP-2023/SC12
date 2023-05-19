@@ -105,7 +105,8 @@ fun Scoreboard() {
 
     }
 
-    MaterialTheme(){
+    MaterialTheme() {
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -337,26 +338,31 @@ fun Scoreboard() {
                     }
                 }
             }
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(10.dp),
-                contentAlignment = Alignment.BottomCenter
+            Row(
+                modifier = Modifier.fillMaxSize()
+                    .padding(20.dp),
+                horizontalArrangement =  Arrangement.Center,
+                verticalAlignment = Alignment.Bottom
             ) {
-                Button(
-                    onClick = {
-                        showDialog.value = true
+                    Button(
+                        onClick = {
+                            showDialog.value = true
 
-                        selected.value = -1
-                    },
-                    modifier = Modifier
-                        .height(20.dp)
-                        .width(20.dp),
-                    colors = ButtonDefaults.buttonColors(backgroundColor = wearColorPalette.primaryVariant)
-                ) {
-                    Icon(imageVector = Icons.Filled.Refresh, contentDescription = "reset scores")
-                }
+                            selected.value = -1
+                        },
+                        modifier = Modifier
+                            .height(20.dp)
+                            .width(20.dp),
+                        colors = ButtonDefaults.buttonColors(backgroundColor = wearColorPalette.primaryVariant)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Refresh,
+                            contentDescription = "reset scores"
+                        )
+                    }
+
             }
+
         }
 
         Dialog(
@@ -393,7 +399,9 @@ fun Scoreboard() {
                                 showDialog.value = false
                             },
                             modifier = Modifier
-                                .padding(5.dp),
+                                .padding(5.dp)
+                            .height(40.dp)
+                            .width(40.dp),
                             colors = ButtonDefaults.buttonColors(
                                 backgroundColor = feup.edu.lgp.padel4pro.theme.success
                             )
@@ -405,7 +413,9 @@ fun Scoreboard() {
                                 showDialog.value = false
                             },
                             modifier = Modifier
-                                .padding(5.dp),
+                                .padding(5.dp)
+                                .height(40.dp)
+                                .width(40.dp),
 
                             colors = ButtonDefaults.buttonColors(
                                 backgroundColor = feup.edu.lgp.padel4pro.theme.grey

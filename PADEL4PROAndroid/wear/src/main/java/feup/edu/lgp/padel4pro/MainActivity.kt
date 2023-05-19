@@ -94,6 +94,7 @@ fun WearApp() {
          */
         val lazyListState: ScalingLazyListState = rememberScalingLazyListState()
 
+
         ScalingLazyColumn(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(12.dp),
