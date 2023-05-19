@@ -1,26 +1,31 @@
 
 import React from 'react';
-import { View, Image, TextInput, Pressable, Text, Alert } from 'react-native';
+import { View, Image, TextInput, Pressable, Text, Alert, Keyboard } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { IMAGES } from '../constants/images';
 import { MyStatusBar } from '../components/status-bar';
 import styles from '../styles/login-page.style';
 
 import { COLOR } from '../constants/colors';
-export default function LoginPage({navigation}) {
+export default function LoginPage({ navigation }) {
   const { control, formState: { errors }, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
     console.log('Submitting form', data);
-    navigation.navigate('MainPage')
+    navigation.navigate('MainPage');
   };
+
+  const onError = (errors) => {
+    console.log(errors)
+    Keyboard.dismiss();
+  }
 
   const redirectSignUp = () => {
     Alert.alert("TODO", "Redirect to MOG's sign up page");
   };
 
   const redirectForgotPassword = () => {
-    Alert.alert("TODO", "Redirect to MOG's forgot password page")
+    Alert.alert("TODO", "Redirect to MOG's forgot password page");
   };
 
   return (
@@ -41,6 +46,7 @@ export default function LoginPage({navigation}) {
                   style={styles.formTextInput}
                   onBlur={onBlur}
                   onChangeText={onChange}
+                  onSubmitEditing={Keyboard.dismiss}
                   value={value}
                   placeholder="EMAIL"
                   placeholderTextColor={COLOR.lightGray}
@@ -50,7 +56,6 @@ export default function LoginPage({navigation}) {
               name="email"
               defaultValue=""
             />
-            {errors.email && <Text style={{ color: COLOR.orange }} >This field is required.</Text>}
           </View>
           <View style={styles.formTextContainer}>
             <Image source={IMAGES.password} />
@@ -62,6 +67,7 @@ export default function LoginPage({navigation}) {
                   style={styles.formTextInput}
                   onBlur={onBlur}
                   onChangeText={onChange}
+                  onSubmitEditing={Keyboard.dismiss}
                   value={value}
                   placeholder="PASSWORD"
                   placeholderTextColor={COLOR.lightGray}
@@ -71,14 +77,18 @@ export default function LoginPage({navigation}) {
               name="password"
               defaultValue=""
             />
-            {errors.password && <Text style={{ color: COLOR.orange }}>This field is required.</Text>}
           </View>
           <Pressable onPress={redirectForgotPassword}>
             <Text style={styles.linkBlue}>FORGOT YOUR PASSWORD?</Text>
           </Pressable>
+          <View style={{ alignItems: 'center' }}>
+            {errors.email && <Text style={{ color: COLOR.orange }} >Email is required.</Text>}
+            {errors.password && <Text style={{ color: COLOR.orange }}>Password is required.</Text>}
+          </View>
         </View>
+
         <View style={{ flex: 1, alignItems: 'center', gap: 17 }}>
-          <Pressable style={styles.button} onPress={handleSubmit(onSubmit)}>
+          <Pressable style={styles.button} onPress={handleSubmit(onSubmit, onError)}>
             <Text style={styles.buttonText}>SIGN IN</Text>
           </Pressable>
           <Pressable onPress={redirectSignUp}>

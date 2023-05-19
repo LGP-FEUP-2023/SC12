@@ -24,7 +24,9 @@ export default StyleSheet.create({
     fontWeight: '600',
   },
   formTextInput: {
-    color: COLOR.white
+    color: COLOR.white,
+    width: '100%',
+    height: '100%'
   },
   linkBlue: {
     color: COLOR.blue,
