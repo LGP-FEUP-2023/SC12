@@ -1,5 +1,6 @@
 package feup.edu.lgp.padel4pro
 
+import android.icu.number.IntegerWidth
 import android.text.format.DateFormat
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -28,6 +29,7 @@ import androidx.compose.material.lightColors
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onPlaced
 import androidx.compose.ui.platform.LocalContext
 import androidx.wear.compose.material.ButtonColors
 import androidx.wear.compose.material.MaterialTheme
@@ -71,7 +73,8 @@ fun Menu() {
                 },
                 modifier = Modifier
                     .padding(5.dp)
-                    .height(70.dp).width(70.dp),
+                    .height(70.dp)
+                    .width(70.dp),
                 colors = buttonColors(),
             ) {
                 Icon(painter = painterResource(id = R.drawable.group_3), contentDescription = "highlights")
@@ -96,6 +99,11 @@ fun Menu() {
                     Icon(painter = painterResource(id = R.drawable.baseline_personal_video_24), contentDescription = "see highlight")
                     Icon(painter = painterResource(id = R.drawable.baseline_sports_24), contentDescription = "see highlight")
                 }
+            }
+            Row(
+               verticalAlignment = Alignment.CenterVertically
+            ){
+                Icon(painter = painterResource(id = R.drawable.iconmonstr_angel_down_thin), contentDescription = "arrow down 1")
             }
         }
     }
