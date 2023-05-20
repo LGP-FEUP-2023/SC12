@@ -6,5 +6,7 @@ export const IMAGES = {
     join: require(IMAGEPATH + '/join.png'),
     user: require(IMAGEPATH + '/user.png'),
     password: require(IMAGEPATH + '/password.png'),
-    no_court: require(IMAGEPATH + '/no_court.png')
+    no_court: require(IMAGEPATH + '/no_court.png'),
+    settings: require(IMAGEPATH + '/settings.png'),
+    chevron: require(IMAGEPATH + '/chevron.png'),
 }
