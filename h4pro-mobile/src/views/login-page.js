@@ -9,10 +9,13 @@ import styles from '../styles/login-page.style';
 import { COLOR } from '../constants/colors';
 export default function LoginPage({ navigation }) {
   const { control, formState: { errors }, handleSubmit } = useForm();
-
   const onSubmit = (data) => {
     console.log('Submitting form', data);
-    navigation.navigate('MainPage');
+    // navigation.navigate('MainPage');
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'MainPage' }],
+    });
   };
 
   const onError = (errors) => {
