@@ -6,9 +6,10 @@ import React, { Component, useContext, useState, useEffect } from 'react'
 import { View, Image, Text } from 'react-native'
 import { CourtButton } from '../components/court-button'
 import { Snackbar } from 'react-native-paper'
+import { COLOR } from '../constants/colors'
 import AuthContext from '../../AuthContext';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { COLOR } from '../constants/colors'
+import "../constants/localizer"
 
 const MainPage = ({ route, navigation }) => {
 

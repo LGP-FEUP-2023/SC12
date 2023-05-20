@@ -36,7 +36,7 @@ fun WaitScreen() {
                 contentDescription = null
             )
             Text(
-                text ="You are not in\n" +
+                text = "You are not in\n" +
                         "a game yet!",
                 modifier = Modifier.padding(7.dp, 0.dp),
                 fontWeight = FontWeight(750),
@@ -45,7 +45,7 @@ fun WaitScreen() {
                 color = wearColorPalette.primary
             )
             Text(
-                text ="Please connect to a game through\n" +
+                text = "Please connect to a game through\n" +
                         "QR code using your phone app",
                 modifier = Modifier.padding(7.dp, 0.dp),
                 textAlign = TextAlign.Center,
