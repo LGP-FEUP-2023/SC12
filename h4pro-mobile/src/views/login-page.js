@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { View, Image, TextInput, Pressable, Text, Alert, Keyboard } from 'react-native';
+import { View, KeyboardAvoidingView, Image, TextInput, Pressable, Text, Alert, Keyboard } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { IMAGES } from '../constants/images';
 import { MyStatusBar } from '../components/status-bar';
@@ -29,14 +29,17 @@ export default function LoginPage({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      enabled={false}
+      style={styles.container}>
       <MyStatusBar />
       <View style={[styles.container, { flexDirection: 'column' }]}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <Image style={styles.logoBig} source={IMAGES.logo} />
         </View>
         <View style={{ flex: 1, alignItems: 'center', gap: 22 }}>
-          <View style={styles.formTextContainer}>
+          <View style={[styles.formTextContainer, errors.email && styles.formTextContainerError]}>
             <Image source={IMAGES.user} />
             <Controller
               control={control}
@@ -57,7 +60,7 @@ export default function LoginPage({ navigation }) {
               defaultValue=""
             />
           </View>
-          <View style={styles.formTextContainer}>
+          <View style={[styles.formTextContainer, errors.password && styles.formTextContainerError]}>
             <Image source={IMAGES.password} />
             <Controller
               control={control}
@@ -78,15 +81,17 @@ export default function LoginPage({ navigation }) {
               defaultValue=""
             />
           </View>
+
+          <View style={{ alignItems: 'center' }}>
+            {(errors.email || errors.password) && (
+              <Text style={{ color: COLOR.orange }}>These fields are required.</Text>
+            )}
+          </View>
+
           <Pressable onPress={redirectForgotPassword}>
             <Text style={styles.linkBlue}>FORGOT YOUR PASSWORD?</Text>
           </Pressable>
-          <View style={{ alignItems: 'center' }}>
-            {errors.email && <Text style={{ color: COLOR.orange }} >Email is required.</Text>}
-            {errors.password && <Text style={{ color: COLOR.orange }}>Password is required.</Text>}
-          </View>
         </View>
-
         <View style={{ flex: 1, alignItems: 'center', gap: 17 }}>
           <Pressable style={styles.button} onPress={handleSubmit(onSubmit, onError)}>
             <Text style={styles.buttonText}>SIGN IN</Text>
@@ -96,7 +101,7 @@ export default function LoginPage({ navigation }) {
           </Pressable>
         </View>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 

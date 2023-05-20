@@ -23,6 +23,10 @@ export default StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
+  formTextContainerError: {
+    borderWidth: 2,
+    borderColor: COLOR.orange
+  },
   formTextInput: {
     color: COLOR.white,
     width: '100%',
@@ -48,5 +52,8 @@ export default StyleSheet.create({
     color: COLOR.white,
     fontSize: 18,
     fontWeight: '600'
+  },
+  error: {
+    color: COLOR.orange,
   }
 });
