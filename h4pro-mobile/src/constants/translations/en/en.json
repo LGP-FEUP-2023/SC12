@@ -2,6 +2,19 @@
     "translation": {
         "join court" : "Join Court",
         "leave court" : "Leave Court",
-        "Playing at" : "Playing at"
+        "Playing at" : "Playing at",
+        "SETTINGS": "SETTINGS",
+        "LANGUAGE": "LANGUAGE",
+        "ABOUT": "ABOUT",
+        "ENGLISH": "ENGLISH",
+        "CROATIAN": "CROATIAN",
+        "PORTUGUESE": "PORTUGUESE",
+        "OK": "OK",
+        "EMAIL": "EMAIL",
+        "PASSWORD": "PASSWORD",
+        "FORGOT YOUR PASSWORD?": "FORGOT YOUR PASSWORD?",
+        "SIGN IN": "SIGN IN",
+        "OR SIGN UP INSTEAD": "OR SIGN UP INSTEAD",
+        "These fields are required.": "These fields are required."
     }
 }

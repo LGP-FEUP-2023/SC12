@@ -2,11 +2,15 @@ import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 import { StyleSheet } from 'react-native';
 import { COLOR } from '../constants/colors'
+import { useTranslation } from "react-i18next";
 
 export const AppButton = ({ text, onPress }) => {
+
+  const { t } = useTranslation();
+
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
-      <Text style={styles.buttonText}>{text}</Text>
+      <Text style={styles.buttonText}>{t(text)}</Text>
     </TouchableOpacity>
   );
 };

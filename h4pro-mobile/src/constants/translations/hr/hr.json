@@ -2,6 +2,19 @@
     "translation": {
         "join court" : "Pridruži se terenu",
         "leave court" : "Napusti teren",
-        "Playing at" : "Igra se na"
+        "Playing at" : "Igra se na",
+        "SETTINGS": "POSTAVKE",
+        "LANGUAGE": "JEZIK",
+        "ABOUT": "O NAMA",
+        "ENGLISH": "ENGLESKI",
+        "CROATIAN": "HRVATSKI",
+        "PORTUGUESE": "PORTUGALSKI",
+        "OK": "U REDU",
+        "EMAIL": "EMAIL",
+        "PASSWORD": "LOZINKA",
+        "FORGOT YOUR PASSWORD?": "ZABORAVILI STE LOZINKU?",
+        "SIGN IN": "PRIJAVA",
+        "OR SIGN UP INSTEAD": "ILI SE REGISTRIRAJTE",
+        "These fields are required.": "Ova polja su obavezna."
     }
 }

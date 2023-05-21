@@ -2,6 +2,19 @@
     "translation" : {
         "join court" : "Entrar na quadra",
         "leave court": "Sair da quadra",
-        "Playing at" : "Jogando em"
+        "Playing at" : "Jogando em",
+        "SETTINGS": "DEFINIÇÕES",
+        "LANGUAGE": "IDIOMA",
+        "ABOUT": "SOBRE",
+        "ENGLISH": "INGLÊS",
+        "CROATIAN": "CROATA",
+        "PORTUGUESE": "PORTUGUÊS",
+        "OK": "OK",
+        "EMAIL": "EMAIL",
+        "PASSWORD": "PALAVRA-PASSE",
+        "FORGOT YOUR PASSWORD?": "ESQUECESTE-TE DA PALAVRA-PASSE?",
+        "SIGN IN": "ENTRAR",
+        "OR SIGN UP INSTEAD": "OU REGISTAR",
+        "These fields are required.": "Estes campos são obrigatórios"
     }
 }
