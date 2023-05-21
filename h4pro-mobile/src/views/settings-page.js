@@ -13,6 +13,7 @@ const SettingsPage = ({ navigation }) => {
 
   const handleOk = () => {
     console.log("OK");
+    navigation.goBack();
   }
 
   return (
@@ -24,7 +25,7 @@ const SettingsPage = ({ navigation }) => {
           <SettingsEntry text="LANGUAGE" />
           <SettingsEntry text="ABOUT" />
         </View>
-        <AppButton text="OK" onPress={handleOk()}/>
+        <AppButton text="OK" onPress={handleOk}/>
       </View>
     </View>
   );
