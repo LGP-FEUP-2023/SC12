@@ -1,17 +1,21 @@
 import React, { useState } from "react";
-import { View, Image, Text } from "react-native";
+import { View, Image, Text} from "react-native";
 import { IMAGES } from "../../constants/images";
 import { MyStatusBar } from "../../components/status-bar";
 import styles from "../../styles/settings-page.style";
 import { SettingsHeader } from "../../components/settings-header";
 import { AppButton } from "../../components/app-button";
-
+import { useTranslation } from "react-i18next";
 import { COLOR } from "../../constants/colors";
 import { SettingsEntry } from "../../components/settings-entry";
 import { LanguageEntry } from "../../components/language-entry";
 
+
 const LanguagePage = ({ navigation }) => {
-  const [selectedLanguage, setSelectedLanguage] = useState(null);
+
+  const { i18n } = useTranslation();
+
+
 
   const handleOk = () => {
     console.log("OK");
@@ -20,7 +24,7 @@ const LanguagePage = ({ navigation }) => {
 
   const changeLanguage = (language) => {
     console.log(language);
-    setSelectedLanguage(language);
+    i18n.changeLanguage(language);
   };
 
   return (
@@ -32,21 +36,21 @@ const LanguagePage = ({ navigation }) => {
         </View>
         <View style={{ gap: 10 }}>
           <LanguageEntry
-            flag={IMAGES.hz}
+            flag={IMAGES.hr}
             text={"CROATIAN"}
-            selected={selectedLanguage === "hz"}
-            onPress={() => changeLanguage("hz")}
+            selected={i18n.language === "hr"}
+            onPress={() => changeLanguage("hr")}
           />
           <LanguageEntry
             flag={IMAGES.en}
             text={"ENGLISH"}
-            selected={selectedLanguage === "en"}
+            selected={i18n.language === "en"}
             onPress={() => changeLanguage("en")}
           />
           <LanguageEntry
             flag={IMAGES.pt}
             text={"PORTUGUESE"}
-            selected={selectedLanguage === "pt"}
+            selected={i18n.language === "pt"}
             onPress={() => changeLanguage("pt")}
           />
         </View>

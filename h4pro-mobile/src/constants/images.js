@@ -10,7 +10,7 @@ export const IMAGES = {
     settings: require(IMAGEPATH + '/settings.png'),
     chevron: require(IMAGEPATH + '/chevron.png'),
     check: require(IMAGEPATH + '/check.png'),
-    hz: require(IMAGEPATH + '/hz.png'),
+    hr: require(IMAGEPATH + '/hr.png'),
     en: require(IMAGEPATH + '/en.png'),
     pt: require(IMAGEPATH + '/pt.png'),
 }
