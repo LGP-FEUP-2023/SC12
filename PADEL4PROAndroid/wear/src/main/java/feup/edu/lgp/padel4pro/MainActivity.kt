@@ -60,9 +60,7 @@ class MainActivity : ComponentActivity() {
         val filter = IntentFilter()
         filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED)
         filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED)
-        registerReceiver(bluetoothReceiver, filter)
 
-        bluetoothSetup()
 
         setContent {
             WearApp("Android")
@@ -70,35 +68,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-fun bluetoothSetup(){
-    val bluetoothAdapter = BluetoothAdapter.getAdapter()
-    if (bluetoothAdapter == null || !bluetoothAdapter.isEnabled) {
-        val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-        startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
-    }
-    val pairedDevices: Set<BluetoothDevice>? = bluetoothAdapter?.bondedDevices
-
-    if (pairedDevices != null) {
-        for (device: BluetoothDevice in pairedDevices) {
-                val isConnected = device.bondState == BluetoothDevice.BOND_BONDED
-                // Check if the device is currently connected
-                // isConnected will be true if the device is connected
-        }
-    }
-
-    val bluetoothReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            when (intent.action) {
-                BluetoothDevice.ACTION_ACL_CONNECTED -> {
-                    // Smartwatch is connected
-                }
-                BluetoothDevice.ACTION_ACL_DISCONNECTED -> {
-                    // Smartwatch is disconnected
-                }
-            }
-        }
-    }
-}
 
 data class Screen(val title: String, val content: @Composable () -> Unit)
 
