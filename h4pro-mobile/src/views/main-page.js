@@ -10,6 +10,8 @@ import { COLOR } from '../constants/colors'
 import AuthContext from '../../AuthContext';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import "../constants/localizer"
+import useBLE from "../../useBLE"
+import { ConnectedSmartwatch } from '../components/connected-smartwatch'
 
 const MainPage = ({ route, navigation }) => {
 
@@ -25,9 +27,32 @@ const MainPage = ({ route, navigation }) => {
       }
    }, [route.params]);
 
+   const {
+      requestPermissions,
+      scanForPeripherals,
+      connectToDevice,
+      allDevices,
+      connectedDevice,
+      disconnectFromDevice
+   } = useBLE();
+
    const dismissSnackbar = () => {
       setSnackbarVisible(false);
    };
+
+   const getWatchName = () => {
+      scanForPeripherals();
+      // if (connectedDevice != null) {
+      //    return connectedDevice.name;
+      // }
+      // return "No watch connected";
+
+      if (allDevices.length > 0 ){
+         return allDevices[0].name;
+      }
+      return "No watch connected";
+   }
+
 
    return (
       <View style={styles.container}>
@@ -35,6 +60,7 @@ const MainPage = ({ route, navigation }) => {
          <Image style={styles.logo}
             source={IMAGES.logo}
          />
+          <ConnectedSmartwatch text={getWatchName()}/>
          <MyScoreBoard />
          <CourtButton text={"join court"} icon={IMAGES.join} onPress={() => navigation.navigate('SessionScanner')} />
          <CourtButton text={"leave court"} icon={IMAGES.leave} onPress={() => setToken("")} />

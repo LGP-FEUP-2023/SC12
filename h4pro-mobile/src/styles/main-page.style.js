@@ -152,6 +152,21 @@ export default StyleSheet.create({
       backgroundColor: COLOR.gray,
       borderColor: COLOR.gray,
       position: 'absolute',
+  },
+  connected: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 20,
+    marginTop: 14
+  },
+  swIcon: {
+      width: 17,
+      height: 28,
+      marginRight: 8
+  },
+  swText: {
+      color: COLOR.white,
+      fontSize: 14
   }
 });
 
