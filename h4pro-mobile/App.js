@@ -7,8 +7,9 @@ import SessionScanner from './src/views/session-scanner.js';
 import { Linking } from 'react-native';
 import { handleDeepLink } from './src/utils/index.js';
 import AuthContext from './AuthContext';
-import { SettingsPage } from './src/views/settings-page.js'
-
+import { SettingsPage } from './src/views/settings/settings-page.js';
+import { LanguagePage } from './src/views/settings/language-page.js';
+import { AboutPage } from './src/views/settings/about-page.js';
 
 const Stack = createNativeStackNavigator();
 Stack.Navigator.defaultProps = {
@@ -60,6 +61,8 @@ const App = () => {
           <Stack.Screen name="MainPage" component={MainPage} />
           <Stack.Screen name="SessionScanner" component={SessionScanner} />
           <Stack.Screen name="SettingsPage" component={SettingsPage} />
+          <Stack.Screen name="LanguagePage" component={LanguagePage} />
+          <Stack.Screen name="AboutPage" component={AboutPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </AuthContext.Provider>
