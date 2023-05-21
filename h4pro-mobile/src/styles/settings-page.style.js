@@ -34,4 +34,10 @@ export default StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
+  aboutText: {
+    color: COLOR.white,
+    fontSize: 14,
+    fontWeight: "600",
+    width: 300
+  }
 });

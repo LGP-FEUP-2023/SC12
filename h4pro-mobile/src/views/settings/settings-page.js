@@ -17,16 +17,23 @@ const SettingsPage = ({ navigation }) => {
 
   const handleLanguage = () => {
     navigation.navigate("LanguagePage");
-  }
+  };
 
   const handleAbout = () => {
     navigation.navigate("AboutPage");
-  }
+  };
 
   return (
     <View style={styles.container}>
       <MyStatusBar />
-      <View style={{ alignItems: "center", gap: 250 }}>
+      <View
+        style={{
+          alignItems: "center",
+          justifyContent: "space-between",
+          marginBottom: 100,
+          flex: 1,
+        }}
+      >
         <View style={{ alignItems: "center", gap: 95 }}>
           <SettingsHeader text="SETTINGS" />
           <View style={{ gap: 20 }}>
