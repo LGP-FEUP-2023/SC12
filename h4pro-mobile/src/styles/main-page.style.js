@@ -16,6 +16,9 @@ export default StyleSheet.create({
     marginTop: 55,
     marginLeft: 25
   },
+  settingsIcon: {
+    marginRight: 25
+  },
   scoreboard: {
     height: '30%',
     marginTop: '20%'
