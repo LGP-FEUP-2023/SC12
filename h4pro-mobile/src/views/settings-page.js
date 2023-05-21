@@ -10,22 +10,23 @@ import { COLOR } from "../constants/colors";
 import { SettingsEntry } from "../components/settings-entry";
 
 const SettingsPage = ({ navigation }) => {
-
   const handleOk = () => {
     console.log("OK");
     navigation.goBack();
-  }
+  };
 
   return (
     <View style={styles.container}>
       <MyStatusBar />
-      <View style={{ alignItems: 'center', gap: 95, }}>
-        <SettingsHeader text="SETTINGS" />
-        <View style={{ gap: 20 }}>
-          <SettingsEntry text="LANGUAGE" />
-          <SettingsEntry text="ABOUT" />
+      <View style={{ alignItems: "center", gap: 250 }}>
+        <View style={{ alignItems: "center", gap: 95 }}>
+          <SettingsHeader text="SETTINGS" />
+          <View style={{ gap: 20 }}>
+            <SettingsEntry text="LANGUAGE" />
+            <SettingsEntry text="ABOUT" />
+          </View>
         </View>
-        <AppButton text="OK" onPress={handleOk}/>
+        <AppButton text="OK" onPress={handleOk} />
       </View>
     </View>
   );
