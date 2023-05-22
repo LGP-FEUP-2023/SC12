@@ -79,8 +79,7 @@ fun WearApp(greetingName: String) {
 //        Screen("SyncScreen") {
 //            SyncScreen()
 //        }
-  
-    val screenIndex = remember { mutableStateOf(screens[0]) }
+
     WearAppTheme {
         /* If you have enough items in your list, use [ScalingLazyColumn] which is an optimized
          * version of LazyColumn for wear devices with some added features. For more information,
