@@ -15,25 +15,13 @@
  */
 package feup.edu.lgp.padel4pro
 
-import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothDevice
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -45,15 +33,8 @@ import androidx.wear.compose.material.ScalingLazyColumn
 import androidx.wear.compose.material.ScalingLazyListState
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.rememberScalingLazyListState
-
 import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.common.api.ResultCallback
-import com.google.android.gms.common.api.Status
-import com.google.android.gms.wearable.Node
-import com.google.android.gms.wearable.NodeApi
 import com.google.android.gms.wearable.Wearable
-import android.util.Log
-
 import feup.edu.lgp.padel4pro.theme.WearAppTheme
 
 /**
@@ -67,6 +48,7 @@ import feup.edu.lgp.padel4pro.theme.WearAppTheme
  * back action). For more information, go here:
  * https://developer.android.com/reference/kotlin/androidx/wear/compose/navigation/package-summary
  */
+
 class MainActivity : ComponentActivity() {
 
     private var googleApiClient: GoogleApiClient? = null
@@ -102,15 +84,21 @@ class MainActivity : ComponentActivity() {
 
         override fun onConnectionSuspended(i: Int) {
             // Handle connection suspension
+            if (BuildConfig.DEBUG){
+                setContent {
+                    WearApp("Android")
+                }
+            }
+            else {
+                setContent{
+                    Waiting()
+                }
+            }
         }
     }
 
     private val connectionFailedListener = GoogleApiClient.OnConnectionFailedListener { connectionResult ->
         // Handle connection failure
-
-        setContent {
-            WearApp("Android")
-        }
     }
 
     private fun checkConnectionStatus() {
@@ -119,24 +107,43 @@ class MainActivity : ComponentActivity() {
             if (result.status.isSuccess) {
                 val nodes = result.nodes
                 if (nodes.isEmpty()){
-                    setContent{
-                        Waiting()
+                    if (BuildConfig.DEBUG){
+                        setContent {
+                            WearApp("Android")
+                        }
+                    }
+                    else {
+                        setContent{
+                            Waiting()
+                        }
                     }
                 }
                 for (node in nodes) {
                     if (node.isNearby) {
                         // Phone node found, connection exists
+                        isConnected = true;
                         setContent {
                             WearApp("Android")
                         }
                     }
                 }
             } else {
-                setContent{
-                    Waiting()
+                if (BuildConfig.DEBUG){
+                    setContent {
+                        WearApp("Android")
+                    }
+                }
+                else {
+                    setContent{
+                        Waiting()
+                    }
                 }
             }
         }
+    }
+
+    companion object {
+        var isConnected: Boolean = false
     }
 
 
@@ -164,6 +171,9 @@ fun WearApp(greetingName: String) {
         },
         Screen("ScoreBoard") {
             Scoreboard()
+        },
+        Screen("SyncScreen") {
+            SyncScreen()
         });
 //        Screen("WaitScreen") {
 //            WaitScreen()
@@ -174,13 +184,18 @@ fun WearApp(greetingName: String) {
          * version of LazyColumn for wear devices with some added features. For more information,
          * see d.android.com/wear/compose.
          */
-        val lazyListState: ScalingLazyListState = rememberScalingLazyListState()
+        val lazyListState: ScalingLazyListState = rememberScalingLazyListState(0)
 
         ScalingLazyColumn(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(12.dp),
             state = lazyListState,
         ) {
+            if (BuildConfig.DEBUG && !MainActivity.isConnected) {
+                item {
+                    SyncScreen()
+                }
+            }
             item {
                 Menu()
             }

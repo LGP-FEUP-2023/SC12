@@ -27,6 +27,7 @@ android {
         targetSdk 30
         versionCode 1
         versionName "1.0"
+        buildConfigField "Boolean", "DEBUG", "true"
     }
 
     buildTypes {
