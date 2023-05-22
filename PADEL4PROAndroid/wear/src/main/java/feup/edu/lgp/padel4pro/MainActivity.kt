@@ -52,6 +52,7 @@ import com.google.android.gms.common.api.Status
 import com.google.android.gms.wearable.Node
 import com.google.android.gms.wearable.NodeApi
 import com.google.android.gms.wearable.Wearable
+import android.util.Log
 
 import feup.edu.lgp.padel4pro.theme.WearAppTheme
 
@@ -81,6 +82,7 @@ class MainActivity : ComponentActivity() {
             .addApi(Wearable.API)
             .build()
 
+
         // Connect to Google Play services
         googleApiClient?.connect()
     }
@@ -100,14 +102,12 @@ class MainActivity : ComponentActivity() {
 
         override fun onConnectionSuspended(i: Int) {
             // Handle connection suspension
-            setContent {
-                WearApp("Android")
-            }
         }
     }
 
     private val connectionFailedListener = GoogleApiClient.OnConnectionFailedListener { connectionResult ->
         // Handle connection failure
+
         setContent {
             WearApp("Android")
         }
@@ -118,6 +118,11 @@ class MainActivity : ComponentActivity() {
         nodeResult.setResultCallback { result ->
             if (result.status.isSuccess) {
                 val nodes = result.nodes
+                if (nodes.isEmpty()){
+                    setContent{
+                        Waiting()
+                    }
+                }
                 for (node in nodes) {
                     if (node.isNearby) {
                         // Phone node found, connection exists
@@ -142,12 +147,12 @@ data class Screen(val title: String, val content: @Composable () -> Unit)
 
 @Composable
 fun Waiting(){
-    Screen("WaitScreen") {
-            WaitScreen()
+    Screen("SyncScreen") {
+        SyncScreen()
     }
 
     WearAppTheme {
-        WaitScreen()
+        SyncScreen()
     }
 }
 
@@ -162,9 +167,6 @@ fun WearApp(greetingName: String) {
         });
 //        Screen("WaitScreen") {
 //            WaitScreen()
-//        },
-//        Screen("SyncScreen") {
-//            SyncScreen()
 //        }
 
     WearAppTheme {
