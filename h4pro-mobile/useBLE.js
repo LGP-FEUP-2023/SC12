@@ -76,22 +76,27 @@ function useBLE() {
     }
   };
 
-  const isDuplicteDevice = (devices, nextDevice) =>
-    devices.findIndex((device) => nextDevice.id === device.id) > -1;
+  const isDuplicteDevice = (devices, nextDevice) => {
+    if (nextDevice.name === null) {
+      return true;
+    }
+    return devices.findIndex((device) => nextDevice.id === device.id) > -1;
+  }
+    
 
   const scanForPeripherals = () =>
     bleManager.startDeviceScan(null, null, (error, device) => {
       if (error) {
-        console.log(error);
+        console.log(JSON.stringify(error));
       }
-      if (device && device.name?.includes("CorSense")) {
-        setAllDevices((prevState) => {
-          if (!isDuplicteDevice(prevState, device)) {
-            return [...prevState, device];
-          }
-          return prevState;
-        });
-      }
+
+      setAllDevices((prevState) => {
+        if (!isDuplicteDevice(prevState, device)) {
+          return [...prevState, device];
+        }
+        return prevState;
+      });
+      
     });
 
   const connectToDevice = async (device) => {
@@ -154,6 +159,22 @@ function useBLE() {
     }
   };
 
+  const printConnectedDeviceName = async () => {
+    try {
+      const connectedDevices = await bleManager.connectedDevices([]); // Fetch connected devices
+      
+      if (connectedDevices.length > 0) {
+        const device = connectedDevices[0]; // Assuming only one device is connected
+        const name = await device.name(); // Fetch device name
+        console.log('Connected device name:', name);
+      } else {
+        console.log('No connected devices found.');
+      }
+    } catch (error) {
+      console.log('Error:', error);
+    }
+  };
+
   return {
     scanForPeripherals,
     requestPermissions,
@@ -161,6 +182,7 @@ function useBLE() {
     allDevices,
     connectedDevice,
     disconnectFromDevice,
+    printConnectedDeviceName
     //heartRate,
   };
 }

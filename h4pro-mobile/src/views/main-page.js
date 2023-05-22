@@ -18,6 +18,7 @@ const MainPage = ({ route, navigation }) => {
    const [snackbarVisible, setSnackbarVisible] = useState(false);
    const [snackMode, setSnackMode] = useState(0);
    const { token, setToken } = useContext(AuthContext);
+   const [watchName, setWatchName] = useState("No watch connected");
 
    useEffect(() => {
       const { snackbar, snackmode } = route.params ?? {};
@@ -28,28 +29,34 @@ const MainPage = ({ route, navigation }) => {
    }, [route.params]);
 
    const {
-      requestPermissions,
       scanForPeripherals,
+      requestPermissions,
       connectToDevice,
       allDevices,
       connectedDevice,
-      disconnectFromDevice
+      disconnectFromDevice,
+      printConnectedDeviceName
    } = useBLE();
 
    const dismissSnackbar = () => {
       setSnackbarVisible(false);
    };
 
-   const getWatchName = () => {
-      scanForPeripherals();
-      // if (connectedDevice != null) {
-      //    return connectedDevice.name;
-      // }
-      // return "No watch connected";
+   const getWatchName = async () => {
+      let perms = await requestPermissions();
+      if (perms){
+         scanForPeripherals();
 
-      if (allDevices.length > 0 ){
-         return allDevices[0].name;
+         let name = "";
+         if (allDevices.length > 0 ){
+            //return all names
+            for (let i = 0; i < allDevices.length; i++) {
+               name += allDevices[i].name + ";";
+            }
+            setWatchName(name);
+         }
       }
+      
       return "No watch connected";
    }
 
@@ -60,10 +67,11 @@ const MainPage = ({ route, navigation }) => {
          <Image style={styles.logo}
             source={IMAGES.logo}
          />
-          <ConnectedSmartwatch text={getWatchName()}/>
+          <ConnectedSmartwatch text={watchName}/>
          <MyScoreBoard />
          <CourtButton text={"join court"} icon={IMAGES.join} onPress={() => navigation.navigate('SessionScanner')} />
          <CourtButton text={"leave court"} icon={IMAGES.leave} onPress={() => setToken("")} />
+         <CourtButton text={"scan"} icon={IMAGES.no_court} onPress={() => {getWatchName(); printConnectedDeviceName()}} />
 
          <Snackbar
             visible={snackbarVisible}

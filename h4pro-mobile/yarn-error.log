@@ -1,0 +1,90 @@
+Arguments: 
+  /usr/bin/node /snap/node/7346/bin/yarn.js global dir
+
+PATH: 
+  /home/sergio/Documents/feup/SC12/h4pro-mobile/node_modules/.bin:/home/sergio/Documents/feup/SC12/h4pro-mobile/node_modules/.bin:/home/sergio/Documents/feup/SC12/node_modules/.bin:/home/sergio/Documents/feup/node_modules/.bin:/home/sergio/Documents/node_modules/.bin:/home/sergio/node_modules/.bin:/home/node_modules/.bin:/node_modules/.bin:/usr/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/usr/lib/jvm/java-11-openjdk-amd64/bin:/usr/local/cuda-12.1/bin:/home/sergio/env/feup/bin:/usr/lib/jvm/java-11-openjdk-amd64/bin:/usr/local/cuda-12.1/bin:/home/sergio/env/feup/bin:/home/sergio/.cargo/bin:/home/sergio/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/usr/local/go/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.18.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: EACCES: permission denied, write
+      at writeSync (node:fs:920:3)
+      at SyncWriteStream._write (node:internal/fs/sync_write_stream:26:3)
+      at writeOrBuffer (node:internal/streams/writable:391:12)
+      at _write (node:internal/streams/writable:332:10)
+      at SyncWriteStream.Writable.write (node:internal/streams/writable:336:10)
+      at ConsoleReporter._log (/snap/node/7346/lib/cli.js:92833:17)
+      at ConsoleReporter.log (/snap/node/7346/lib/cli.js:92821:10)
+      at dir (/snap/node/7346/lib/cli.js:36307:14)
+      at Object.<anonymous> (/snap/node/7346/lib/cli.js:25987:25)
+      at Generator.next (<anonymous>)
+
+npm manifest: 
+  {
+    "name": "h4pro-mobile",
+    "version": "1.0.0",
+    "scripts": {
+      "start": "expo start --dev-client",
+      "android": "expo run:android",
+      "ios": "expo run:ios",
+      "web": "expo start --web",
+      "postinstall": "patch-package"
+    },
+    "dependencies": {
+      "@config-plugins/react-native-ble-plx": "^6.0.0",
+      "@react-native-async-storage/async-storage": "1.17.11",
+      "@react-navigation/native": "^6.1.6",
+      "@react-navigation/native-stack": "^6.9.12",
+      "@shopify/react-native-skia": "0.1.172",
+      "eas-cli": "^3.13.0",
+      "expo": "~48.0.15",
+      "expo-barcode-scanner": "~12.3.2",
+      "expo-camera": "~13.2.1",
+      "expo-dev-client": "~2.2.1",
+      "expo-device": "~5.2.1",
+      "expo-localization": "~14.1.1",
+      "expo-permissions": "~14.1.1",
+      "expo-splash-screen": "~0.18.2",
+      "expo-status-bar": "~1.4.4",
+      "i18next": "^22.4.15",
+      "patch-package": "^7.0.0",
+      "react": "18.2.0",
+      "react-hook-form": "^7.43.9",
+      "react-i18next": "^12.2.2",
+      "react-native": "0.71.8",
+      "react-native-barcode-mask": "^1.2.4",
+      "react-native-base64": "^0.2.1",
+      "react-native-ble-plx": "^2.0.3",
+      "react-native-gesture-handler": "~2.9.0",
+      "react-native-i18n": "^2.0.15",
+      "react-native-localize": "^2.2.6",
+      "react-native-paper": "^5.8.0",
+      "react-native-permissions": "^3.8.0",
+      "react-native-qrcode-scanner": "^1.5.5",
+      "react-native-reanimated": "~2.14.4",
+      "react-native-safe-area-context": "4.5.0",
+      "react-native-screens": "~3.20.0",
+      "react-native-vector-icons": "^9.2.0"
+    },
+    "devDependencies": {
+      "@babel/core": "^7.20.0"
+    },
+    "overrides": {
+      "@expo/config-plugins": "~6.0.0",
+      "@expo/prebuild-config": "~6.0.0"
+    },
+    "private": true
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
