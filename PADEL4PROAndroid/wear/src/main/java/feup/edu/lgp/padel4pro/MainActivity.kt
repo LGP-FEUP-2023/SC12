@@ -45,6 +45,14 @@ import androidx.wear.compose.material.ScalingLazyColumn
 import androidx.wear.compose.material.ScalingLazyListState
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.rememberScalingLazyListState
+
+import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.common.api.ResultCallback
+import com.google.android.gms.common.api.Status
+import com.google.android.gms.wearable.Node
+import com.google.android.gms.wearable.NodeApi
+import com.google.android.gms.wearable.Wearable
+
 import feup.edu.lgp.padel4pro.theme.WearAppTheme
 
 /**
@@ -59,21 +67,89 @@ import feup.edu.lgp.padel4pro.theme.WearAppTheme
  * https://developer.android.com/reference/kotlin/androidx/wear/compose/navigation/package-summary
  */
 class MainActivity : ComponentActivity() {
+
+    private var googleApiClient: GoogleApiClient? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val filter = IntentFilter()
-        filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED)
-        filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED)
 
 
+        // Create the GoogleApiClient instance
+        googleApiClient = GoogleApiClient.Builder(this)
+            .addConnectionCallbacks(connectionCallbacks)
+            .addOnConnectionFailedListener(connectionFailedListener)
+            .addApi(Wearable.API)
+            .build()
+
+        // Connect to Google Play services
+        googleApiClient?.connect()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // Disconnect from Google Play services
+        googleApiClient?.disconnect()
+    }
+
+    private val connectionCallbacks = object : GoogleApiClient.ConnectionCallbacks {
+        override fun onConnected(bundle: Bundle?) {
+            // Check the connection status
+            checkConnectionStatus()
+        }
+
+        override fun onConnectionSuspended(i: Int) {
+            // Handle connection suspension
+            setContent {
+                WearApp("Android")
+            }
+        }
+    }
+
+    private val connectionFailedListener = GoogleApiClient.OnConnectionFailedListener { connectionResult ->
+        // Handle connection failure
         setContent {
             WearApp("Android")
         }
     }
+
+    private fun checkConnectionStatus() {
+        val nodeResult = Wearable.NodeApi.getConnectedNodes(googleApiClient)
+        nodeResult.setResultCallback { result ->
+            if (result.status.isSuccess) {
+                val nodes = result.nodes
+                for (node in nodes) {
+                    if (node.isNearby) {
+                        // Phone node found, connection exists
+                        setContent {
+                            WearApp("Android")
+                        }
+                    }
+                }
+            } else {
+                setContent{
+                    Waiting()
+                }
+            }
+        }
+    }
+
+
 }
 
 
 data class Screen(val title: String, val content: @Composable () -> Unit)
+
+@Composable
+fun Waiting(){
+    Screen("WaitScreen") {
+            WaitScreen()
+    }
+
+    WearAppTheme {
+        WaitScreen()
+    }
+}
 
 @Composable
 fun WearApp(greetingName: String) {
@@ -90,8 +166,7 @@ fun WearApp(greetingName: String) {
 //        Screen("SyncScreen") {
 //            SyncScreen()
 //        }
-  
-    val screenIndex = remember { mutableStateOf(screens[0]) }
+
     WearAppTheme {
         /* If you have enough items in your list, use [ScalingLazyColumn] which is an optimized
          * version of LazyColumn for wear devices with some added features. For more information,
