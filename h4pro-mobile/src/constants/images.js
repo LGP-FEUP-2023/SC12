@@ -13,4 +13,5 @@ export const IMAGES = {
     hr: require(IMAGEPATH + '/hr.png'),
     en: require(IMAGEPATH + '/en.png'),
     pt: require(IMAGEPATH + '/pt.png'),
+    help: require(IMAGEPATH + '/help.png'),
 }

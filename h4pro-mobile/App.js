@@ -10,6 +10,7 @@ import AuthContext from './AuthContext';
 import { SettingsPage } from './src/views/settings/settings-page.js';
 import { LanguagePage } from './src/views/settings/language-page.js';
 import { AboutPage } from './src/views/settings/about-page.js';
+import OnBoardingComponent from './src/views/onboarding-component.js';
 
 const Stack = createNativeStackNavigator();
 Stack.Navigator.defaultProps = {
@@ -63,6 +64,7 @@ const App = () => {
           <Stack.Screen name="SettingsPage" component={SettingsPage} />
           <Stack.Screen name="LanguagePage" component={LanguagePage} />
           <Stack.Screen name="AboutPage" component={AboutPage} />
+          <Stack.Screen name="HelpPage" component={OnBoardingComponent} />
         </Stack.Navigator>
       </NavigationContainer>
     </AuthContext.Provider>
