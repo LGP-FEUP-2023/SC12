@@ -86,6 +86,7 @@ function Root() {
       }} />
       {/* TODO: Do the actual log out */}
       <Drawer.Screen name={t("Logout")} component={LoginPage} options={{
+        headerShown: false,
         drawerIcon: ({ focused }) => <FontAwesome5
           name={"sign-out-alt"}
           size={24}
