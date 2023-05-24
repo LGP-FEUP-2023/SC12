@@ -44,8 +44,7 @@ function DrawerHeader(props) {
 
 
 function Root() {
-  // TODO: add translations
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
   return (
     <Drawer.Navigator
       drawerType="front"
@@ -64,21 +63,21 @@ function Root() {
         },
       }}
     >
-      <Drawer.Screen name="Home" component={MainPage} options={{
+      <Drawer.Screen name={t("Home")} component={MainPage} options={{
         drawerIcon: ({ focused }) => <FontAwesome5
           name={"home"}
           size={24}
           color={focused ? "#007aff" : "white"}
         />
       }} />
-      <Drawer.Screen name="Settings" component={SettingsPage} options={{
+      <Drawer.Screen name={t("Settings")} component={SettingsPage} options={{
         drawerIcon: ({ focused }) => <FontAwesome5
           name={"cog"}
           size={24}
           color={focused ? "#007aff" : "white"}
         />
       }} />
-      <Drawer.Screen name="Help" component={AboutPage} options={{
+      <Drawer.Screen name={t("Help")} component={AboutPage} options={{
         drawerIcon: ({ focused }) => <FontAwesome5
           name={"info-circle"}
           size={24}
@@ -86,7 +85,7 @@ function Root() {
         />
       }} />
       {/* TODO: Do the actual log out */}
-      <Drawer.Screen name="Logout" component={LoginPage} options={{
+      <Drawer.Screen name={t("Logout")} component={LoginPage} options={{
         drawerIcon: ({ focused }) => <FontAwesome5
           name={"sign-out-alt"}
           size={24}
