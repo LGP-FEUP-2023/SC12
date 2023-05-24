@@ -14,10 +14,11 @@ export default StyleSheet.create({
     },
     
     help: {
-        width: 30,
-        height: 30,
-        marginTop: 55,
-        marginLeft: 25
+        width: 45,
+        height: 45,
+        marginTop: 0,
+        marginRight: 20,
+        marginLeft: 'auto'
     },
     
     scoreboard: {
