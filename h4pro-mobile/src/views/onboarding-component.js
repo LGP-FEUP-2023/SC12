@@ -1,6 +1,7 @@
 import React, { Component, useRef } from "react";
 import { SafeAreaView, Image, Text, Dimensions, FlatList, View, TouchableOpacity } from "react-native";
 import styles from '../styles/onboarding-component.style';
+import { ScrollView } from "react-native-gesture-handler";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('screen').height;
@@ -14,7 +15,7 @@ const slides = [
     },
     {
         id: '2',
-        image: require('../../assets/join.png'),
+        image: require('../../assets/onboarding_join.png'),
         title: 'Connecting to a court',
         subtitle: 'Using the H4PRO app on your phone, scan the QR code of the court. Your smartwatch will connect to it automatically',
     },
@@ -41,7 +42,9 @@ const Slide = ({item}) => {
             />
             <View style={styles.slideText && {width:width}}>
                 <Text style={styles.itemTitle}>{item.title}</Text>
-                <Text style={styles.itemSubtitle}>{item.subtitle}</Text>
+                <ScrollView style={{height: '25%'}}>
+                    <Text style={styles.itemSubtitle}>{item.subtitle}</Text>
+                </ScrollView>
             </View>
         </View>
     );

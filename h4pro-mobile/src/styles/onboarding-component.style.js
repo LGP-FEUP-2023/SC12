@@ -25,6 +25,7 @@ export default StyleSheet.create({
     },
     slideText:{
         height: '25%',
+        fontSize: 12,
         alignItems: 'center',
     },
     itemTitle:{
