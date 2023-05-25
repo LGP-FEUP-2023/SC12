@@ -75,7 +75,7 @@ const OnBoardingComponent = ({navigation}) => {
 
                         <View style={{height: 50}}>
                             <TouchableOpacity style={styles.getStartedButton} 
-                                onPress={() => navigation.navigate("MainPage")}>
+                                onPress={() => navigation.navigate("Root")}>
 
                                 <Text style={styles.getStartedButtonText}>GET STARTED</Text>
                             </TouchableOpacity>
