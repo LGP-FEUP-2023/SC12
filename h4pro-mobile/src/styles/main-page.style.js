@@ -13,8 +13,7 @@ export default StyleSheet.create({
   logo: {
     width: 140,
     height: 30,
-    marginTop: 55,
-    marginLeft: 25
+    marginLeft: 15
   },
   settingsIcon: {
     marginRight: 25

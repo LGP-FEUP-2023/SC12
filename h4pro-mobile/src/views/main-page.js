@@ -40,11 +40,12 @@ const MainPage = ({ route, navigation }) => {
           justifyContent: "space-between",
         }}
       >
-        <Image style={styles.logo} source={IMAGES.logo} />
+        {/* <Image style={styles.logo} source={IMAGES.logo} />
 
-        <Pressable onPress={() => navigation.navigate("SettingsPage")}>
+        <Pressable onPress={() => navigation.openDrawer()}>
           <Image style={styles.settingsIcon} source={IMAGES.settings} />
-        </Pressable>
+        </Pressable> */}
+
       </View>
 
       <MyScoreBoard />

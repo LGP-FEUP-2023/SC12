@@ -28,7 +28,7 @@ export default function LoginPage({ navigation }) {
     // navigation.navigate('MainPage');
     navigation.reset({
       index: 0,
-      routes: [{ name: "MainPage" }],
+      routes: [{ name: "Root" }],
     });
   };
 
