@@ -99,6 +99,16 @@ class MainActivity : ComponentActivity() {
 
     private val connectionFailedListener = GoogleApiClient.OnConnectionFailedListener { connectionResult ->
         // Handle connection failure
+        if (BuildConfig.DEBUG){
+            setContent {
+                WearApp("Android")
+            }
+        }
+        else {
+            setContent{
+                Waiting()
+            }
+        }
     }
 
     private fun checkConnectionStatus() {
