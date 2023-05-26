@@ -11,8 +11,8 @@ export default StyleSheet.create({
     backgroundColor: COLOR.background
   },
   logo: {
-    width: 140,
-    height: 30,
+    width: 202,
+    height: 24,
     marginLeft: 15
   },
   settingsIcon: {
