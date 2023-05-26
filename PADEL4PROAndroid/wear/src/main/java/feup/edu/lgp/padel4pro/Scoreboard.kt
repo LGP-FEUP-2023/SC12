@@ -24,6 +24,7 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -51,14 +52,11 @@ import java.util.Locale
 
 
 @Composable
-fun Scoreboard() {
-    var score1 = remember { mutableStateOf(0) }
-    var score2 = remember { mutableStateOf(0) }
+fun Scoreboard(score1: MutableState<Int>, score2: MutableState<Int>, games1: MutableState<Int>, games2: MutableState<Int>) {
+
     var scores = remember {
         arrayOf("0", "15", "30", "40", "AD")
     }
-    var games1 = remember { mutableStateOf(0) }
-    var games2 = remember { mutableStateOf(0) }
     var textColors1 = remember { mutableStateOf(Color.Black) }
     var textColors2 = remember { mutableStateOf(Color.Black) }
     var textColorg1 = remember { mutableStateOf(Color.Black) }

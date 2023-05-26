@@ -75,9 +75,9 @@ fun Menu() {
                     Toast.makeText(ctx, "Request Highlight", Toast.LENGTH_SHORT).show()
                 },
                 modifier = Modifier
-                    .padding(5.dp)
-                    .height(70.dp)
-                    .width(70.dp),
+                    .height(75.dp)
+                    .width(75.dp)
+                    .padding(5.dp),
                 colors = buttonColors(),
             ) {
                 Icon(
@@ -92,7 +92,9 @@ fun Menu() {
                     onClick = {
                         Toast.makeText(ctx, "Play Highlight", Toast.LENGTH_SHORT).show()
                     },
-                    modifier = Modifier.padding(5.dp)
+                    modifier = Modifier.height(60.dp)
+                        .width(60.dp).padding(5.dp),
+
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.baseline_ondemand_video_24),
@@ -103,7 +105,9 @@ fun Menu() {
                     onClick = {
                         Toast.makeText(ctx, "Video Referee", Toast.LENGTH_SHORT).show()
                     },
-                    modifier = Modifier.padding(5.dp)
+                    modifier = Modifier
+                        .height(60.dp)
+                        .width(60.dp).padding(5.dp)
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.baseline_personal_video_24),
@@ -114,11 +118,6 @@ fun Menu() {
                         contentDescription = "see highlight"
                     )
                 }
-            }
-            Row(
-               verticalAlignment = Alignment.CenterVertically
-            ){
-                Icon(painter = painterResource(id = R.drawable.iconmonstr_angel_down_thin), contentDescription = "arrow down 1")
             }
         }
     }

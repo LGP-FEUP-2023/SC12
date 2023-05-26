@@ -19,7 +19,11 @@ import android.os.Bundle
 import android.provider.ContactsContract.Data
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -27,6 +31,12 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.VerticalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -70,43 +80,41 @@ class MainActivity : ComponentActivity() {
 
 data class Screen(val title: String, val content: @Composable () -> Unit)
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun WearApp() {
-    val screens = listOf(
-       Screen("Menu") {
-            Menu()
-        },
-        Screen("ScoreBoard") {
-            Scoreboard()
-        });
-//        Screen("WaitScreen") {
-//            WaitScreen()
-//        },
-//        Screen("SyncScreen") {
-//            SyncScreen()
-//        }
-  
-    val screenIndex = remember { mutableStateOf(screens[0]) }
+
     WearAppTheme {
         /* If you have enough items in your list, use [ScalingLazyColumn] which is an optimized
          * version of LazyColumn for wear devices with some added features. For more information,
          * see d.android.com/wear/compose.
          */
-        val lazyListState: ScalingLazyListState = rememberScalingLazyListState()
+       val pagerState = rememberPagerState(0 )
+        var score1 = remember { mutableStateOf(0) }
+        var score2 = remember { mutableStateOf(0) }
+        var games1 = remember { mutableStateOf(0) }
+        var games2 = remember { mutableStateOf(0) }
 
-
-        ScalingLazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-            state = lazyListState,
+        HorizontalPager(
+            state = pagerState,
+            pageCount = 3,
+            modifier = Modifier.fillMaxSize()
         ) {
-            item {
+            page -> pagerState.currentPage
+            when (page) {
+            0 -> {
+                SyncScreen()
+            }
+            1 -> {
                 Menu()
             }
-            item {
-                Scoreboard()
+            2 -> {
+                Scoreboard(score1, score2, games1, games2)
             }
         }
+        }
+
+
     }
 }
 
