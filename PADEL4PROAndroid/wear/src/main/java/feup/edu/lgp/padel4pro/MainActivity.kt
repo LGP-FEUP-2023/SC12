@@ -94,6 +94,7 @@ fun WearApp() {
         var score2 = remember { mutableStateOf(0) }
         var games1 = remember { mutableStateOf(0) }
         var games2 = remember { mutableStateOf(0) }
+        var synced = remember { mutableStateOf(false) }
 
         HorizontalPager(
             state = pagerState,
@@ -106,7 +107,7 @@ fun WearApp() {
                 SyncScreen()
             }
             1 -> {
-                Menu()
+                    Menu()
             }
             2 -> {
                 Scoreboard(score1, score2, games1, games2)
