@@ -94,24 +94,39 @@ fun WearApp() {
         var score2 = remember { mutableStateOf(0) }
         var games1 = remember { mutableStateOf(0) }
         var games2 = remember { mutableStateOf(0) }
+        var synced = remember { mutableStateOf(false) }
 
-        HorizontalPager(
-            state = pagerState,
-            pageCount = 3,
-            modifier = Modifier.fillMaxSize()
-        ) {
-            page -> pagerState.currentPage
-            when (page) {
-            0 -> {
-                SyncScreen()
-            }
-            1 -> {
-                Menu()
-            }
-            2 -> {
-                Scoreboard(score1, score2, games1, games2)
+        if (synced.value){
+            HorizontalPager(
+                state = pagerState,
+                pageCount = 2,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                    page -> pagerState.currentPage
+                when (page) {
+                    0 -> {
+                        Menu()
+                    }
+                    1 -> {
+                        Scoreboard(score1, score2, games1, games2)
+                    }
+                }
             }
         }
+
+        else {
+            HorizontalPager(
+                state = pagerState,
+                pageCount = 1,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                    page -> pagerState.currentPage
+                when (page) {
+                    0 -> {
+                        SyncScreen(synced)
+                    }
+                }
+            }
         }
 
 
