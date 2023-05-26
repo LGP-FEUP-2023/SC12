@@ -16,12 +16,31 @@
 package feup.edu.lgp.padel4pro
 
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.VerticalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -32,6 +51,7 @@ import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.ScalingLazyColumn
 import androidx.wear.compose.material.ScalingLazyListState
 import androidx.wear.compose.material.Text
+import com.google.android.gms.wearable.DataClient
 import androidx.wear.compose.material.rememberScalingLazyListState
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.wearable.Wearable
@@ -84,135 +104,102 @@ class MainActivity : ComponentActivity() {
 
         override fun onConnectionSuspended(i: Int) {
             // Handle connection suspension
-            if (BuildConfig.DEBUG){
-                setContent {
-                    WearApp("Android")
-                }
-            }
-            else {
-                setContent{
-                    Waiting()
-                }
+            setContent {
+                WearApp(false)
             }
         }
     }
 
-    private val connectionFailedListener = GoogleApiClient.OnConnectionFailedListener { connectionResult ->
-        // Handle connection failure
-        if (BuildConfig.DEBUG){
+    private val connectionFailedListener =
+        GoogleApiClient.OnConnectionFailedListener { connectionResult ->
+            // Handle connection failure
             setContent {
-                WearApp("Android")
+                WearApp(false)
             }
         }
-        else {
-            setContent{
-                Waiting()
-            }
-        }
-    }
 
     private fun checkConnectionStatus() {
         val nodeResult = Wearable.NodeApi.getConnectedNodes(googleApiClient)
         nodeResult.setResultCallback { result ->
             if (result.status.isSuccess) {
                 val nodes = result.nodes
-                if (nodes.isEmpty()){
-                    if (BuildConfig.DEBUG){
-                        setContent {
-                            WearApp("Android")
-                        }
-                    }
-                    else {
-                        setContent{
-                            Waiting()
-                        }
+                if (nodes.isEmpty()) {
+                    setContent {
+                        WearApp(false)
                     }
                 }
                 for (node in nodes) {
                     if (node.isNearby) {
                         // Phone node found, connection exists
-                        isConnected = true;
                         setContent {
-                            WearApp("Android")
+                            WearApp(true)
                         }
                     }
                 }
             } else {
-                if (BuildConfig.DEBUG){
                     setContent {
-                        WearApp("Android")
+                        WearApp(false)
                     }
-                }
-                else {
-                    setContent{
-                        Waiting()
-                    }
-                }
             }
         }
     }
-
-    companion object {
-        var isConnected: Boolean = false
-    }
-
-
 }
 
 
 data class Screen(val title: String, val content: @Composable () -> Unit)
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Waiting(){
-    Screen("SyncScreen") {
-        SyncScreen()
-    }
-
-    WearAppTheme {
-        SyncScreen()
-    }
-}
-
-@Composable
-fun WearApp(greetingName: String) {
-    val screens = listOf(
-       Screen("Menu") {
-            Menu()
-        },
-        Screen("ScoreBoard") {
-            Scoreboard()
-        },
-        Screen("SyncScreen") {
-            SyncScreen()
-        });
-//        Screen("WaitScreen") {
-//            WaitScreen()
-//        }
+fun WearApp(sync: Boolean) {
 
     WearAppTheme {
         /* If you have enough items in your list, use [ScalingLazyColumn] which is an optimized
          * version of LazyColumn for wear devices with some added features. For more information,
          * see d.android.com/wear/compose.
          */
-        val lazyListState: ScalingLazyListState = rememberScalingLazyListState(0)
+        val pagerState = rememberPagerState(0 )
+        var score1 = remember { mutableStateOf(0) }
+        var score2 = remember { mutableStateOf(0) }
+        var games1 = remember { mutableStateOf(0) }
+        var games2 = remember { mutableStateOf(0) }
+        var synced = remember { mutableStateOf(sync) }
 
-        ScalingLazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-            state = lazyListState,
-        ) {
-            if (BuildConfig.DEBUG && !MainActivity.isConnected) {
-                item {
-                    SyncScreen()
+        if (synced.value) {
+            HorizontalPager(
+                state = pagerState,
+                pageCount = 2,
+                modifier = Modifier.fillMaxSize()
+            ) { page ->
+                pagerState.currentPage
+                when (page) {
+                    0 -> {
+                        Menu()
+                    }
+
+                    1 -> {
+                        Scoreboard(score1, score2, games1, games2)
+                    }
                 }
             }
-            item {
-                Menu()
-            }
-            item {
-                Scoreboard()
+        }
+
+
+        else {
+            HorizontalPager(
+                state = pagerState,
+                pageCount = 1,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                    page -> pagerState.currentPage
+                when (page) {
+                    0 -> {
+                        SyncScreen(synced)
+                    }
+                }
             }
         }
+
+
     }
 }
 
@@ -257,5 +244,5 @@ fun handlingSwipe() {
 @Preview(device = Devices.WEAR_OS_SMALL_ROUND, showSystemUi = true)
 @Composable
 fun DefaultPreview() {
-    WearApp("Preview Android")
+    WearApp(false)
 }
