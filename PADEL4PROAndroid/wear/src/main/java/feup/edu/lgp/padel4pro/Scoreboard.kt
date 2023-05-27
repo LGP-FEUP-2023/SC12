@@ -24,6 +24,7 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -44,19 +45,18 @@ import androidx.wear.compose.material.TimeTextDefaults
 import androidx.wear.compose.material.swipeable
 import androidx.wear.compose.material.dialog.Alert
 import androidx.wear.compose.material.dialog.Dialog
+import com.google.android.gms.wearable.DataClient
+import com.google.android.gms.wearable.Wearable
 import feup.edu.lgp.padel4pro.theme.wearColorPalette
 import java.util.Locale
 
 
 @Composable
-fun Scoreboard() {
-    var score1 = remember { mutableStateOf(0) }
-    var score2 = remember { mutableStateOf(0) }
+fun Scoreboard(score1: MutableState<Int>, score2: MutableState<Int>, games1: MutableState<Int>, games2: MutableState<Int>) {
+
     var scores = remember {
         arrayOf("0", "15", "30", "40", "AD")
     }
-    var games1 = remember { mutableStateOf(0) }
-    var games2 = remember { mutableStateOf(0) }
     var textColors1 = remember { mutableStateOf(Color.Black) }
     var textColors2 = remember { mutableStateOf(Color.Black) }
     var textColorg1 = remember { mutableStateOf(Color.Black) }
@@ -103,7 +103,8 @@ fun Scoreboard() {
 
     }
 
-    MaterialTheme(){
+    MaterialTheme() {
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -214,7 +215,7 @@ fun Scoreboard() {
                     // First column content
                     Text(
                         text = "TEAM 1",
-                        modifier = Modifier.padding(15.dp, 7.dp),
+                        modifier = Modifier.padding(0.dp, 0.dp, 10.dp, 5.dp),
                         textAlign = TextAlign.Right,
                         fontSize = 10.sp,
                         color = Color.White
@@ -248,6 +249,7 @@ fun Scoreboard() {
                     Box(
                         contentAlignment = Alignment.Center,
                         modifier = Modifier
+                            .padding(0.dp, 0.dp, 6.dp, 0.dp)
                             .size(35.dp)
                             .background(textbgg1.value, shape = CircleShape)
                             .clickable(
@@ -278,7 +280,7 @@ fun Scoreboard() {
                     // Second column content
                     Text(
                         text = "TEAM 2",
-                        modifier = Modifier.padding(15.dp, 7.dp),
+                        modifier = Modifier.padding(10.dp, 0.dp, 0.dp, 5.dp),
                         textAlign = TextAlign.Left,
                         fontSize = 10.sp,
                         color = Color.White
@@ -310,6 +312,7 @@ fun Scoreboard() {
                     Box(
                         contentAlignment = Alignment.Center,
                         modifier = Modifier
+                            .padding(6.dp, 0.dp, 0.dp, 0.dp)
                             .size(35.dp)
                             .background(textbgg2.value, shape = CircleShape)
                             .clickable(
@@ -333,26 +336,31 @@ fun Scoreboard() {
                     }
                 }
             }
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(10.dp),
-                contentAlignment = Alignment.BottomCenter
+            Row(
+                modifier = Modifier.fillMaxSize()
+                    .padding(20.dp),
+                horizontalArrangement =  Arrangement.Center,
+                verticalAlignment = Alignment.Bottom
             ) {
-                Button(
-                    onClick = {
-                        showDialog.value = true
+                    Button(
+                        onClick = {
+                            showDialog.value = true
 
-                        selected.value = -1
-                    },
-                    modifier = Modifier
-                        .height(20.dp)
-                        .width(20.dp),
-                    colors = ButtonDefaults.buttonColors(backgroundColor = wearColorPalette.primaryVariant)
-                ) {
-                    Icon(imageVector = Icons.Filled.Refresh, contentDescription = "reset scores")
-                }
+                            selected.value = -1
+                        },
+                        modifier = Modifier
+                            .height(20.dp)
+                            .width(20.dp),
+                        colors = ButtonDefaults.buttonColors(backgroundColor = wearColorPalette.primaryVariant)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Refresh,
+                            contentDescription = "reset scores"
+                        )
+                    }
+
             }
+
         }
 
         Dialog(
@@ -389,7 +397,9 @@ fun Scoreboard() {
                                 showDialog.value = false
                             },
                             modifier = Modifier
-                                .padding(5.dp),
+                                .padding(5.dp)
+                            .height(40.dp)
+                            .width(40.dp),
                             colors = ButtonDefaults.buttonColors(
                                 backgroundColor = feup.edu.lgp.padel4pro.theme.success
                             )
@@ -401,7 +411,9 @@ fun Scoreboard() {
                                 showDialog.value = false
                             },
                             modifier = Modifier
-                                .padding(5.dp),
+                                .padding(5.dp)
+                                .height(40.dp)
+                                .width(40.dp),
 
                             colors = ButtonDefaults.buttonColors(
                                 backgroundColor = feup.edu.lgp.padel4pro.theme.grey
