@@ -19,6 +19,7 @@ import android.os.Bundle
 import android.provider.ContactsContract.Data
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -47,6 +48,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.ScalingLazyColumn
 import androidx.wear.compose.material.ScalingLazyListState
@@ -55,6 +59,7 @@ import com.google.android.gms.wearable.DataClient
 import com.google.android.gms.wearable.Wearable
 import androidx.wear.compose.material.rememberScalingLazyListState
 import feup.edu.lgp.padel4pro.theme.WearAppTheme
+import kotlinx.coroutines.launch
 
 /**
  * Simple "Hello, World" app meant as a starting point for a new project using Compose for Wear OS.
@@ -71,10 +76,23 @@ class MainActivity : ComponentActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val viewModel: AppViewModel by viewModels()
         super.onCreate(savedInstanceState)
-        setContent {
-            WearApp()
+        var state = AppUIState()
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect {
+                    // Update UI elements
+                    state = viewModel.uiState.value
+                }
+            }
         }
+        setContent {
+            Padel4Pro(state)
+        }
+
+
+
     }
 }
 
@@ -82,7 +100,7 @@ data class Screen(val title: String, val content: @Composable () -> Unit)
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun WearApp() {
+fun Padel4Pro(state: AppUIState) {
 
     WearAppTheme {
         /* If you have enough items in your list, use [ScalingLazyColumn] which is an optimized
@@ -90,10 +108,10 @@ fun WearApp() {
          * see d.android.com/wear/compose.
          */
        val pagerState = rememberPagerState(0 )
-        var score1 = remember { mutableStateOf(0) }
-        var score2 = remember { mutableStateOf(0) }
-        var games1 = remember { mutableStateOf(0) }
-        var games2 = remember { mutableStateOf(0) }
+        var score1 = remember { mutableStateOf(state.score1) }
+        var score2 = remember { mutableStateOf(state.score2) }
+        var games1 = remember { mutableStateOf(state.games1) }
+        var games2 = remember { mutableStateOf(state.games2) }
         var synced = remember { mutableStateOf(false) }
 
         if (synced.value) {
@@ -136,45 +154,8 @@ fun WearApp() {
 }
 
 
-@Composable
-fun Greeting(greetingName: String) {
-    Text(
-        modifier = Modifier.fillMaxWidth(),
-        textAlign = TextAlign.Center,
-        color = MaterialTheme.colors.primary,
-        text = stringResource(R.string.hello_world, greetingName)
-    )
-}
-
-/*
-@Composable
-fun handlingSwipe() {
-    val interactionSource = remember { MutableInteractionSource() }
-    val interactions = remember { mutableStateListOf<Interaction>() }
-    LaunchedEffect(interactionSource) {
-        interactionSource.interactions.collect { interaction ->
-            when (interaction) {
-                is DragInteraction.Start -> {
-                    interactions.add(interaction)
-                }
-
-                is DragInteraction.Stop -> {
-                    interactions.remove(interaction.start)
-                    print("STARTED DRAGGING")
-                }
-
-                is DragInteraction.Cancel -> {
-                    interactions.remove(interaction.start)
-                    print("STOPPED DRAGGING")
-                }
-            }
-        }
-    }
-}
-*/
-
 @Preview(device = Devices.WEAR_OS_SMALL_ROUND, showSystemUi = true)
 @Composable
 fun DefaultPreview() {
-    WearApp()
+    Padel4Pro(state = AppUIState(2, 1, 3, 6))
 }
