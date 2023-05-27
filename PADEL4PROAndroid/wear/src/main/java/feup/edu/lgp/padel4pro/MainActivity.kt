@@ -16,9 +16,14 @@
 package feup.edu.lgp.padel4pro
 
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -26,7 +31,15 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.VerticalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -38,7 +51,10 @@ import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.ScalingLazyColumn
 import androidx.wear.compose.material.ScalingLazyListState
 import androidx.wear.compose.material.Text
+import com.google.android.gms.wearable.DataClient
 import androidx.wear.compose.material.rememberScalingLazyListState
+import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.wearable.Wearable
 import feup.edu.lgp.padel4pro.theme.WearAppTheme
 
 /**
@@ -52,54 +68,138 @@ import feup.edu.lgp.padel4pro.theme.WearAppTheme
  * back action). For more information, go here:
  * https://developer.android.com/reference/kotlin/androidx/wear/compose/navigation/package-summary
  */
+
 class MainActivity : ComponentActivity() {
+
+    private var googleApiClient: GoogleApiClient? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContent {
-            WearApp("Android")
+
+        // Create the GoogleApiClient instance
+        googleApiClient = GoogleApiClient.Builder(this)
+            .addConnectionCallbacks(connectionCallbacks)
+            .addOnConnectionFailedListener(connectionFailedListener)
+            .addApi(Wearable.API)
+            .build()
+
+
+        // Connect to Google Play services
+        googleApiClient?.connect()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // Disconnect from Google Play services
+        googleApiClient?.disconnect()
+    }
+
+    private val connectionCallbacks = object : GoogleApiClient.ConnectionCallbacks {
+        override fun onConnected(bundle: Bundle?) {
+            // Check the connection status
+            checkConnectionStatus()
+        }
+
+        override fun onConnectionSuspended(i: Int) {
+            // Handle connection suspension
+            setContent {
+                WearApp(false)
+            }
+        }
+    }
+
+    private val connectionFailedListener =
+        GoogleApiClient.OnConnectionFailedListener { connectionResult ->
+            // Handle connection failure
+            setContent {
+                WearApp(false)
+            }
+        }
+
+    private fun checkConnectionStatus() {
+        val nodeResult = Wearable.NodeApi.getConnectedNodes(googleApiClient)
+        nodeResult.setResultCallback { result ->
+            if (result.status.isSuccess) {
+                val nodes = result.nodes
+                if (nodes.isEmpty()) {
+                    setContent {
+                        WearApp(false)
+                    }
+                }
+                for (node in nodes) {
+                    if (node.isNearby) {
+                        // Phone node found, connection exists
+                        setContent {
+                            WearApp(true)
+                        }
+                    }
+                }
+            } else {
+                    setContent {
+                        WearApp(false)
+                    }
+            }
         }
     }
 }
 
+
 data class Screen(val title: String, val content: @Composable () -> Unit)
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun WearApp(greetingName: String) {
-    val screens = listOf(
-       Screen("Menu") {
-            Menu()
-        },
-        Screen("ScoreBoard") {
-            Scoreboard()
-        });
-//        Screen("WaitScreen") {
-//            WaitScreen()
-//        },
-//        Screen("SyncScreen") {
-//            SyncScreen()
-//        }
-  
-    val screenIndex = remember { mutableStateOf(screens[0]) }
+fun WearApp(sync: Boolean) {
+
     WearAppTheme {
         /* If you have enough items in your list, use [ScalingLazyColumn] which is an optimized
          * version of LazyColumn for wear devices with some added features. For more information,
          * see d.android.com/wear/compose.
          */
-        val lazyListState: ScalingLazyListState = rememberScalingLazyListState()
+        val pagerState = rememberPagerState(0 )
+        var score1 = remember { mutableStateOf(0) }
+        var score2 = remember { mutableStateOf(0) }
+        var games1 = remember { mutableStateOf(0) }
+        var games2 = remember { mutableStateOf(0) }
+        var synced = remember { mutableStateOf(sync) }
 
-        ScalingLazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-            state = lazyListState,
-        ) {
-            item {
-                Menu()
-            }
-            item {
-                Scoreboard()
+        if (synced.value) {
+            HorizontalPager(
+                state = pagerState,
+                pageCount = 2,
+                modifier = Modifier.fillMaxSize()
+            ) { page ->
+                pagerState.currentPage
+                when (page) {
+                    0 -> {
+                        Menu()
+                    }
+
+                    1 -> {
+                        Scoreboard(score1, score2, games1, games2)
+                    }
+                }
             }
         }
+
+
+        else {
+            HorizontalPager(
+                state = pagerState,
+                pageCount = 1,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                    page -> pagerState.currentPage
+                when (page) {
+                    0 -> {
+                        SyncScreen(synced)
+                    }
+                }
+            }
+        }
+
+
     }
 }
 
@@ -144,5 +244,5 @@ fun handlingSwipe() {
 @Preview(device = Devices.WEAR_OS_SMALL_ROUND, showSystemUi = true)
 @Composable
 fun DefaultPreview() {
-    WearApp("Preview Android")
+    WearApp(false)
 }
