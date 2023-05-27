@@ -5,11 +5,13 @@ import { MyScoreBoard } from "../components/scoreboard";
 import React, { Component, useContext, useState, useEffect } from "react";
 import { View, Image, Text } from "react-native";
 import { CourtButton } from "../components/court-button";
-import { Snackbar } from "react-native-paper";
+import { Modal, Snackbar } from "react-native-paper";
 import { COLOR } from "../constants/colors";
 import AuthContext from "../../AuthContext";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import "../constants/localizer";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import OnBoardingComponent from "./onboarding-component.js";
 
 import { Pressable } from "react-native";
 
@@ -17,6 +19,17 @@ const MainPage = ({ route, navigation }) => {
   const [snackbarVisible, setSnackbarVisible] = useState(false);
   const [snackMode, setSnackMode] = useState(0);
   const { token, setToken } = useContext(AuthContext);
+
+  React.useEffect(() => { 
+    async function getData() {
+      const appData = await AsyncStorage.getItem("isAppFirstLaunch");
+      if(appData == null){
+        AsyncStorage.setItem('isAppFirstLaunch', 'false');
+        navigation.navigate('HelpPage');
+      }
+    }
+    getData();
+  }, []);
 
   useEffect(() => {
     const { snackbar, snackmode } = route.params ?? {};
@@ -29,6 +42,10 @@ const MainPage = ({ route, navigation }) => {
   const dismissSnackbar = () => {
     setSnackbarVisible(false);
   };
+  
+  const helpPagePressed = () => {
+    navigation.navigate('HelpPage');
+  }
 
   return (
     <View style={styles.container}>
@@ -44,6 +61,10 @@ const MainPage = ({ route, navigation }) => {
 
         <Pressable onPress={() => navigation.openDrawer()}>
           <Image style={styles.settingsIcon} source={IMAGES.settings} />
+        </Pressable>
+        <Pressable onPress={helpPagePressed}>
+          <Image style={styles.help} source={IMAGES.help} />
+        </Pressable>
         </Pressable> */}
 
       </View>
