@@ -16,50 +16,22 @@
 package feup.edu.lgp.padel4pro
 
 import android.os.Bundle
-import android.provider.ContactsContract.Data
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.PagerState
-import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import androidx.wear.compose.material.MaterialTheme
-import androidx.wear.compose.material.ScalingLazyColumn
-import androidx.wear.compose.material.ScalingLazyListState
 import androidx.wear.compose.material.Text
-import com.google.android.gms.wearable.DataClient
+import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.wearable.Wearable
-import androidx.wear.compose.material.rememberScalingLazyListState
 import feup.edu.lgp.padel4pro.theme.WearAppTheme
-import kotlinx.coroutines.launch
 
 /**
  * Simple "Hello, World" app meant as a starting point for a new project using Compose for Wear OS.
@@ -72,47 +44,99 @@ import kotlinx.coroutines.launch
  * back action). For more information, go here:
  * https://developer.android.com/reference/kotlin/androidx/wear/compose/navigation/package-summary
  */
+
 class MainActivity : ComponentActivity() {
+
+    private var googleApiClient: GoogleApiClient? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val viewModel: AppViewModel by viewModels()
+
+
         super.onCreate(savedInstanceState)
-        var state = AppUIState()
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect {
-                    // Update UI elements
-                    state = viewModel.uiState.value
+        // Create the GoogleApiClient instance
+        googleApiClient = GoogleApiClient.Builder(this)
+            .addConnectionCallbacks(connectionCallbacks)
+            .addOnConnectionFailedListener(connectionFailedListener)
+            .addApi(Wearable.API)
+            .build()
+
+
+        // Connect to Google Play services
+        googleApiClient?.connect()
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // Disconnect from Google Play services
+        googleApiClient?.disconnect()
+    }
+
+    private val connectionCallbacks = object : GoogleApiClient.ConnectionCallbacks {
+        override fun onConnected(bundle: Bundle?) {
+            // Check the connection status
+            checkConnectionStatus()
+        }
+
+        override fun onConnectionSuspended(i: Int) {
+            // Handle connection suspension
+            setContent {
+                Padel4Pro(false)
+            }
+        }
+    }
+
+    private val connectionFailedListener =
+        GoogleApiClient.OnConnectionFailedListener { connectionResult ->
+            // Handle connection failure
+            setContent {
+                Padel4Pro(false)
+            }
+        }
+
+    private fun checkConnectionStatus() {
+        val nodeResult = Wearable.NodeApi.getConnectedNodes(googleApiClient)
+        nodeResult.setResultCallback { result ->
+            if (result.status.isSuccess) {
+                val nodes = result.nodes
+                if (nodes.isEmpty()) {
+                    setContent {
+                        Padel4Pro(false)
+                    }
+                }
+                for (node in nodes) {
+                    if (node.isNearby) {
+                        // Phone node found, connection exists
+                        setContent {
+                            Padel4Pro(true)
+                        }
+                    }
+                }
+            } else {
+                setContent {
+                    Padel4Pro(false)
                 }
             }
         }
-        setContent {
-            Padel4Pro(state)
-        }
-
-
 
     }
-}
 
-data class Screen(val title: String, val content: @Composable () -> Unit)
+
+}
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Padel4Pro(state: AppUIState) {
+fun Padel4Pro(sync: Boolean) {
 
     WearAppTheme {
         /* If you have enough items in your list, use [ScalingLazyColumn] which is an optimized
          * version of LazyColumn for wear devices with some added features. For more information,
          * see d.android.com/wear/compose.
          */
-       val pagerState = rememberPagerState(0 )
-        var score1 = remember { mutableStateOf(state.score1) }
-        var score2 = remember { mutableStateOf(state.score2) }
-        var games1 = remember { mutableStateOf(state.games1) }
-        var games2 = remember { mutableStateOf(state.games2) }
-        var synced = remember { mutableStateOf(false) }
+        val pagerState = rememberPagerState(0)
+        var synced = remember { mutableStateOf(sync) }
 
         if (synced.value) {
             HorizontalPager(
@@ -127,20 +151,17 @@ fun Padel4Pro(state: AppUIState) {
                     }
 
                     1 -> {
-                        Scoreboard(score1, score2, games1, games2)
+                        Scoreboard()
                     }
                 }
             }
-        }
-
-
-        else {
+        } else {
             HorizontalPager(
                 state = pagerState,
                 pageCount = 1,
                 modifier = Modifier.fillMaxSize()
-            ) {
-                    page -> pagerState.currentPage
+            ) { page ->
+                pagerState.currentPage
                 when (page) {
                     0 -> {
                         SyncScreen(synced)
@@ -157,5 +178,5 @@ fun Padel4Pro(state: AppUIState) {
 @Preview(device = Devices.WEAR_OS_SMALL_ROUND, showSystemUi = true)
 @Composable
 fun DefaultPreview() {
-    Padel4Pro(state = AppUIState(2, 1, 3, 6))
+    Padel4Pro(false)
 }
