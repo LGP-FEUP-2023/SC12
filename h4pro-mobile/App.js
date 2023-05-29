@@ -14,7 +14,6 @@ import { AboutPage } from './src/views/settings/about-page.js';
 import Header from './src/components/header.js';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
-
 const Drawer = createDrawerNavigator();
 
 
@@ -43,8 +42,20 @@ function DrawerHeader(props) {
 }
 
 
-function Root() {
+function Root({ route, navigation }) {
+  const [mainPageData, setMainPageDataChange] = useState({ snackbar: false, snackmode: 0 });
   const { t } = useTranslation();
+
+  useEffect(() => {
+    if (route.params) {
+      console.log("received params: ", route.params);
+      if (route.params.screen === "Home") {
+        console.log("setting main page data");
+        setMainPageDataChange(route.params.params);
+      }
+    }
+  }, [route.params]);
+
   return (
     <Drawer.Navigator
       drawerType="front"
@@ -63,13 +74,15 @@ function Root() {
         },
       }}
     >
-      <Drawer.Screen name={t("Home")} component={MainPage} options={{
-        drawerIcon: ({ focused }) => <FontAwesome5
+      <Drawer.Screen name={t("Home")} options={{
+        drawerIcon: ({ focused }) => (<FontAwesome5
           name={"home"}
           size={24}
           color={focused ? "#007aff" : "white"}
-        />
-      }} />
+        />)
+      }} >
+        {props => <MainPage {...props} data={mainPageData} />}
+      </Drawer.Screen>
       <Drawer.Screen name={t("Settings")} component={SettingsPage} options={{
         drawerIcon: ({ focused }) => <FontAwesome5
           name={"cog"}
