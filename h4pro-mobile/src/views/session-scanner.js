@@ -38,9 +38,9 @@ const SessionScanner = ({ navigation }) => {
         // check if the scanned data is a valid token
         if (data.startsWith('h4pro')) {
             setToken(data);
-            navigation.navigate('MainPage', { snackbar: true, snackmode: 0 })
+            navigation.navigate('Root', { screen: 'Home', params: { snackbar: true, snackmode: 0 } })
         } else {
-            navigation.navigate('MainPage', { snackbar: true, snackmode: 1 })
+            navigation.navigate('Root', { screen: 'Home', params: { snackbar: true, snackmode: 1 } })
         }
     };
 
