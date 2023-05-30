@@ -15,7 +15,7 @@ import OnBoardingComponent from "./onboarding-component.js";
 
 import { Pressable } from "react-native";
 
-const MainPage = ({ route, navigation }) => {
+const MainPage = ({ route, navigation, data }) => {
   const [snackbarVisible, setSnackbarVisible] = useState(false);
   const [snackMode, setSnackMode] = useState(0);
   const { token, setToken } = useContext(AuthContext);
@@ -32,12 +32,12 @@ const MainPage = ({ route, navigation }) => {
   }, []);
 
   useEffect(() => {
-    const { snackbar, snackmode } = route.params ?? {};
+    const { snackbar, snackmode } = data ?? {};
     if (snackbar) {
       setSnackbarVisible(true);
       setSnackMode(snackmode);
     }
-  }, [route.params]);
+  }, [data]);
 
   const dismissSnackbar = () => {
     setSnackbarVisible(false);
