@@ -18,13 +18,6 @@ export default StyleSheet.create({
   settingsIcon: {
     marginRight: 25
   },
-  help: {
-      width: 45,
-      height: 45,
-      marginTop: 0,
-      marginRight: 20,
-      marginLeft: 'auto'
-  },
   scoreboard: {
     height: '30%',
     marginTop: '20%'
