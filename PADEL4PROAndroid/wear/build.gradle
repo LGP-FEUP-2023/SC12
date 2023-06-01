@@ -63,6 +63,7 @@ android {
 dependencies {
 
     implementation 'com.google.android.gms:play-services-wearable:17.1.0'
+    implementation 'org.testng:testng:6.9.6'
     def composeBom = platform(libs.androidx.compose.bom)
 
     // General compose dependencies
@@ -139,4 +140,11 @@ dependencies {
 
     // For checking the connection between Wear Os and Smartwatch
     implementation 'com.google.android.gms:play-services-wearable:17.0.0'
+
+
+    // Test rules and transitive dependencies:
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.4.3")
+    // Needed for createAndroidComposeRule, but not createComposeRule:
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.4.3")
+
 }
