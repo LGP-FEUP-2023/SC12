@@ -6,22 +6,35 @@ import feup.edu.lgp.padel4pro.MainActivity.*;
 
 class MyComposeTest {
 
-    @get:Rule(order = 1)
-    val composeRule = createAndroidComposeRule<MainActivity>()
+    // @get:Rule(order = 1)
+    // val composeRule = createAndroidComposeRule<MainActivity>()
     // use createAndroidComposeRule<YourActivity>() if you need access to
     // an activity
 
-    @Test
+    /*@Test
     fun myTest() {
         // Start the app
-        composeTestRule.setContent {
+        composeRule.setContent {
             MyAppTheme {
                 MainScreen(uiState = fakeUiState, /*...*/)
             }
         }
 
-        composeTestRule.onNodeWithText("Continue").performClick()
+        composeRule.onNodeWithText("Request Highlight").performClick()
+        composeRule.onNodeWithButton("").performClick()
 
-        composeTestRule.onNodeWithText("Welcome").assertIsDisplayed()
+        composeRule.onNodeWithText("Welcome").assertIsDisplayed()
+    }*/
+
+    class TestButton {
+        @get:Rule
+        val composeTestRule = createAndroidComposeRule(MainActivity::class.java)
+
+        @Test
+        fun testButtonClick() {
+            val button = composeTestRule.onNode(hasTestTag("yourTestTag"), useUnmergedTree = true)
+            button.assertIsDisplayed()
+            button.performClick()
+        }
     }
 }
