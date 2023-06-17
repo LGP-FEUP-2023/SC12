@@ -55,7 +55,11 @@ fun Menu() {
         ) {
             Button(
                 onClick = {
-
+                /*
+                * val (_ ,_ ,result) = "/highlight"
+                *   .httpPost(listOf("currentMatch" to "<string>", "currentCourt" to "<string>", "timestamp" to "<datetime>"))
+                *   .responseString(listOf("highlightId" to "<integer>"))
+                * */
                 },
                 modifier = Modifier
                     .height(75.dp)
@@ -73,7 +77,11 @@ fun Menu() {
             ) {
                 Button(
                     onClick = {
-
+                        /*
+                        * val (_, _, result) = "/highlight/{highlightId}"
+                        *   .httpGet()
+                        *   .responseString()
+                        * */
                     },
                     modifier = Modifier
                         .height(60.dp)
@@ -88,7 +96,11 @@ fun Menu() {
                 }
                 Button(
                     onClick = {
-
+                        /*
+                         * val (_ ,_ ,result) = "/requestRef"
+                         *   .httpPost(listOf("matchId" to "<string>"))
+                         *   .responseString()
+                         */
                     },
                     modifier = Modifier
                         .height(60.dp)
