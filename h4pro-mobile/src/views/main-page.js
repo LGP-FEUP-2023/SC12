@@ -27,6 +27,20 @@ const MainPage = ({ route, navigation, data }) => {
   }, [data]);
 
   const dismissSnackbar = () => {
+    // fetch('https://{endpoint}/match/' + matchId, {
+    //   method: 'POST',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //     'Authorizantion': accessToken,
+    //   },
+    //   body: JSON.stringify({
+    //     timestamp: gettime(),
+    //   }),
+    // }
+    // .catch(error => {
+    //   console.error(error);
+    // });
     setSnackbarVisible(false);
   };
 
