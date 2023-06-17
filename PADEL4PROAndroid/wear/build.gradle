@@ -30,6 +30,12 @@ android {
         buildConfigField "Boolean", "DEV", "true"
     }
 
+    sourceSets {
+        main { java.srcDirs = ['src/main/java'] }
+        test { java.srcDirs = ['src/test/java'] }
+        androidTest { java.srcDirs = ['src/androidTest/java'] }
+    }
+
     buildTypes {
         release {
             minifyEnabled true
@@ -64,6 +70,8 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-wearable:17.1.0'
     implementation 'org.testng:testng:6.9.6'
+    implementation 'junit:junit:4.12'
+    implementation 'junit:junit:4.12'
     def composeBom = platform(libs.androidx.compose.bom)
 
     // General compose dependencies
