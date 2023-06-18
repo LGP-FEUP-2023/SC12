@@ -28,6 +28,7 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField "Boolean", "DEV", "true"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
     sourceSets {
@@ -70,8 +71,8 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-wearable:17.1.0'
     implementation 'org.testng:testng:6.9.6'
-    implementation 'junit:junit:4.12'
-    implementation 'junit:junit:4.12'
+    implementation 'junit:junit:4.13.2'
+    implementation 'junit:junit:4.13.2'
     def composeBom = platform(libs.androidx.compose.bom)
 
     // General compose dependencies
@@ -117,6 +118,8 @@ dependencies {
     testImplementation 'androidx.wear.tiles:tiles-testing:1.2.0-alpha04'
 
     // Testing
+    implementation "androidx.test.ext:junit:1.1.5"
+
     testImplementation libs.junit
 
     androidTestImplementation libs.test.ext.junit

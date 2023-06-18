@@ -37,6 +37,7 @@
                   <entry key="Duration" value="90" />
                   <entry key="Tests" value="360" />
                   <entry key="Wear_OS_Large_Round_API_30" value="120" />
+                  <entry key="Wear_OS_Square_API_30_2" value="120" />
                 </map>
               </option>
             </AndroidTestResultsTableState>
@@ -50,6 +51,19 @@
                   <entry key="Duration" value="90" />
                   <entry key="Tests" value="360" />
                   <entry key="Wear_OS_Round_API_30" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="-115511696">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Tests" value="360" />
+                  <entry key="Wear_OS_Square_API_30_2" value="120" />
                 </map>
               </option>
             </AndroidTestResultsTableState>
