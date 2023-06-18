@@ -2,59 +2,18 @@ import React, { Component, useRef } from "react";
 import { SafeAreaView, Image, Text, Dimensions, FlatList, View, TouchableOpacity } from "react-native";
 import styles from '../styles/onboarding-component.style';
 import { ScrollView } from "react-native-gesture-handler";
+import { SLIDE_1_TITLE } from "../constants/text";
+import { useTranslation } from "react-i18next";
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('screen').height;
 
 
-const slides = [
-    {
-        id: '1',
-        image: require('../../assets/bluetooth.png'),
-        title: 'Connect your smartwatch',
-        subtitle: 'Easily connect to your smartwatch using bluetooth.',
-    },
-    {
-        id: '2',
-        image: require('../../assets/onboarding_join.png'),
-        title: 'Connecting to a court',
-        subtitle: 'Using the H4PRO app on your phone, scan the QR code of the court. Your smartwatch will connect to it automatically',
-    },
-    {
-        id: '3',
-        image: require('../../assets/sw_btn_screen.png'),
-        title: 'Requesting highlights',
-        subtitle: 'Press the top button to record a highlight, the right to ask for video referee and the left to play the highlights.',
-    },
-    {
-        id: '4',
-        image: require('../../assets/sw_score_screen.png'),
-        title: 'Score system',
-        subtitle: 'The scores for each team appear under their names. To change the scores, select the number and slide up and down anywhere.',
-    }
-];
-
-const Slide = ({item}) => {
-    return (
-        <View style={styles.slideContainer}>
-            <Image
-                source={item.image}
-                style={styles.slideImage}
-            />
-            <View style={styles.slideText && {width:width}}>
-                <Text style={styles.itemTitle}>{item.title}</Text>
-                <ScrollView style={{height: '25%'}}>
-                    <Text style={styles.itemSubtitle}>{item.subtitle}</Text>
-                </ScrollView>
-            </View>
-        </View>
-    );
-};
-
 const OnBoardingComponent = ({navigation}) => {
 
     const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
     const ref = useRef(null);
+
     const Footer = () =>{
         return(
             <View style={styles.footerContainer}>
@@ -79,7 +38,10 @@ const OnBoardingComponent = ({navigation}) => {
                                 onPress={() => {
                                     setCurrentSlideIndex(0);
                                     ref?.current?.scrollToOffset(0);
-                                    navigation.navigate("Home")
+                                    navigation.reset({
+                                        index: 0,
+                                        routes: [{ name: "Root" }],
+                                      });
                                     }
                                     }>
 
@@ -102,6 +64,52 @@ const OnBoardingComponent = ({navigation}) => {
             </View>
         )
     }
+        
+    const { t } = useTranslation();
+
+    const slides = [
+        {
+            id: '1',
+            image: require('../../assets/bluetooth.png'),
+            title: t("SLIDE_1_TITLE"),
+            subtitle: t("SLIDE_1_SUBTITLE"),
+        },
+        {
+            id: '2',
+            image: require('../../assets/onboarding_join.png'),
+            title: t("SLIDE_2_TITLE"),
+            subtitle: t("SLIDE_2_SUBTITLE"),
+        },
+        {
+            id: '3',
+            image: require('../../assets/sw_btn_screen.png'),
+            title: t("SLIDE_3_TITLE"),
+            subtitle: t("SLIDE_3_SUBTITLE"),
+        },
+        {
+            id: '4',
+            image: require('../../assets/sw_score_screen.png'),
+            title: t("SLIDE_4_TITLE"),
+            subtitle: t("SLIDE_4_SUBTITLE"),
+        }
+    ];
+
+    const Slide = ({item}) => {
+        return (
+            <View style={styles.slideContainer}>
+                <Image
+                    source={item.image}
+                    style={styles.slideImage}
+                />
+                <View style={styles.slideText && {width:width}}>
+                    <Text style={styles.itemTitle}>{item.title}</Text>
+                    <ScrollView style={{height: '25%'}}>
+                        <Text style={styles.itemSubtitle}>{item.subtitle}</Text>
+                    </ScrollView>
+                </View>
+            </View>
+        );
+    };
 
     const updateCurrrentSlideIndex = e => {
         const contentOffsetX = e.nativeEvent.contentOffset.x;

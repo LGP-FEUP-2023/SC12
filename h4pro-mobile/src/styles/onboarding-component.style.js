@@ -37,7 +37,7 @@ export default StyleSheet.create({
     },
     itemSubtitle:{
         color: COLOR.white,
-        fontSize: 22,
+        fontSize: 20,
         marginTop: 10,
         marginHorizontal: 20,
         textAlign: 'center',
