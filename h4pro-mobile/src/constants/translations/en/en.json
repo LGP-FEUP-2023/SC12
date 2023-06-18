@@ -26,6 +26,18 @@
     "Successfully joined the court - part2" : "joined the court",
     "Failed to join court - part1": "Failed",
     "Failed to join court - part2": "to join the court",
-    "Dismiss": "Dismiss"
+    "Dismiss": "Dismiss",
+    
+    "SLIDE_1_TITLE":"Connect your smartwatch",
+    "SLIDE_1_SUBTITLE":"Easily connect to your smartwatch using bluetooth.",
+    "SLIDE_2_TITLE":"Connecting to a court",
+    "SLIDE_2_SUBTITLE":"Using the PADEL4PRO app on your phone, scan the QR code of the court. Your smartwatch will connect to it automatically.",
+    "SLIDE_3_TITLE":"Requesting highlights",
+    "SLIDE_3_SUBTITLE":"Press the top button to record a highlight, the right to ask for video referee and the left to play the highlights.",
+    "SLIDE_4_TITLE":"Score system",
+    "SLIDE_4_SUBTITLE":"The scores for each team appear under their names. To change the scores, select the number and slide up and down anywhere.",
+    "GET_STARTED":"GET STARTED",
+    "SKIP":"SKIP",
+    "NEXT":"NEXT"
   }
 }

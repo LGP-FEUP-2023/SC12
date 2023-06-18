@@ -26,6 +26,18 @@
     "Successfully joined the court - part2" : "ste se pridružili sudu",
     "Failed to join court - part1": "Neuspješno",
     "Failed to join court - part2": "ste se pridružili sudu",
-    "Dismiss": "Odbaci"
+    "Dismiss": "Odbaci",
+    
+    "SLIDE_1_TITLE":"Povežite svoj pametni sat",
+    "SLIDE_1_SUBTITLE":"Jednostavno se povežite sa svojim pametnim satom putem Bluetootha.",
+    "SLIDE_2_TITLE":"Povezivanje s terenom",
+    "SLIDE_2_SUBTITLE":" Koristeći PADEL4PRO aplikaciju na svom telefonu, skenirajte QR kod terena. Vaš pametni sat će se automatski povezati s njim.",
+    "SLIDE_3_TITLE":"Zahtjev za vrhuncima",
+    "SLIDE_3_SUBTITLE":"Pritisnite gornje dugme za snimanje vrhunca, desno za zatražiti video suca, a lijevo za reprodukciju vrhunaca.",
+    "SLIDE_4_TITLE":"Sustav bodovanja",
+    "SLIDE_4_SUBTITLE":"Rezultati za svaku momčad pojavljuju se ispod njihovih imena. Da biste promijenili rezultate, odaberite broj i kliznite gore i dolje bilo gdje.",
+    "GET_STARTED":"KRENI",
+    "SKIP":"PRESKOČI",
+    "NEXT":"DALJE"
   }
 }

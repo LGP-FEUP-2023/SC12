@@ -2,54 +2,50 @@ import styles, { ICON_SIZE } from "../styles/main-page.style";
 import { IMAGES } from "../constants/images";
 import { MyStatusBar } from "../components/status-bar";
 import { MyScoreBoard } from "../components/scoreboard";
-import React, { useContext, useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import React, { Component, useContext, useState, useEffect } from "react";
+import { View, Image, Text } from "react-native";
 import { CourtButton } from "../components/court-button";
-import { Snackbar } from "react-native-paper";
+import { Modal, Snackbar } from "react-native-paper";
 import { COLOR } from "../constants/colors";
 import AuthContext from "../../AuthContext";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import "../constants/localizer";
-import { useTranslation } from 'react-i18next';
-import { leave_court } from "../utils";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import OnBoardingComponent from "./onboarding-component.js";
 
+import { Pressable } from "react-native";
 
-const MainPage = ({navigation, data }) => {
-  const { t } = useTranslation();
+const MainPage = ({ route, navigation }) => {
   const [snackbarVisible, setSnackbarVisible] = useState(false);
   const [snackMode, setSnackMode] = useState(0);
   const { token, setToken } = useContext(AuthContext);
 
-  
   React.useEffect(() => { 
     async function getData() {
       const appData = await AsyncStorage.getItem("isAppFirstLaunch");
       if(appData == null){
         AsyncStorage.setItem('isAppFirstLaunch', 'false');
-        navigation.navigate('Help');
+        navigation.navigate('HelpPage');
       }
     }
     getData();
   }, []);
 
   useEffect(() => {
-    const { snackbar, snackmode } = data ?? {};
+    const { snackbar, snackmode } = route.params ?? {};
     if (snackbar) {
       setSnackbarVisible(true);
       setSnackMode(snackmode);
     }
-  }, [data]);
+  }, [route.params]);
 
   const dismissSnackbar = () => {
     setSnackbarVisible(false);
   };
-
-  const leave_match = () => {
-    //leave_court({ token });
-    setToken("");
-    
-  };
+  
+  const helpPagePressed = () => {
+    navigation.navigate('HelpPage');
+  }
 
   return (
     <View style={styles.container}>
@@ -61,6 +57,15 @@ const MainPage = ({navigation, data }) => {
           justifyContent: "space-between",
         }}
       >
+        {/* <Image style={styles.logo} source={IMAGES.logo} />
+
+        <Pressable onPress={() => navigation.openDrawer()}>
+          <Image style={styles.settingsIcon} source={IMAGES.settings} />
+        </Pressable>
+        <Pressable onPress={helpPagePressed}>
+          <Image style={styles.help} source={IMAGES.help} />
+        </Pressable>
+        </Pressable> */}
 
       </View>
 
@@ -73,7 +78,7 @@ const MainPage = ({navigation, data }) => {
       <CourtButton
         text={"leave court"}
         icon={IMAGES.leave}
-        onPress={() => leave_match()}
+        onPress={() => setToken("")}
       />
 
       <Snackbar
@@ -81,7 +86,7 @@ const MainPage = ({navigation, data }) => {
         onDismiss={dismissSnackbar}
         duration={3000}
         action={{
-          label: t("Dismiss"),
+          label: "Dismiss",
           textColor: "white",
           onPress: dismissSnackbar,
         }}
@@ -95,7 +100,8 @@ const MainPage = ({navigation, data }) => {
                 size={ICON_SIZE}
               />
               <Text style={styles.snackbartext}>
-              <Text style={{ color: COLOR.blue }}>{t("Successfully joined the court - part1")}</Text> {t("Successfully joined the court - part2")}.
+                Successfully <Text style={{ color: COLOR.blue }}>joined</Text>{" "}
+                court.
               </Text>
             </>
           ) : (
@@ -106,7 +112,7 @@ const MainPage = ({navigation, data }) => {
                 size={ICON_SIZE}
               />
               <Text style={styles.snackbartext}>
-                <Text style={{ color: COLOR.red }}>{t("Failed to join court - part1")}</Text> {t("Failed to join court - part2")}.
+                <Text style={{ color: COLOR.red }}>Failed</Text> to join court.
               </Text>
             </>
           )}
