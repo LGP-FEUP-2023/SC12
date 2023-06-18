@@ -9,7 +9,7 @@ const join_court = ({event}) => {
   
     const joinCourtUrl = `https://MEM4PRO/ID_PLACEHOLDER/join_court/${padel_company_id}/${padel_court_id}`;
   
-    let matchId = fetch('https://{endpoint}/match', {
+    let matchId = fetch(joinCourtUrl, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -55,9 +55,56 @@ const leave_court = ({matchId}) => {
 }
 
 
+const login = () => {
+  let userToken = fetch('https://{endpoint}/login', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password,
+      }),
+    }.then(response => response.json())
+    .then(json => {
+      return json.token;
+    })
+    .catch(error => {
+      console.error(error);
+      return "error";
+    }));
+
+  return userToken;
+}
+
+const logout = () => {
+  let userToken = fetch('https://{endpoint}/logout', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password,
+      }),
+    }.then(response => response.json())
+    .then(() => {
+      return true;
+    })
+    .catch(error => {
+      console.error(error);
+      return false;
+    }));
+
+  return userToken;
+}
+
 export {
   join_court,
-  leave_court
-
+  leave_court,
+  login,
+  logout,
 }
   

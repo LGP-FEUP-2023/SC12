@@ -13,6 +13,8 @@ import { AboutPage } from './src/views/settings/about-page.js';
 import Header from './src/components/header.js';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
+import { logout } from './src/utils/index.js';
+
 const Drawer = createDrawerNavigator();
 
 
@@ -96,6 +98,7 @@ function Root({ route, navigation }) {
           color={focused ? "#007aff" : "white"}
         />
       }} />
+
       {/* TODO: Do the actual log out */}
       <Drawer.Screen name={t("Logout")} component={LoginPage} options={{
         headerShown: false,
@@ -103,6 +106,10 @@ function Root({ route, navigation }) {
           name={"sign-out-alt"}
           size={24}
           color={focused ? "#007aff" : "white"}
+          onPress={() => {
+            //logout();
+            console.log("Logout button pressed!");
+          }}
         />
       }} />
     </Drawer.Navigator>
@@ -111,12 +118,12 @@ function Root({ route, navigation }) {
 
 const App = () => {
   const [token, setToken] = useState("");
-
+  const [user, setUser] = useState("");
 
 
 
   return (
-    <AuthContext.Provider value={{ token, setToken }}>
+    <AuthContext.Provider value={{ token, setToken, user, setUser }}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
           headerShown: false, // hide the header title

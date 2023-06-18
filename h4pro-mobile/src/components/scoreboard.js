@@ -53,7 +53,6 @@ export const MyScoreBoard = () => {
                             </Text>
                         </Text>
 
-                        {/* <Text style={[styles.scoreboardText, { color: COLOR.blue}]}>{token}</Text> */}
                     </SafeAreaView>
                     <SafeAreaView style={{ flexDirection: 'row' }}>
                         <Text style={[styles.scoreboardScores, { color: COLOR.blue }]}>{team1Score.pad(2)}</Text>
