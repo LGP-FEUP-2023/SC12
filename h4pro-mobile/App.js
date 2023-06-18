@@ -14,6 +14,7 @@ import { AboutPage } from './src/views/settings/about-page.js';
 import Header from './src/components/header.js';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
+import OnBoardingComponent from './src/views/onboarding-component.js';
 const Drawer = createDrawerNavigator();
 
 
@@ -90,7 +91,7 @@ function Root({ route, navigation }) {
           color={focused ? "#007aff" : "white"}
         />
       }} />
-      <Drawer.Screen name={t("Help")} component={AboutPage} options={{
+      <Drawer.Screen name={t("Help")} component={OnBoardingComponent} options={{
         drawerIcon: ({ focused }) => <FontAwesome5
           name={"info-circle"}
           size={24}

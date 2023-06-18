@@ -20,6 +20,17 @@
     "SIGN IN": "ENTRAR",
     "OR SIGN UP INSTEAD": "OU REGISTAR",
     "These fields are required.": "Estes campos são obrigatórios",
-    "ABOUT_TEXT": "A nossa aplicação diferencia-se de outras soluções de visualização de desportos e realce de jogos no mercado, com funcionalidades avançadas como estatísticas em tempo real de jogadores e equipas e destaques interativos de jogos para partilhar nas redes sociais ou para revisão pessoal, com o objetivo de treino e melhoria de desempenho. Para além de fornecer aos utilizadores pontuações básicas para os ajudar a acompanhar o jogo, a abordagem inovadora da H4PRO na contagem de histórias cria uma experiência envolvente e imersiva para o utilizador. A nossa aplicação capta a essência do jogo, estabelecendo novos padrões no mundo do desporto. No geral, a aplicação foi concebida para satisfazer as necessidades de entusiastas e profissionais de desporto de todas as idades e níveis de competência, otimizando os serviços da MOG e apoiando a tomada de decisões."
+    "ABOUT_TEXT": "A nossa aplicação diferencia-se de outras soluções de visualização de desportos e realce de jogos no mercado, com funcionalidades avançadas como estatísticas em tempo real de jogadores e equipas e destaques interativos de jogos para partilhar nas redes sociais ou para revisão pessoal, com o objetivo de treino e melhoria de desempenho. Para além de fornecer aos utilizadores pontuações básicas para os ajudar a acompanhar o jogo, a abordagem inovadora da H4PRO na contagem de histórias cria uma experiência envolvente e imersiva para o utilizador. A nossa aplicação capta a essência do jogo, estabelecendo novos padrões no mundo do desporto. No geral, a aplicação foi concebida para satisfazer as necessidades de entusiastas e profissionais de desporto de todas as idades e níveis de competência, otimizando os serviços da MOG e apoiando a tomada de decisões.",
+    "SLIDE_1_TITLE":"Conectar ao smartwatch",
+    "SLIDE_1_SUBTITLE":"Use bluetooth para conectar ao seu smartwatch.",
+    "SLIDE_2_TITLE":"Conectar a um campo",
+    "SLIDE_2_SUBTITLE":"Enquanto usa a PADEL4PRO, examine o código QR do campo. O seu smartwach vai ser conectado automaticamente.",
+    "SLIDE_3_TITLE":"Pedir destaques",
+    "SLIDE_3_SUBTITLE":"Clique no botão de cima para pedir um destaque, use o botão na direita para pedir um video árbitro, clique no da esquerda para ver o destaques.",
+    "SLIDE_4_TITLE":"Sistema de potuação",
+    "SLIDE_4_SUBTITLE":"A pontução de cada equipa é mostrada por baixo do seu nome. Para alterar a pontuação, selecione o número e deslize para cima ou para baixo.",
+    "GET_STARTED":"COMEÇAR",
+    "SKIP":"SALTAR",
+    "NEXT":"PROXIMO"
   }
 }
