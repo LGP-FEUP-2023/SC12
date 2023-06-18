@@ -20,6 +20,11 @@
     "SIGN IN": "PRIJAVITE SE",
     "OR SIGN UP INSTEAD": "ILI SE REGISTRIRAJTE",
     "These fields are required.": "Ova polja su obavezna.",
-    "ABOUT_TEXT": "Naša aplikacija se razlikuje od drugih rješenja za praćenje sportskih događaja i isticanje igara na tržištu s naprednim značajkama poput statistike igrača i tima u stvarnom vremenu, te interaktivnih pregleda igara za dijeljenje na društvenim mrežama ili za osobnu analizu u svrhu treninga i poboljšanja performansi. Osim što korisnicima pruža osnovne rezultate kako bi pratili igru, inovativni pristup pričanju priča tvrtke H4PRO stvara privlačne i zanimljive korisničke doživljaje. Naša aplikacija hvata bit igre i postavlja nove standarde u svijetu sporta. Općenito, aplikacija je dizajnirana da zadovolji potrebe zaljubljenika u sport i profesionalaca svih dobnih skupina i razina vještine, optimizira usluge tvrtke MOG i pomaže u donošenju odluka."
+    "ABOUT_TEXT": "Naša aplikacija se razlikuje od drugih rješenja za praćenje sportskih događaja i isticanje igara na tržištu s naprednim značajkama poput statistike igrača i tima u stvarnom vremenu, te interaktivnih pregleda igara za dijeljenje na društvenim mrežama ili za osobnu analizu u svrhu treninga i poboljšanja performansi. Osim što korisnicima pruža osnovne rezultate kako bi pratili igru, inovativni pristup pričanju priča tvrtke H4PRO stvara privlačne i zanimljive korisničke doživljaje. Naša aplikacija hvata bit igre i postavlja nove standarde u svijetu sporta. Općenito, aplikacija je dizajnirana da zadovolji potrebe zaljubljenika u sport i profesionalaca svih dobnih skupina i razina vještine, optimizira usluge tvrtke MOG i pomaže u donošenju odluka.",
+  
+    "Successfully joined the court - part1" : "Uspješno",
+    "Successfully joined the court - part2" : "ste se pridružili sudu",
+    "Failed to join court - part1": "Neuspješno",
+    "Failed to join court - part2": "ste se pridružili sudu"
   }
 }
