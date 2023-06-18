@@ -12,6 +12,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import "../constants/localizer";
 
 import { Pressable } from "react-native";
+import { set } from "react-native-reanimated";
 
 const MainPage = ({ route, navigation, data }) => {
   const [snackbarVisible, setSnackbarVisible] = useState(false);
@@ -27,7 +28,12 @@ const MainPage = ({ route, navigation, data }) => {
   }, [data]);
 
   const dismissSnackbar = () => {
-    // fetch('https://{endpoint}/match/' + matchId, {
+    setSnackbarVisible(false);
+  };
+
+  const leave_match = () => {
+    setToken("");
+    // fetch('https://{endpoint}/leave_match/' + matchId, {
     //   method: 'POST',
     //   headers: {
     //     Accept: 'application/json',
@@ -41,7 +47,7 @@ const MainPage = ({ route, navigation, data }) => {
     // .catch(error => {
     //   console.error(error);
     // });
-    setSnackbarVisible(false);
+    
   };
 
   return (
@@ -71,7 +77,7 @@ const MainPage = ({ route, navigation, data }) => {
       <CourtButton
         text={"leave court"}
         icon={IMAGES.leave}
-        onPress={() => setToken("")}
+        onPress={() => leave_match()}
       />
 
       <Snackbar
