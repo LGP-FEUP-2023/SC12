@@ -34,12 +34,13 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         marginTop: 50,
         textAlign: 'center',
+        marginHorizontal: 5,
     },
     itemSubtitle:{
         color: COLOR.white,
         fontSize: 16,
         marginTop: 10,
-        marginHorizontal: 20,
+        marginHorizontal: 10,
         textAlign: 'center',
     },
     footerContainer:{
