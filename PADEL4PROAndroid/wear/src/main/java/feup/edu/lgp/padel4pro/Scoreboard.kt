@@ -287,6 +287,12 @@ fun Scoreboard() {
                             .size(35.dp)
                             .background(textbgg1.value, shape = CircleShape)
                             .clickable(
+                                /* onClick = {
+                                 * val (_ ,_ ,result) = "/score/{matchId}"
+                                 *   .httpPost(listOf("pointsA" to "<integer>", "setsA" to "<integer>", "pointsB" to "<integer>", "setsB" to "<integer>"))
+                                 *   .responseString()
+                                 * }
+                                 */
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = null
                             ) {
@@ -325,6 +331,12 @@ fun Scoreboard() {
                             .size(65.dp)
                             .background(textbgs2.value, shape = CircleShape)
                             .clickable(
+                                /* onClick = {
+                                 * val (_ ,_ ,result) = "/score/{matchId}"
+                                 *   .httpPost(listOf("pointsA" to "<integer>", "setsA" to "<integer>", "pointsB" to "<integer>", "setsB" to "<integer>"))
+                                 *   .responseString()
+                                 * }
+                                 */
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = null
                             ) {
@@ -350,6 +362,12 @@ fun Scoreboard() {
                             .size(35.dp)
                             .background(textbgg2.value, shape = CircleShape)
                             .clickable(
+                                /* onClick = {
+                                 * val (_ ,_ ,result) = "/score/{matchId}"
+                                 *   .httpPost(listOf("pointsA" to "<integer>", "setsA" to "<integer>", "pointsB" to "<integer>", "setsB" to "<integer>"))
+                                 *   .responseString()
+                                 * }
+                                 */
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = null
                             ) {

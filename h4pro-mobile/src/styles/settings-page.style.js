@@ -8,8 +8,8 @@ export default StyleSheet.create({
     backgroundColor: COLOR.background,
   },
   logo: {
-    width: 141,
-    height: 30,
+    width: 261,
+    height: 31,
   },
   headerText: {
     color: COLOR.white,

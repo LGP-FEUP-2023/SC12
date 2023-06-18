@@ -139,4 +139,6 @@ dependencies {
 
     // For checking the connection between Wear Os and Smartwatch
     implementation 'com.google.android.gms:play-services-wearable:17.0.0'
+
+    implementation("com.github.kittinunf.fuel:fuel:2.3.1")
 }
