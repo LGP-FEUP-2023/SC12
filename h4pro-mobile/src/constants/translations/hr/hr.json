@@ -21,13 +21,16 @@
     "OR SIGN UP INSTEAD": "ILI SE REGISTRIRAJTE",
     "These fields are required.": "Ova polja su obavezna.",
     "ABOUT_TEXT": "Naša aplikacija se razlikuje od drugih rješenja za praćenje sportskih događaja i isticanje igara na tržištu s naprednim značajkama poput statistike igrača i tima u stvarnom vremenu, te interaktivnih pregleda igara za dijeljenje na društvenim mrežama ili za osobnu analizu u svrhu treninga i poboljšanja performansi. Osim što korisnicima pruža osnovne rezultate kako bi pratili igru, inovativni pristup pričanju priča tvrtke H4PRO stvara privlačne i zanimljive korisničke doživljaje. Naša aplikacija hvata bit igre i postavlja nove standarde u svijetu sporta. Općenito, aplikacija je dizajnirana da zadovolji potrebe zaljubljenika u sport i profesionalaca svih dobnih skupina i razina vještine, optimizira usluge tvrtke MOG i pomaže u donošenju odluka.",
-    "SLIDE_1_TITLE":"Connect your smartwatch",
-    "SLIDE_1_SUBTITLE":"Easily connect to your smartwatch using bluetooth.",
-    "SLIDE_2_TITLE":"Connecting to a court",
-    "SLIDE_2_SUBTITLE":"Using the PADEL4PRO app on your phone, scan the QR code of the court. Your smartwatch will connect to it automatically.",
-    "SLIDE_3_TITLE":"Requesting highlights",
-    "SLIDE_3_SUBTITLE":"Press the top button to record a highlight, the right to ask for video referee and the left to play the highlights.",
-    "SLIDE_4_TITLE":"Score system",
-    "SLIDE_4_SUBTITLE":"The scores for each team appear under their names. To change the scores, select the number and slide up and down anywhere."
+    "SLIDE_1_TITLE":"Povežite svoj pametni sat",
+    "SLIDE_1_SUBTITLE":"Jednostavno se povežite sa svojim pametnim satom putem Bluetootha.",
+    "SLIDE_2_TITLE":"Povezivanje s terenom",
+    "SLIDE_2_SUBTITLE":" Koristeći PADEL4PRO aplikaciju na svom telefonu, skenirajte QR kod terena. Vaš pametni sat će se automatski povezati s njim.",
+    "SLIDE_3_TITLE":"Zahtjev za vrhuncima",
+    "SLIDE_3_SUBTITLE":"Pritisnite gornje dugme za snimanje vrhunca, desno za zatražiti video suca, a lijevo za reprodukciju vrhunaca.",
+    "SLIDE_4_TITLE":"Sustav bodovanja",
+    "SLIDE_4_SUBTITLE":"Rezultati za svaku momčad pojavljuju se ispod njihovih imena. Da biste promijenili rezultate, odaberite broj i kliznite gore i dolje bilo gdje.",
+    "GET_STARTED":"KRENI",
+    "SKIP":"PRESKOČI",
+    "NEXT":"DALJE"
   }
 }

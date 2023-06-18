@@ -28,6 +28,9 @@
     "SLIDE_3_TITLE":"Requesting highlights",
     "SLIDE_3_SUBTITLE":"Press the top button to record a highlight, the right to ask for video referee and the left to play the highlights.",
     "SLIDE_4_TITLE":"Score system",
-    "SLIDE_4_SUBTITLE":"The scores for each team appear under their names. To change the scores, select the number and slide up and down anywhere."
+    "SLIDE_4_SUBTITLE":"The scores for each team appear under their names. To change the scores, select the number and slide up and down anywhere.",
+    "GET_STARTED":"GET STARTED",
+    "SKIP":"SKIP",
+    "NEXT":"NEXT"
   }
 }

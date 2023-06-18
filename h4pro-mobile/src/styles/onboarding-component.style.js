@@ -30,7 +30,7 @@ export default StyleSheet.create({
     },
     itemTitle:{
         color: COLOR.orange,
-        fontSize: 36,
+        fontSize: 32,
         fontWeight: 'bold',
         marginTop: 50,
         textAlign: 'center',

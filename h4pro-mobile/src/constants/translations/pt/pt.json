@@ -28,6 +28,9 @@
     "SLIDE_3_TITLE":"Pedir destaques",
     "SLIDE_3_SUBTITLE":"Clique no botão de cima para pedir um destaque, use o botão na direita para pedir um video árbitro, clique no da esquerda para ver o destaques.",
     "SLIDE_4_TITLE":"Sistema de potuação",
-    "SLIDE_4_SUBTITLE":"A pontução de cada equipa é mostrada por baixo do seu nome. Para alterar a pontuação, selecione o número e deslize para cima ou para baixo."
+    "SLIDE_4_SUBTITLE":"A pontução de cada equipa é mostrada por baixo do seu nome. Para alterar a pontuação, selecione o número e deslize para cima ou para baixo.",
+    "GET_STARTED":"COMEÇAR",
+    "SKIP":"SALTAR",
+    "NEXT":"PROXIMO"
   }
 }

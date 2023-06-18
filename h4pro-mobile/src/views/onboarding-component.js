@@ -45,17 +45,17 @@ const OnBoardingComponent = ({navigation}) => {
                                     }
                                     }>
 
-                                <Text style={styles.getStartedButtonText}>GET STARTED</Text>
+                                <Text style={styles.getStartedButtonText}>{t("GET_STARTED")}</Text>
                             </TouchableOpacity>
                         </View>
                         :
                         <View style={{flexDirection: 'row'}}>
                             <TouchableOpacity style={styles.skipButton} onPress={skipSlides}>
-                                <Text style={styles.skipButtonText}>SKIP</Text>
+                                <Text style={styles.skipButtonText}>{t("SKIP")}</Text>
                             </TouchableOpacity>
                             <View style={{width:15}}></View>
                             <TouchableOpacity style={styles.nextButton} onPress={goNextSlide}>
-                                <Text style={styles.nextButtonText}>NEXT</Text>
+                                <Text style={styles.nextButtonText}>{t("NEXT")}</Text>
                             </TouchableOpacity>
                         </View>
                     }
