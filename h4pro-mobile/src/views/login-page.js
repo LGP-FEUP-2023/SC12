@@ -26,6 +26,24 @@ export default function LoginPage({ navigation }) {
   const onSubmit = (data) => {
     console.log("Submitting form", data);
     // navigation.navigate('MainPage');
+
+    // accessToken = fetch('https://{endpoint}/login', {
+    //   method: 'POST',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     email: data.email,
+    //     password: data.password,
+    //   }),
+    // }.then(response => response.json())
+    // .then(json => {
+    //   return json.token;
+    // })
+    // .catch(error => {
+    //   console.error(error);
+    // });
     navigation.reset({
       index: 0,
       routes: [{ name: "Root" }],
