@@ -18,7 +18,7 @@ export default StyleSheet.create({
         width: '100%',
     },
     slideImage:{
-        height: '50%', 
+        height: '40%', 
         width: '100%', 
         resizeMode: 'contain', 
         marginTop: 50,
@@ -30,14 +30,14 @@ export default StyleSheet.create({
     },
     itemTitle:{
         color: COLOR.orange,
-        fontSize: 32,
+        fontSize: 30,
         fontWeight: 'bold',
         marginTop: 50,
         textAlign: 'center',
     },
     itemSubtitle:{
         color: COLOR.white,
-        fontSize: 20,
+        fontSize: 16,
         marginTop: 10,
         marginHorizontal: 20,
         textAlign: 'center',
