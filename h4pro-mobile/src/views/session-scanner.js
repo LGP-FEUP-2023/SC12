@@ -36,6 +36,25 @@ const SessionScanner = ({ navigation }) => {
         // }
 
         // check if the scanned data is a valid token
+
+        // matchId = fetch('https://{endpoint}/match', {
+        //   method: 'POST',
+        //   headers: {
+        //     Accept: 'application/json',
+        //     'Content-Type': 'application/json',
+        //     'Authorization': accessToken,
+        //   },
+        //   body: JSON.stringify({
+        //     courtId: data,
+        //     timestamp: gettime(),
+        //   }),
+        // }.then(response => response.json())
+        // .then(json => {
+        //   return json.matchId;
+        // })
+        // .catch(error => {
+        //   console.error(error);
+        // });
         if (data.startsWith('h4pro')) {
             setToken(data);
             navigation.navigate('Root', { screen: 'Home', params: { snackbar: true, snackmode: 0 } })

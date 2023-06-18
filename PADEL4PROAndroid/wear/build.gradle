@@ -158,4 +158,6 @@ dependencies {
     // Needed for createAndroidComposeRule, but not createComposeRule:
     debugImplementation("androidx.compose.ui:ui-test-manifest:1.4.3")
 
+    implementation("com.github.kittinunf.fuel:fuel:2.3.1")
+
 }
