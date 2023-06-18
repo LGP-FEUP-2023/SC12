@@ -11,6 +11,7 @@ import AuthContext from "../../AuthContext";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import "../constants/localizer";
 import { useTranslation } from 'react-i18next';
+import { leave_court } from "../utils";
 
 
 const MainPage = ({navigation, data }) => {
@@ -32,21 +33,8 @@ const MainPage = ({navigation, data }) => {
   };
 
   const leave_match = () => {
+    //leave_court({ token });
     setToken("");
-    // fetch('https://{endpoint}/leave_match/' + matchId, {
-    //   method: 'POST',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //     'Authorizantion': accessToken,
-    //   },
-    //   body: JSON.stringify({
-    //     timestamp: gettime(),
-    //   }),
-    // }
-    // .catch(error => {
-    //   console.error(error);
-    // });
     
   };
 

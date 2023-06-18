@@ -8,12 +8,12 @@ import {
     Text,
     View,
     StyleSheet,
-    TouchableOpacity,
-    Button,
+    TouchableOpacity
 } from 'react-native';
 import BarcodeMask from 'react-native-barcode-mask';
 import { StackActions } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { join_court } from '../utils';
 
 
 const SessionScanner = ({ navigation }) => {
@@ -30,33 +30,16 @@ const SessionScanner = ({ navigation }) => {
 
     const handleBarCodeScanned = ({ type, data }) => {
         console.log(data)
-        // let scanned_token = handleDeepLink({ data });
+
+        // check if the scanned data is a valid token
+        // let scanned_token = join_court({ data });
         // if (scanned_token) {
         //     setToken(scanned_token);
         // }
 
-        // check if the scanned data is a valid token
-
-        // matchId = fetch('https://{endpoint}/match', {
-        //   method: 'POST',
-        //   headers: {
-        //     Accept: 'application/json',
-        //     'Content-Type': 'application/json',
-        //     'Authorization': accessToken,
-        //   },
-        //   body: JSON.stringify({
-        //     courtId: data,
-        //     timestamp: gettime(),
-        //   }),
-        // }.then(response => response.json())
-        // .then(json => {
-        //   return json.matchId;
-        // })
-        // .catch(error => {
-        //   console.error(error);
-        // });
+        //mock code
         if (data.startsWith('h4pro')) {
-            setToken(data);
+            setToken("mock court");
             navigation.navigate('Root', { screen: 'Home', params: { snackbar: true, snackmode: 0 } })
         } else {
             navigation.navigate('Root', { screen: 'Home', params: { snackbar: true, snackmode: 1 } })

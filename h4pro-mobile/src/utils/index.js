@@ -1,6 +1,6 @@
 import { Linking } from 'react-native';
 
-const handleDeepLink = ({event}) => {
+const join_court = ({event}) => {
     if (event === undefined) return;
     const url = event.url;
     const { path, queryParams } = Linking.parse(url);
@@ -26,12 +26,38 @@ const handleDeepLink = ({event}) => {
     })
     .catch(error => {
       console.error(error);
-    });
+    }));
 
     return matchId;
+}
+
+const leave_court = ({matchId}) => {
+  let ret_val = fetch('https://{endpoint}/leave_match/' + matchId, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Authorizantion': accessToken,
+      },
+      body: JSON.stringify({
+        timestamp: gettime(),
+      }),
+    }.then(response => response.json())
+    .then((json) => {
+      return true;
+    })
+    .catch(error => {
+      console.error(error);
+      return false
+    }));
+
+  return ret_val;
+}
 
 
 export {
-    handleDeepLink
+  join_court,
+  leave_court
+
 }
   
