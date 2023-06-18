@@ -42,7 +42,6 @@ import hr from './translations/hr/hr.json'
 
 function getSysLanguage() {
     const locales = getLocales()[0];
-    console.log(locales['languageCode']);
     return locales['languageCode'];
 }
 

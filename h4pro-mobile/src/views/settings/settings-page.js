@@ -11,7 +11,6 @@ import { SettingsEntry } from "../../components/settings-entry";
 
 const SettingsPage = ({ navigation }) => {
   const handleOk = () => {
-    console.log("OK");
     navigation.goBack();
   };
 

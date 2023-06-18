@@ -10,7 +10,6 @@ import { useTranslation } from "react-i18next";
 const AboutPage = ({ navigation }) => {
   const { t } = useTranslation();
   const handleOk = () => {
-    console.log("OK");
     navigation.goBack();
   };
 

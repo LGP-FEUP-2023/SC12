@@ -14,12 +14,10 @@ const LanguagePage = ({ navigation }) => {
   const { i18n } = useTranslation();
 
   const handleOk = () => {
-    console.log("OK");
     navigation.goBack();
   };
 
   const changeLanguage = (language) => {
-    console.log(language);
     i18n.changeLanguage(language);
   };
 
