@@ -55,7 +55,7 @@ const leave_court = ({matchId}) => {
 }
 
 
-const login = () => {
+const login = ({data}) => {
   let userToken = fetch('https://{endpoint}/login', {
       method: 'POST',
       headers: {
