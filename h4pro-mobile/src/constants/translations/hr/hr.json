@@ -25,6 +25,7 @@
     "Successfully joined the court - part1" : "Uspješno",
     "Successfully joined the court - part2" : "ste se pridružili sudu",
     "Failed to join court - part1": "Neuspješno",
-    "Failed to join court - part2": "ste se pridružili sudu"
+    "Failed to join court - part2": "ste se pridružili sudu",
+    "Dismiss": "Odbaci"
   }
 }

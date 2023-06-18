@@ -25,6 +25,7 @@
     "Successfully joined the court - part1" : "Successfully",
     "Successfully joined the court - part2" : "joined the court",
     "Failed to join court - part1": "Failed",
-    "Failed to join court - part2": "to join the court"
+    "Failed to join court - part2": "to join the court",
+    "Dismiss": "Dismiss"
   }
 }

@@ -25,6 +25,7 @@
     "Successfully joined the court - part1" : "Entrou",
     "Successfully joined the court - part2" : "na quadra",
     "Failed to join court - part1": "Falha",
-    "Failed to join court - part2": "ao entrar na quadra"
+    "Failed to join court - part2": "ao entrar na quadra",
+    "Dismiss": "Ignorar"
   }
 }

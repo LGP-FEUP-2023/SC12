@@ -68,7 +68,7 @@ const MainPage = ({navigation, data }) => {
         onDismiss={dismissSnackbar}
         duration={3000}
         action={{
-          label: "Dismiss",
+          label: t("Dismiss"),
           textColor: "white",
           onPress: dismissSnackbar,
         }}
@@ -93,7 +93,7 @@ const MainPage = ({navigation, data }) => {
                 size={ICON_SIZE}
               />
               <Text style={styles.snackbartext}>
-                <Text style={{ color: COLOR.red }}>{t("Failed to join court - part1")}</Text>{t("Failed to join court - part2")}.
+                <Text style={{ color: COLOR.red }}>{t("Failed to join court - part1")}</Text> {t("Failed to join court - part2")}.
               </Text>
             </>
           )}
