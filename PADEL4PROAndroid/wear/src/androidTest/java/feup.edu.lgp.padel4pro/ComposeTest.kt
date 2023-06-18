@@ -17,6 +17,7 @@ import androidx.compose.ui.test.performGesture
 import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.swipe
 import androidx.compose.ui.test.swipeLeft
+import androidx.compose.ui.test.swipeUp
 import org.junit.Rule
 import org.junit.Test
 import feup.edu.lgp.padel4pro.MainActivity.*;
@@ -44,6 +45,12 @@ class MyComposeTest {
         //rule.activity.setContent { Padel4Pro(false) }
         rule.setContent { Padel4Pro(false) }
         rule.onNodeWithContentDescription("highlights").assertDoesNotExist()
+        rule.onNodeWithContentDescription("videocam").assertDoesNotExist()
+        rule.onNodeWithContentDescription("see highlight").assertDoesNotExist()
+
+
+        rule.onNodeWithText("TEAM 1").assertDoesNotExist()
+        rule.onNodeWithText("TEAM 2").assertDoesNotExist()
 
     }
 
@@ -59,5 +66,7 @@ class MyComposeTest {
         rule.onNodeWithText("TEAM 2").assertIsDisplayed()
 
     }
+
+
 
 }
