@@ -42,12 +42,12 @@ export default StyleSheet.create({
       padding: 10
   },
 
-  courtButton: {
-    height: '16%',
-    marginTop: '6%',
-    flexDirection: 'row',
-    alignItems: 'stretch'
-  },
+  // courtButton: {
+  //   height: '16%',
+  //   marginTop: '6%',
+  //   flexDirection: 'row',
+  //   alignItems: 'stretch'
+  // },
   buttonText: {
     color: COLOR.white,
     width: '70%',
@@ -56,18 +56,7 @@ export default StyleSheet.create({
     fontWeight: '600',
     textAlign: 'right'
   },
-  buttonIcon: {
-    width: 60,
-    height: 65
-  },
-  basicButton: {
-    flex: 0,
-    backgroundColor: COLOR.gray,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-    marginHorizontal: 20
-  },
+
 
   courtButton: {
     height: '14%',
@@ -75,14 +64,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'stretch'
   },
-  buttonText: {
-    color: COLOR.white,
-    width: '70%',
-    fontSize: 26,
-    textTransform: 'uppercase',
-    fontWeight: '600',
-    textAlign: 'right'
-  },
+
   buttonIcon: {
     width: 60,
     height: 65
