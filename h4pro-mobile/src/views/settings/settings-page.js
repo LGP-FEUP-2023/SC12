@@ -11,7 +11,7 @@ import { SettingsEntry } from "../../components/settings-entry";
 
 const SettingsPage = ({ navigation }) => {
   const handleOk = () => {
-    navigation.goBack();
+    navigation.navigate('Root', { screen: 'Home', params: { snackbar: false, snackmode: 0 } })
   };
 
   const handleLanguage = () => {

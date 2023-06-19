@@ -15,17 +15,17 @@ import { useTranslation } from 'react-i18next';
 import { leave_court } from "../utils";
 
 
-const MainPage = ({navigation, data }) => {
+const MainPage = ({ navigation, data }) => {
   const { t } = useTranslation();
   const [snackbarVisible, setSnackbarVisible] = useState(false);
   const [snackMode, setSnackMode] = useState(0);
   const { token, setToken } = useContext(AuthContext);
 
-  
-  React.useEffect(() => { 
+
+  React.useEffect(() => {
     async function getData() {
       const appData = await AsyncStorage.getItem("isAppFirstLaunch");
-      if(appData == null){
+      if (appData == null) {
         AsyncStorage.setItem('isAppFirstLaunch', 'false');
         navigation.navigate('Help');
       }
@@ -38,6 +38,8 @@ const MainPage = ({navigation, data }) => {
     if (snackbar) {
       setSnackbarVisible(true);
       setSnackMode(snackmode);
+    } else {
+      setSnackbarVisible(false);
     }
   }, [data]);
 
@@ -48,7 +50,7 @@ const MainPage = ({navigation, data }) => {
   const leave_match = () => {
     //leave_court({ token });
     setToken("");
-    
+
   };
 
   return (
@@ -95,7 +97,7 @@ const MainPage = ({navigation, data }) => {
                 size={ICON_SIZE}
               />
               <Text style={styles.snackbartext}>
-              <Text style={{ color: COLOR.blue }}>{t("Successfully joined the court - part1")}</Text> {t("Successfully joined the court - part2")}.
+                <Text style={{ color: COLOR.blue }}>{t("Successfully joined the court - part1")}</Text> {t("Successfully joined the court - part2")}.
               </Text>
             </>
           ) : (
@@ -110,6 +112,7 @@ const MainPage = ({navigation, data }) => {
               </Text>
             </>
           )}
+
         </View>
       </Snackbar>
     </View>

@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 const AboutPage = ({ navigation }) => {
   const { t } = useTranslation();
   const handleOk = () => {
-    navigation.goBack();
+    navigation.navigate('Root', { screen: 'Home', params: { snackbar: false, snackmode: 0 } })
   };
 
   return (
