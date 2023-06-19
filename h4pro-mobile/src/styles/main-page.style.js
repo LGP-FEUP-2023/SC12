@@ -42,12 +42,7 @@ export default StyleSheet.create({
       padding: 10
   },
 
-  // courtButton: {
-  //   height: '16%',
-  //   marginTop: '6%',
-  //   flexDirection: 'row',
-  //   alignItems: 'stretch'
-  // },
+
   buttonText: {
     color: COLOR.white,
     width: '70%',

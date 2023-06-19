@@ -1,8 +1,7 @@
-import React, { Component, useRef } from "react";
+import React, { useRef } from "react";
 import { SafeAreaView, Image, Text, Dimensions, FlatList, View, TouchableOpacity } from "react-native";
 import styles from '../styles/onboarding-component.style';
 import { ScrollView } from "react-native-gesture-handler";
-import { SLIDE_1_TITLE } from "../constants/text";
 import { useTranslation } from "react-i18next";
 
 const width = Dimensions.get('window').width;

@@ -13,8 +13,9 @@ import { AboutPage } from './src/views/settings/about-page.js';
 import Header from './src/components/header.js';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
-import { logout } from './src/utils/index.js';
 import OnBoardingComponent from './src/views/onboarding-component.js';
+import { logout } from './src/utils/index.js';
+
 const Drawer = createDrawerNavigator();
 
 
@@ -26,7 +27,7 @@ Stack.Navigator.defaultProps = {
 };
 
 function DrawerHeader(props) {
-  // TODO: get username/email from login
+ 
   return (
     <View >
       <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: 10 }}>

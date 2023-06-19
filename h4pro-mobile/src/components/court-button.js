@@ -1,7 +1,6 @@
 import styles from '../styles/main-page.style'
 import React from 'react'
 import { Text, Image, TouchableOpacity } from 'react-native'
-import i18n from '../constants/localizer'
 import { useTranslation } from 'react-i18next';
 
 

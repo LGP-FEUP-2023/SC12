@@ -1,5 +1,4 @@
 import { COLOR } from '../constants/colors'
-import { TEXT_EN } from '../constants/text';
 import React, { useState, useContext } from 'react';
 import styles from '../styles/main-page.style'
 import { useTranslation } from 'react-i18next';
