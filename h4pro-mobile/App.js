@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import LoginPage from './src/views/login-page.js'
 import MainPage from './src/views/main-page.js'
-import { NavigationContainer } from '@react-navigation/native';
+import { CommonActions, NavigationContainer, StackActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator, DrawerItemList } from '@react-navigation/drawer';
 import SessionScanner from './src/views/session-scanner.js';
@@ -27,7 +27,7 @@ Stack.Navigator.defaultProps = {
 };
 
 function DrawerHeader(props) {
- 
+
   return (
     <View >
       <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: 10 }}>
@@ -41,6 +41,24 @@ function DrawerHeader(props) {
       <DrawerItemList {...props} />
     </View>
   );
+}
+
+function Logout({ navigation }) {
+  console.log("Logout button pressed!");
+
+  //logout();
+
+  useEffect(() => {
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [
+          { name: 'Login' },
+        ],
+      })
+    );
+  }, []);
+
 }
 
 
@@ -101,16 +119,12 @@ function Root({ route, navigation }) {
       }} />
 
       {/* TODO: Do the actual log out */}
-      <Drawer.Screen name={t("Logout")} component={LoginPage} options={{
+      <Drawer.Screen name={t("Logout")} component={Logout} options={{
         headerShown: false,
         drawerIcon: ({ focused }) => <FontAwesome5
           name={"sign-out-alt"}
           size={24}
           color={focused ? "#007aff" : "white"}
-          onPress={() => {
-            //logout();
-            console.log("Logout button pressed!");
-          }}
         />
       }} />
     </Drawer.Navigator>
