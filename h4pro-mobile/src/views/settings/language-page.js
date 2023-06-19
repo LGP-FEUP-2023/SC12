@@ -9,12 +9,13 @@ import { useTranslation } from "react-i18next";
 import { COLOR } from "../../constants/colors";
 import { SettingsEntry } from "../../components/settings-entry";
 import { LanguageEntry } from "../../components/language-entry";
+import { StackActions } from '@react-navigation/native';
 
 const LanguagePage = ({ navigation }) => {
   const { i18n } = useTranslation();
 
   const handleOk = () => {
-    navigation.goBack();
+    navigation.dispatch(StackActions.pop())
   };
 
   const changeLanguage = (language) => {
