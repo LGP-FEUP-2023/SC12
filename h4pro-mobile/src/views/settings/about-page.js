@@ -6,12 +6,12 @@ import { SettingsHeader } from "../../components/settings-header";
 import { AppButton } from "../../components/app-button";
 import { ABOUT_TEXT } from "../../constants/text";
 import { useTranslation } from "react-i18next";
-import { StackActions } from '@react-navigation/native';
+import { CommonActions } from '@react-navigation/native';
 
 const AboutPage = ({ navigation }) => {
   const { t } = useTranslation();
   const handleOk = () => {
-    navigation.dispatch(StackActions.pop())
+    navigation.dispatch(CommonActions.goBack())
   };
 
   return (

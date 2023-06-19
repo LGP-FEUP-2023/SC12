@@ -8,7 +8,6 @@ import { AppButton } from "../../components/app-button";
 
 import { COLOR } from "../../constants/colors";
 import { SettingsEntry } from "../../components/settings-entry";
-import { StackActions } from '@react-navigation/native';
 
 const SettingsPage = ({ navigation }) => {
   const handleOk = () => {

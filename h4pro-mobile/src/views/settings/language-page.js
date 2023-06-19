@@ -9,16 +9,26 @@ import { useTranslation } from "react-i18next";
 import { COLOR } from "../../constants/colors";
 import { SettingsEntry } from "../../components/settings-entry";
 import { LanguageEntry } from "../../components/language-entry";
-import { StackActions } from '@react-navigation/native';
+import { CommonActions } from '@react-navigation/native';
+
 
 const LanguagePage = ({ navigation }) => {
   const { i18n } = useTranslation();
 
   const handleOk = () => {
-    navigation.dispatch(StackActions.pop())
+    navigation.dispatch(CommonActions.goBack())
   };
 
   const changeLanguage = (language) => {
+    navigation.dispatch(CommonActions.reset({
+      index: 1,
+      routes: [
+        {
+          name: 'Root',
+          params: { screen: 'Home', params: { snackbar: false, snackmode: 0 } },
+        },
+      ],
+    }));
     i18n.changeLanguage(language);
   };
 
