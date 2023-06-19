@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from 'react';
 import {
   View,
   KeyboardAvoidingView,
@@ -14,9 +14,14 @@ import { IMAGES } from "../constants/images";
 import { MyStatusBar } from "../components/status-bar";
 import styles from "../styles/login-page.style";
 import { useTranslation } from "react-i18next";
-
 import { COLOR } from "../constants/colors";
+import AuthContext from "../../AuthContext";
+import { login } from "../utils";
+
+
+
 export default function LoginPage({ navigation }) {
+  const { user, setUser } = useContext(AuthContext);
   const { t } = useTranslation();
   const {
     control,
@@ -27,23 +32,13 @@ export default function LoginPage({ navigation }) {
     console.log("Submitting form", data);
     // navigation.navigate('MainPage');
 
-    // accessToken = fetch('https://{endpoint}/login', {
-    //   method: 'POST',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     email: data.email,
-    //     password: data.password,
-    //   }),
-    // }.then(response => response.json())
-    // .then(json => {
-    //   return json.token;
-    // })
-    // .catch(error => {
-    //   console.error(error);
-    // });
+    //let userToken = login(data);
+    //if (userToken == "error") {
+    //  Alert.alert("Error", "Invalid email or password");
+    //  return;
+    //}
+
+    //setUser(userToken);
     navigation.reset({
       index: 0,
       routes: [{ name: "Root" }],

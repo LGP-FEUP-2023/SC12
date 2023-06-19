@@ -1,9 +1,8 @@
 import React from 'react';
 import styles from "../styles/main-page.style";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import { IMAGES } from "../constants/images";
-import { useNavigation } from '@react-navigation/native';
 
 export default function Header({ route, navigation }) {
     // const navigation = useNavigation();

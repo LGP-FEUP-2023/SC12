@@ -2,8 +2,8 @@ import styles, { ICON_SIZE } from "../styles/main-page.style";
 import { IMAGES } from "../constants/images";
 import { MyStatusBar } from "../components/status-bar";
 import { MyScoreBoard } from "../components/scoreboard";
-import React, { Component, useContext, useState, useEffect } from "react";
-import { View, Image, Text } from "react-native";
+import React, { useContext, useState, useEffect } from "react";
+import { View, Text } from "react-native";
 import { CourtButton } from "../components/court-button";
 import { Snackbar } from "react-native-paper";
 import { COLOR } from "../constants/colors";
@@ -11,20 +11,21 @@ import AuthContext from "../../AuthContext";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import "../constants/localizer";
+import { useTranslation } from 'react-i18next';
+import { leave_court } from "../utils";
 
-import { Pressable } from "react-native";
-import { set } from "react-native-reanimated";
 
-const MainPage = ({ route, navigation, data }) => {
+const MainPage = ({ navigation, data }) => {
+  const { t } = useTranslation();
   const [snackbarVisible, setSnackbarVisible] = useState(false);
   const [snackMode, setSnackMode] = useState(0);
   const { token, setToken } = useContext(AuthContext);
 
-  
-  React.useEffect(() => { 
+
+  React.useEffect(() => {
     async function getData() {
       const appData = await AsyncStorage.getItem("isAppFirstLaunch");
-      if(appData == null){
+      if (appData == null) {
         AsyncStorage.setItem('isAppFirstLaunch', 'false');
         navigation.navigate('Help');
       }
@@ -37,6 +38,8 @@ const MainPage = ({ route, navigation, data }) => {
     if (snackbar) {
       setSnackbarVisible(true);
       setSnackMode(snackmode);
+    } else {
+      setSnackbarVisible(false);
     }
   }, [data]);
 
@@ -45,22 +48,9 @@ const MainPage = ({ route, navigation, data }) => {
   };
 
   const leave_match = () => {
+    //leave_court({ token });
     setToken("");
-    // fetch('https://{endpoint}/leave_match/' + matchId, {
-    //   method: 'POST',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //     'Authorizantion': accessToken,
-    //   },
-    //   body: JSON.stringify({
-    //     timestamp: gettime(),
-    //   }),
-    // }
-    // .catch(error => {
-    //   console.error(error);
-    // });
-    
+
   };
 
   return (
@@ -73,11 +63,6 @@ const MainPage = ({ route, navigation, data }) => {
           justifyContent: "space-between",
         }}
       >
-        {/* <Image style={styles.logo} source={IMAGES.logo} />
-
-        <Pressable onPress={() => navigation.openDrawer()}>
-          <Image style={styles.settingsIcon} source={IMAGES.settings} />
-        </Pressable> */}
 
       </View>
 
@@ -98,7 +83,7 @@ const MainPage = ({ route, navigation, data }) => {
         onDismiss={dismissSnackbar}
         duration={3000}
         action={{
-          label: "Dismiss",
+          label: t("Dismiss"),
           textColor: "white",
           onPress: dismissSnackbar,
         }}
@@ -112,8 +97,7 @@ const MainPage = ({ route, navigation, data }) => {
                 size={ICON_SIZE}
               />
               <Text style={styles.snackbartext}>
-                Successfully <Text style={{ color: COLOR.blue }}>joined</Text>{" "}
-                court.
+                <Text style={{ color: COLOR.blue }}>{t("Successfully joined the court - part1")}</Text> {t("Successfully joined the court - part2")}.
               </Text>
             </>
           ) : (
@@ -124,10 +108,11 @@ const MainPage = ({ route, navigation, data }) => {
                 size={ICON_SIZE}
               />
               <Text style={styles.snackbartext}>
-                <Text style={{ color: COLOR.red }}>Failed</Text> to join court.
+                <Text style={{ color: COLOR.red }}>{t("Failed to join court - part1")}</Text> {t("Failed to join court - part2")}.
               </Text>
             </>
           )}
+
         </View>
       </Snackbar>
     </View>

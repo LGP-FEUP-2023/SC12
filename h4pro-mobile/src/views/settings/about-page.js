@@ -1,17 +1,15 @@
 import React from "react";
-import { View, Image, Text } from "react-native";
+import { View, Text } from "react-native";
 import { MyStatusBar } from "../../components/status-bar";
 import styles from "../../styles/settings-page.style";
 import { SettingsHeader } from "../../components/settings-header";
 import { AppButton } from "../../components/app-button";
-import { ABOUT_TEXT } from "../../constants/text";
 import { useTranslation } from "react-i18next";
 
 const AboutPage = ({ navigation }) => {
   const { t } = useTranslation();
   const handleOk = () => {
-    console.log("OK");
-    navigation.goBack();
+    navigation.navigate('Root', { screen: 'Home', params: { snackbar: false, snackmode: 0 } })
   };
 
   return (
