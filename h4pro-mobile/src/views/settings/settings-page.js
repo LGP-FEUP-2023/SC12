@@ -9,7 +9,7 @@ import { SettingsEntry } from "../../components/settings-entry";
 
 const SettingsPage = ({ navigation }) => {
   const handleOk = () => {
-    navigation.navigate('Root', { screen: 'Home', params: { snackbar: false, snackmode: 0 } })
+    navigation.goBack();
   };
 
   const handleLanguage = () => {

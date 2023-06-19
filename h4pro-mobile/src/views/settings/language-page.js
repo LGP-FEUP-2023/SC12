@@ -7,15 +7,26 @@ import { SettingsHeader } from "../../components/settings-header";
 import { AppButton } from "../../components/app-button";
 import { useTranslation } from "react-i18next";
 import { LanguageEntry } from "../../components/language-entry";
+import { CommonActions } from '@react-navigation/native';
+
 
 const LanguagePage = ({ navigation }) => {
   const { i18n } = useTranslation();
 
   const handleOk = () => {
-    navigation.goBack();
+    navigation.dispatch(CommonActions.goBack())
   };
 
   const changeLanguage = (language) => {
+    navigation.dispatch(CommonActions.reset({
+      index: 1,
+      routes: [
+        {
+          name: 'Root',
+          params: { screen: 'Home', params: { snackbar: false, snackmode: 0 } },
+        },
+      ],
+    }));
     i18n.changeLanguage(language);
   };
 
