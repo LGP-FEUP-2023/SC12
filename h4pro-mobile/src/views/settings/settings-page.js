@@ -1,17 +1,14 @@
 import React from "react";
-import { View, Image, Text } from "react-native";
-import { IMAGES } from "../../constants/images";
+import { View } from "react-native";
 import { MyStatusBar } from "../../components/status-bar";
 import styles from "../../styles/settings-page.style";
 import { SettingsHeader } from "../../components/settings-header";
 import { AppButton } from "../../components/app-button";
 
-import { COLOR } from "../../constants/colors";
 import { SettingsEntry } from "../../components/settings-entry";
 
 const SettingsPage = ({ navigation }) => {
   const handleOk = () => {
-    console.log("OK");
     navigation.goBack();
   };
 

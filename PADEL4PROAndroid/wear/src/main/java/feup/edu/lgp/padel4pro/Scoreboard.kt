@@ -1,9 +1,7 @@
 package feup.edu.lgp.padel4pro
 
-import android.text.format.DateFormat
-import androidx.compose.foundation.gestures.*
-import androidx.compose.foundation.layout.*
-import android.content.res.Resources.Theme
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
@@ -24,12 +22,17 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -39,24 +42,55 @@ import androidx.wear.compose.material.ButtonDefaults
 import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
-import androidx.wear.compose.material.TimeText
-import androidx.wear.compose.material.TimeTextDefaults
-import androidx.wear.compose.material.swipeable
 import androidx.wear.compose.material.dialog.Alert
 import androidx.wear.compose.material.dialog.Dialog
 import feup.edu.lgp.padel4pro.theme.wearColorPalette
-import java.util.Locale
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 
 @Composable
 fun Scoreboard() {
-    var score1 = remember { mutableStateOf(0) }
-    var score2 = remember { mutableStateOf(0) }
+
     var scores = remember {
         arrayOf("0", "15", "30", "40", "AD")
     }
-    var games1 = remember { mutableStateOf(0) }
-    var games2 = remember { mutableStateOf(0) }
+    val context = LocalContext.current
+
+
+    var score1 by rememberSaveable { mutableStateOf(0) }
+    var score2 by rememberSaveable { mutableStateOf(0) }
+    var games1 by rememberSaveable { mutableStateOf(0) }
+    var games2 by rememberSaveable { mutableStateOf(0) }
+    // Restore data
+    LaunchedEffect(Unit) {
+        withContext(Dispatchers.IO) {
+            val sharedPref: SharedPreferences =
+                context.getSharedPreferences("scores", Context.MODE_PRIVATE)
+            val defaultValue = 0
+            score1 = sharedPref.getInt("score1", defaultValue)
+            score2 = sharedPref.getInt("score2", defaultValue)
+            games1 = sharedPref.getInt("games1", defaultValue)
+            games2 = sharedPref.getInt("games2", defaultValue)
+        }
+    }
+
+    // Save data
+    LaunchedEffect(score1, score2, games1, games2) {
+        withContext(Dispatchers.IO) {
+            val sharedPref: SharedPreferences =
+                context.getSharedPreferences("scores", Context.MODE_PRIVATE)
+            with(sharedPref.edit()) {
+                putInt("score1", score1)
+                putInt("score2", score2)
+                putInt("games1", games1)
+                putInt("games2", games2)
+                apply()
+            }
+        }
+    }
+
+
     var textColors1 = remember { mutableStateOf(Color.Black) }
     var textColors2 = remember { mutableStateOf(Color.Black) }
     var textColorg1 = remember { mutableStateOf(Color.Black) }
@@ -68,7 +102,6 @@ fun Scoreboard() {
     var selected = remember { mutableStateOf(-1) }
 
     var showDialog = remember { mutableStateOf(false) }
-
     when (selected.value) {
         -1 -> {
             textColors1.value = wearColorPalette.primary
@@ -103,7 +136,8 @@ fun Scoreboard() {
 
     }
 
-    MaterialTheme(){
+    MaterialTheme() {
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -119,19 +153,19 @@ fun Scoreboard() {
                                     if (distance.value < -threshold) {
                                         // handle swipe up action
 
-                                        score1.value += 1
-                                        if (score1.value == 5) {
-                                            games1.value += 1
-                                            if (games1.value == 8) {
-                                                games1.value = 0
+                                        score1 += 1
+                                        if (score1 == 5) {
+                                            games1 += 1
+                                            if (games1 == 8) {
+                                                games1 = 0
                                             }
-                                            score1.value = 0
+                                            score1 = 0
                                         }
                                     } else if (distance.value > threshold) {
                                         // handle swipe down action
-                                        score1.value -= 1
-                                        if (score1.value < 0) {
-                                            score1.value = 4
+                                        score1 -= 1
+                                        if (score1 < 0) {
+                                            score1 = 4
                                         }
                                     }
                                 }
@@ -140,15 +174,15 @@ fun Scoreboard() {
                                     if (distance.value < -threshold) {
                                         // handle swipe up action
 
-                                        games1.value += 1
-                                        if (games1.value == 8) {
-                                            games1.value = 0
+                                        games1 += 1
+                                        if (games1 == 8) {
+                                            games1 = 0
                                         }
                                     } else if (distance.value > threshold) {
                                         // handle swipe down action
-                                        games1.value -= 1
-                                        if (games1.value < 0) {
-                                            games1.value = 7
+                                        games1 -= 1
+                                        if (games1 < 0) {
+                                            games1 = 7
                                         }
                                     }
                                 }
@@ -157,20 +191,21 @@ fun Scoreboard() {
                                     if (distance.value < -threshold) {
                                         // handle swipe up action
 
-                                        score2.value += 1
-                                        if (score2.value == 5) {
-                                            games2.value += 1
-                                            if (games2.value == 8) {
-                                                games2.value = 0
+                                        score2 += 1
+                                        if (score2 == 5) {
+                                            games2 += 1
+                                            if (games2 == 8) {
+                                                games2 = 0
                                             }
-                                            score2.value = 0
+                                            score2 = 0
                                         }
                                     } else if (distance.value > threshold) {
                                         // handle swipe down action
-                                        score2.value -= 1
-                                        if (score2.value < 0) {
-                                            score2.value = 7
+                                        score2 -= 1
+                                        if (score2 < 0) {
+                                            score2 = 7
                                         }
+
                                     }
                                 }
 
@@ -178,15 +213,15 @@ fun Scoreboard() {
                                     if (distance.value < -threshold) {
                                         // handle swipe up action
 
-                                        games2.value += 1
-                                        if (games2.value == 8) {
-                                            games2.value = 0
+                                        games2 += 1
+                                        if (games2 == 8) {
+                                            games2 = 0
                                         }
                                     } else if (distance.value > threshold) {
                                         // handle swipe down action
-                                        games2.value -= 1
-                                        if (games2.value < 0) {
-                                            games2.value = 7
+                                        games2 -= 1
+                                        if (games2 < 0) {
+                                            games2 = 7
                                         }
                                     }
                                 }
@@ -214,7 +249,7 @@ fun Scoreboard() {
                     // First column content
                     Text(
                         text = "TEAM 1",
-                        modifier = Modifier.padding(15.dp, 7.dp),
+                        modifier = Modifier.padding(0.dp, 0.dp, 10.dp, 5.dp),
                         textAlign = TextAlign.Right,
                         fontSize = 10.sp,
                         color = Color.White
@@ -236,7 +271,7 @@ fun Scoreboard() {
                             }
                     ) {
                         Text(
-                            text = scores[score1.value],
+                            text = scores[score1],
                             color = textColors1.value,
                             textAlign = TextAlign.Right,
                             fontSize = 40.sp,
@@ -248,9 +283,16 @@ fun Scoreboard() {
                     Box(
                         contentAlignment = Alignment.Center,
                         modifier = Modifier
+                            .padding(0.dp, 0.dp, 6.dp, 0.dp)
                             .size(35.dp)
                             .background(textbgg1.value, shape = CircleShape)
                             .clickable(
+                                /* onClick = {
+                                 * val (_ ,_ ,result) = "/score/{matchId}"
+                                 *   .httpPost(listOf("pointsA" to "<integer>", "setsA" to "<integer>", "pointsB" to "<integer>", "setsB" to "<integer>"))
+                                 *   .responseString()
+                                 * }
+                                 */
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = null
                             ) {
@@ -262,7 +304,7 @@ fun Scoreboard() {
                             }
                     ) {
                         Text(
-                            text = games1.value.toString(),
+                            text = games1.toString(),
                             textAlign = TextAlign.Right,
                             fontSize = 25.sp,
                             fontWeight = FontWeight.ExtraBold,
@@ -278,7 +320,7 @@ fun Scoreboard() {
                     // Second column content
                     Text(
                         text = "TEAM 2",
-                        modifier = Modifier.padding(15.dp, 7.dp),
+                        modifier = Modifier.padding(10.dp, 0.dp, 0.dp, 5.dp),
                         textAlign = TextAlign.Left,
                         fontSize = 10.sp,
                         color = Color.White
@@ -289,6 +331,12 @@ fun Scoreboard() {
                             .size(65.dp)
                             .background(textbgs2.value, shape = CircleShape)
                             .clickable(
+                                /* onClick = {
+                                 * val (_ ,_ ,result) = "/score/{matchId}"
+                                 *   .httpPost(listOf("pointsA" to "<integer>", "setsA" to "<integer>", "pointsB" to "<integer>", "setsB" to "<integer>"))
+                                 *   .responseString()
+                                 * }
+                                 */
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = null
                             ) {
@@ -300,7 +348,7 @@ fun Scoreboard() {
                             }
                     ) {
                         Text(
-                            text = scores[score2.value],
+                            text = scores[score2],
                             textAlign = TextAlign.Left,
                             fontSize = 40.sp,
                             fontWeight = FontWeight.ExtraBold,
@@ -310,9 +358,16 @@ fun Scoreboard() {
                     Box(
                         contentAlignment = Alignment.Center,
                         modifier = Modifier
+                            .padding(6.dp, 0.dp, 0.dp, 0.dp)
                             .size(35.dp)
                             .background(textbgg2.value, shape = CircleShape)
                             .clickable(
+                                /* onClick = {
+                                 * val (_ ,_ ,result) = "/score/{matchId}"
+                                 *   .httpPost(listOf("pointsA" to "<integer>", "setsA" to "<integer>", "pointsB" to "<integer>", "setsB" to "<integer>"))
+                                 *   .responseString()
+                                 * }
+                                 */
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = null
                             ) {
@@ -324,7 +379,7 @@ fun Scoreboard() {
                             }
                     ) {
                         Text(
-                            text = games2.value.toString(),
+                            text = games2.toString(),
                             textAlign = TextAlign.Left,
                             fontSize = 25.sp,
                             fontWeight = FontWeight.ExtraBold,
@@ -333,11 +388,12 @@ fun Scoreboard() {
                     }
                 }
             }
-            Box(
+            Row(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(10.dp),
-                contentAlignment = Alignment.BottomCenter
+                    .padding(20.dp),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.Bottom
             ) {
                 Button(
                     onClick = {
@@ -350,9 +406,14 @@ fun Scoreboard() {
                         .width(20.dp),
                     colors = ButtonDefaults.buttonColors(backgroundColor = wearColorPalette.primaryVariant)
                 ) {
-                    Icon(imageVector = Icons.Filled.Refresh, contentDescription = "reset scores")
+                    Icon(
+                        imageVector = Icons.Filled.Refresh,
+                        contentDescription = "reset scores"
+                    )
                 }
+
             }
+
         }
 
         Dialog(
@@ -382,14 +443,16 @@ fun Scoreboard() {
                     ) {
                         Button(
                             onClick = {
-                                score1.value = 0
-                                score2.value = 0
-                                games1.value = 0
-                                games2.value = 0
+                                score1 = 0
+                                score2 = 0
+                                games1 = 0
+                                games2 = 0
                                 showDialog.value = false
                             },
                             modifier = Modifier
-                                .padding(5.dp),
+                                .padding(5.dp)
+                                .height(40.dp)
+                                .width(40.dp),
                             colors = ButtonDefaults.buttonColors(
                                 backgroundColor = feup.edu.lgp.padel4pro.theme.success
                             )
@@ -401,7 +464,9 @@ fun Scoreboard() {
                                 showDialog.value = false
                             },
                             modifier = Modifier
-                                .padding(5.dp),
+                                .padding(5.dp)
+                                .height(40.dp)
+                                .width(40.dp),
 
                             colors = ButtonDefaults.buttonColors(
                                 backgroundColor = feup.edu.lgp.padel4pro.theme.grey

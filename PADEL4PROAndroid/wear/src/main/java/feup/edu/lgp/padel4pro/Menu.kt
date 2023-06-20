@@ -1,8 +1,6 @@
 package feup.edu.lgp.padel4pro
 
-import android.icu.number.IntegerWidth
 import android.text.format.DateFormat
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,8 +17,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.Button
-import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.ButtonColors
+import androidx.wear.compose.material.Icon
+import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.TimeText
 import androidx.wear.compose.material.TimeTextDefaults
 import androidx.wear.compose.material.contentColorFor
@@ -57,12 +56,16 @@ fun Menu() {
         ) {
             Button(
                 onClick = {
-                    Toast.makeText(ctx, "Request Highlight", Toast.LENGTH_SHORT).show()
+                    /*
+                    * val (_ ,_ ,result) = "/highlight"
+                    *   .httpPost(listOf("currentMatch" to "<string>", "currentCourt" to "<string>", "timestamp" to "<datetime>"))
+                    *   .responseString(listOf("highlightId" to "<integer>"))
+                    * */
                 },
                 modifier = Modifier
-                    .padding(5.dp)
-                    .height(70.dp)
-                    .width(70.dp),
+                    .height(75.dp)
+                    .width(75.dp)
+                    .padding(5.dp),
                 colors = buttonColors(),
             ) {
                 Icon(
@@ -75,10 +78,18 @@ fun Menu() {
             ) {
                 Button(
                     onClick = {
-                        Toast.makeText(ctx, "Play Highlight", Toast.LENGTH_SHORT).show()
+                        /*
+                        * val (_, _, result) = "/highlight/{highlightId}"
+                        *   .httpGet()
+                        *   .responseString()
+                        * */
                     },
-                    modifier = Modifier.padding(5.dp)
-                ) {
+                    modifier = Modifier
+                        .height(60.dp)
+                        .width(60.dp)
+                        .padding(5.dp),
+
+                    ) {
                     Icon(
                         painter = painterResource(id = R.drawable.baseline_ondemand_video_24),
                         contentDescription = "videocam"
@@ -86,9 +97,16 @@ fun Menu() {
                 }
                 Button(
                     onClick = {
-                        Toast.makeText(ctx, "Video Referee", Toast.LENGTH_SHORT).show()
+                        /*
+                         * val (_ ,_ ,result) = "/requestRef"
+                         *   .httpPost(listOf("matchId" to "<string>"))
+                         *   .responseString()
+                         */
                     },
-                    modifier = Modifier.padding(5.dp)
+                    modifier = Modifier
+                        .height(60.dp)
+                        .width(60.dp)
+                        .padding(5.dp)
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.baseline_personal_video_24),
@@ -99,11 +117,6 @@ fun Menu() {
                         contentDescription = "see highlight"
                     )
                 }
-            }
-            Row(
-               verticalAlignment = Alignment.CenterVertically
-            ){
-                Icon(painter = painterResource(id = R.drawable.iconmonstr_angel_down_thin), contentDescription = "arrow down 1")
             }
         }
     }

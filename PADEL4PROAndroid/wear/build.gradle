@@ -27,6 +27,14 @@ android {
         targetSdk 30
         versionCode 1
         versionName "1.0"
+        buildConfigField "Boolean", "DEV", "true"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+
+    sourceSets {
+        main { java.srcDirs = ['src/main/java'] }
+        test { java.srcDirs = ['src/test/java'] }
+        androidTest { java.srcDirs = ['src/androidTest/java'] }
     }
 
     buildTypes {
@@ -61,6 +69,10 @@ android {
 
 dependencies {
 
+    implementation 'com.google.android.gms:play-services-wearable:17.1.0'
+    implementation 'org.testng:testng:6.9.6'
+    implementation 'junit:junit:4.13.2'
+    implementation 'junit:junit:4.13.2'
     def composeBom = platform(libs.androidx.compose.bom)
 
     // General compose dependencies
@@ -106,6 +118,8 @@ dependencies {
     testImplementation 'androidx.wear.tiles:tiles-testing:1.2.0-alpha04'
 
     // Testing
+    implementation "androidx.test.ext:junit:1.1.5"
+
     testImplementation libs.junit
 
     androidTestImplementation libs.test.ext.junit
@@ -134,4 +148,16 @@ dependencies {
     // Uncomment the line below and update the version number.
     // implementation("androidx.wear.compose:compose-navigation:1.1.2")
     implementation "androidx.wear.compose:compose-navigation:1.0.0-alpha09"
+
+    // For checking the connection between Wear Os and Smartwatch
+    implementation 'com.google.android.gms:play-services-wearable:17.0.0'
+
+
+    // Test rules and transitive dependencies:
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.4.3")
+    // Needed for createAndroidComposeRule, but not createComposeRule:
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.4.3")
+
+    implementation("com.github.kittinunf.fuel:fuel:2.3.1")
+
 }

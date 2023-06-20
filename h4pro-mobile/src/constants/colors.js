@@ -4,7 +4,7 @@ export const COLOR = {
     midGray: '#373737',
     lightGray: '#666666',
     blue: '#3696ff',
-    orange: '#FF9F36',
+    orange: '#FF4800',
     white: '#FFFFFF',
     red: '#FF3636'
 }

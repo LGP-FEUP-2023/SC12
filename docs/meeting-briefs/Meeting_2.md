@@ -42,15 +42,15 @@ Tech-Stack | • Discuss the tech-stack
 
 ### Review Ideation documents
 - We showed the Project Charter and Business Plan and Vision to Hugo and Matilde;
-- Hugo and Matilde enjoyed the design and agreed with our points, they said they would do a further reading on your deliverables
+- Hugo and Matilde enjoyed the design and agreed with our points, they said they would do further reading on your deliverables
 
 ### Mock-ups
 - We showed our mocks-ups for the smartwatch app to Hugo and Matilde;
-- We got positive feedback, some changes were requested: switch "Player" tags with "Team" tags, add set points, showcase statistics, and update the icons so they are more intuitive.
+- We got positive feedback, and some changes were requested: switch "Player" tags with "Team" tags, add set points, showcase statistics, and update the icons so they are more intuitive.
 
 
 ### Consumer Form
-- We presented our idea of creating the form to query the players' opinion on the product;
+- We presented our idea of creating a form to query the players' opinions on the product;
 - Hugo and Matilde agreed with the form's purpose and target audience, and suggest we add more questions about the relevance of the product's features;
 
 ### Tech-Stack

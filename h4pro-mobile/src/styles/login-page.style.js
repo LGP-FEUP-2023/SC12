@@ -7,8 +7,8 @@ export default StyleSheet.create({
     backgroundColor: COLOR.background
   },
   logoBig: {
-    width: 270,
-    height: 60,
+    width: 261,
+    height: 31,
   },
   formTextContainer: {
     flexDirection: 'row',
