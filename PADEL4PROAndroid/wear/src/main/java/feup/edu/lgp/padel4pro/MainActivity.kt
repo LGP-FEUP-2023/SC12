@@ -28,30 +28,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.wear.compose.material.Text
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.wearable.Wearable
 import feup.edu.lgp.padel4pro.theme.WearAppTheme
 
-/**
- * Simple "Hello, World" app meant as a starting point for a new project using Compose for Wear OS.
- *
- * Displays only a centered [Text] composable, and the actual text varies based on the shape of the
- * device (round vs. square/rectangular).
- *
- * If you plan to have multiple screens, use the Wear version of Compose Navigation. You can carry
- * over your knowledge from mobile and it supports the swipe-to-dismiss gesture (Wear OS's
- * back action). For more information, go here:
- * https://developer.android.com/reference/kotlin/androidx/wear/compose/navigation/package-summary
- */
 
 class MainActivity : ComponentActivity() {
 
     private var googleApiClient: GoogleApiClient? = null
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
-
 
         super.onCreate(savedInstanceState)
         // Create the GoogleApiClient instance
@@ -61,7 +46,6 @@ class MainActivity : ComponentActivity() {
             .addApi(Wearable.API)
             .build()
 
-
         // Connect to Google Play services
         googleApiClient?.connect()
     }
@@ -69,7 +53,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-
         // Disconnect from Google Play services
         googleApiClient?.disconnect()
     }
@@ -131,12 +114,8 @@ class MainActivity : ComponentActivity() {
 fun Padel4Pro(sync: Boolean) {
 
     WearAppTheme {
-        /* If you have enough items in your list, use [ScalingLazyColumn] which is an optimized
-         * version of LazyColumn for wear devices with some added features. For more information,
-         * see d.android.com/wear/compose.
-         */
         val pagerState = rememberPagerState(0)
-        var synced = remember { mutableStateOf(sync) }
+        val synced = remember { mutableStateOf(sync) }
 
         if (synced.value) {
             HorizontalPager(
@@ -169,8 +148,6 @@ fun Padel4Pro(sync: Boolean) {
                 }
             }
         }
-
-
     }
 }
 
