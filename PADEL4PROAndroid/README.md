@@ -13,6 +13,10 @@ Install Android studio and required SDKs.
 
 To start the project, launch one of the virtual devices in Android Studio's emulator. After its launching, run the 'wear' module.
 
+## Running the tests
+Install Android studio and required SDKs.
+
+To run the tests, launch one of the virtual devices in Android Studio's emulator. After its launching, run the 'MyComposeTest' module to run all tests. To run each test individually, go to PADEL4PROAndroid/wear/src/androidTest/java/feup.edu.lgp.padel4pro/ComposeTest.kt.
 
 ## Useful resources
 - [Create and run a wearable app](https://developer.android.com/training/wearables/get-started/creating)
