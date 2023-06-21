@@ -1,0 +1,12 @@
+diff --git a/node_modules/react-native-camera/android/build.gradle b/node_modules/react-native-camera/android/build.gradle
+index 4aed495..2618ccb 100644
+--- a/node_modules/react-native-camera/android/build.gradle
++++ b/node_modules/react-native-camera/android/build.gradle
+@@ -30,6 +30,7 @@ android {
+     multiDexEnabled true
+     minSdkVersion safeExtGet('minSdkVersion', 16)
+     targetSdkVersion safeExtGet('targetSdkVersion', 29)
++    missingDimensionStrategy 'react-native-camera', 'general'
+   }
+ 
+   flavorDimensions "react-native-camera"

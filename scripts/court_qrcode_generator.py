@@ -2,9 +2,10 @@ import argparse
 import qrcode
 from PIL import Image
 
+URL = "MEM4PRO/ID_PLACEHOLDER"
 
 def generate_qrcode(args: str):
-    join_court_request = f"h4pro://MEM4PRO/ID_PLACEHOLDER/join_court/{args.padel_company_id}/{args.padel_court_id}"
+    join_court_request = f"h4pro://{URL}/join_court/{args.padel_company_id}/{args.padel_court_id}"
     qr = qrcode.QRCode(version=1, box_size=10, border=5, error_correction=qrcode.constants.ERROR_CORRECT_H)
     qr.add_data(join_court_request)
     qr.make(fit=True)
