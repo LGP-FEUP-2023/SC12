@@ -20,6 +20,7 @@
     "expo-permissions": "~14.1.1",
     "expo-status-bar": "~1.4.4",
     "i18next": "^22.4.15",
+    "patch-package": "^7.0.0",
     "react": "18.2.0",
     "react-hook-form": "^7.43.9",
     "react-i18next": "^12.2.2",
