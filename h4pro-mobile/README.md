@@ -32,3 +32,7 @@ To run the code on a virtual Android device:
 [Video](https://youtu.be/0-S5a0eXPoc) of a intro course to React-native including running, debugging and coding
 
 How to setup and [android emulator](https://docs.expo.dev/workflow/android-studio-emulator/) to use with Expo CLI
+
+## Important Remarks
+
+The Expo Client, eventhought it is a reliable tool, the building process is very volatile, the next step for the project would be migrating it to native react-native code, which would allow for more control over the building process and the app itself.
