@@ -239,7 +239,6 @@ fun Scoreboard() {
                 modifier = Modifier.fillMaxSize(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                //Greeting(greetingName = greetingName)
                 Column(
                     modifier = Modifier
                         .weight(1f)

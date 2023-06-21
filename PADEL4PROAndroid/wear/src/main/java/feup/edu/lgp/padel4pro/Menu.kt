@@ -56,11 +56,11 @@ fun Menu() {
         ) {
             Button(
                 onClick = {
-                /*
-                * val (_ ,_ ,result) = "/highlight"
-                *   .httpPost(listOf("currentMatch" to "<string>", "currentCourt" to "<string>", "timestamp" to "<datetime>"))
-                *   .responseString(listOf("highlightId" to "<integer>"))
-                * */
+                    /*
+                    * val (_ ,_ ,result) = "/highlight"
+                    *   .httpPost(listOf("currentMatch" to "<string>", "currentCourt" to "<string>", "timestamp" to "<datetime>"))
+                    *   .responseString(listOf("highlightId" to "<integer>"))
+                    * */
                 },
                 modifier = Modifier
                     .height(75.dp)

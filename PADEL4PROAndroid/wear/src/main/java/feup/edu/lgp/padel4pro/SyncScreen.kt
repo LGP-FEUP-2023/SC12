@@ -39,8 +39,7 @@ fun SyncScreen(synced: MutableState<Boolean>) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Row(
-                ) {
+                Row {
                     Icon(
                         painter = painterResource(id = R.drawable.baseline_watch_24),
                         tint = Color.LightGray,
